@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,12 +7,14 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
     <title>Pricing example · Bootstrap</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/pricing/">
 
     <!-- Bootstrap core CSS -->
-    <link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="Images/Logo.png" sizes="180x180">
@@ -47,42 +48,51 @@
 </head>
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal"><img class="mb-2" src="Images/Logo.png" alt="" width="120" height="40"></h5>
+    <h5 class="my-0 mr-md-auto font-weight-normal"><img class="mb-2" src="Images/Logo.png" alt="" width="120"
+                                                        height="40"></h5>
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Otsingud</a>
-        <a class="p-2 text-dark" href="#">Kasutusjuhend</a>
-        <a class="p-2 text-dark" href="#">Liikmelisus</a>
-        <a class="p-2 text-dark" href="#">Seaded</a>
+        <a id="otsingud" class="p-2 text-dark" href="#">Otsingud</a>
+        <a id="kasutusjuhend" class="p-2 text-dark" href="#">Kasutusjuhend</a>
+        <a id="liikmelisus" class="p-2 text-dark" href="#">Liikmelisus</a>
+        <a id="seaded" class="p-2 text-dark" href="#">Seaded</a>
     </nav>
-    <a class="btn btn-outline-primary" href="#">Logi välja</a>
+    <a id="logout" class="btn btn-outline-primary" href="#">Logi välja</a>
 </div>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Muuda andmeid</h1>
     <p class="lead"></p>
-</div>
-
-<div class="container">
-    <body class="text-center">
-    <form class="form-signin">
-
-        <label for="oldpassword" class="sr-only">Kasutajanimi</label>
-        <input type="text" id="oldpassword" class="form-control" style="width: 650px" placeholder="Vana parool" oninvalid="this.setCustomValidity('Sisesta vana parool')" required autofocus>
-
-        <label for="newpassword" class="sr-only">Password</label>
-        <input type="password" id="newpassword" class="form-control" style="width: 650px" placeholder=" Uus Parool" oninvalid="this.setCustomValidity('Sisesta uus parool')" required>
-
-        <label for="newemail" class="sr-only">E-mail</label>
-        <input type="E-mail" id="newemail" class="form-control" style="width: 650px" placeholder="Uus E-mail" oninvalid="this.setCustomValidity('Sisesta uue e-mail')" required autofocus>
-
+    <div align="center">
         <br>
-
-        <button class="btn btn-lg btn-primary btn-block" style="width: 650px" type="submit">Muuda andmed</button>
-
-        <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>-->
-
-    </form>
-    </body>
+        <br>
+        <label for="oldpassword" class="sr-only">Kasutajanimi</label>
+        <input type="password" id="oldpassword" class="form-control" style="width: 250px" placeholder="Vana parool"
+               oninvalid="this.setCustomValidity('Sisesta vana parool')" required autofocus>
+    </div>
+        <br>
+    <div align="center">
+        <label for="newpassword" class="sr-only">Password</label>
+        <input type="password" id="newpassword" class="form-control" style="width: 250px" position="relative" placeholder=" Uus parool"
+               oninvalid="this.setCustomValidity('Sisesta uus parool')" required>
+    </div>
+    <br>
+    <div align="center">
+        <label for="newpassword" class="sr-only">Password</label>
+        <input type="password" id="newpassword" class="form-control" style="width: 250px" position="relative" placeholder=" Uus parool uuesti"
+               oninvalid="this.setCustomValidity('Sisesta uus parool')" required>
+    </div>
+        <br>
+    <div align="center">
+        <label for="newemail" class="sr-only">E-mail</label>
+        <input type="E-mail" id="newemail" class="form-control" style="width: 250px" placeholder="Uus E-mail"
+               oninvalid="this.setCustomValidity('Sisesta uue e-mail')" required autofocus>
+    </div>
+        <br>
+<div align="center">
+        <button class="btn btn-lg btn-primary btn-block" style="width: 250px; align-self: center" type="submit">Muuda andmed</button>
+</div>
+</div>
+<div class="container">
 
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
@@ -92,5 +102,23 @@
         </div>
     </footer>
 </div>
+<script>
+    let element1 = document.getElementById("otsingud");
+    element1.addEventListener('click', function () {
+        window.location.href = ("/loggedin")
+    })
+    let element2 = document.getElementById("kasutusjuhend");
+    element2.addEventListener('click', function () {
+        window.location.href =("/kasutusjuhend")
+    })
+    let element3 = document.getElementById("liikmelisus");
+    element3.addEventListener('click', function () {
+        window.location.href = ("/pricing")
+    })
+    let elementlogout=document.getElementById("logout");
+    elementlogout.addEventListener('click', function () {
+        window.location.href = ('/logout')
+    })
+</script>
 </body>
 </html>

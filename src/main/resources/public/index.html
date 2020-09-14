@@ -45,7 +45,7 @@
 </head>
 <body class="text-center">
 <form class="form-signin">
-    <img class="mb-4" src="Images/Logo.png" alt="" width="300" height="72">
+    <img class="mb-4" src="Images/Logo.png" alt="" width="280" height="72">
   <!--  <h1 class="h3 mb-3 font-weight-normal">Palun logi sisse</h1>-->
     <br>
     <br>
@@ -62,12 +62,18 @@
 
     <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="remember-me"> Mäleta mind
+            <input id="rememberme" type="checkbox" value="remember-me"> Mäleta mind
         </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Loo kasutaja</button>
+    <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
+    <button id="createaccount" class="btn btn-lg btn-primary btn-block" type="submit">Loo kasutaja</button>
     <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>-->
 </form>
+<script>
+    let elementcreateaccount=document.getElementById("createaccount");
+    elementcreateaccount.addEventListener('click', function () {
+        window.location.href = ('/createaccount.html')
+    })
+</script>
 </body>
 </html>

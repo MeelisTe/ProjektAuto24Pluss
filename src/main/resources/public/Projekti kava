@@ -1,0 +1,33 @@
+Arhitektuuri koostamiseks vajadusel Draw.io - https://app.diagrams.net/
+
+
+1)	Teha ühine Github repository
+2)	Postgre andmebaas – vastvad tabelid luua
+3)	Log-in kasutajale(kasutajale profiil)
+		a.	Create account
+				i.	Kasutajanimi
+				ii.	Parool
+				iii.	Eesnimi
+				iv.	Perekonnanimi
+				v.	Sünniaeg
+				vi.	E-mail
+		b.	User guide
+				i.	Visuaalne näide mis linki kopeerida
+		c.	Log-in
+				i.	Kasutajanimi
+				ii.	Parool
+4)	Avaleht
+		a.	Logo
+		b.	Otsingu lahter(id) – salvestus andmebaasi
+		c.	Otsingu nupp
+5)	Kasutaja salvestud info lehele
+		a.	Salvestatud otsingu tulemused
+				i.	Hind
+				ii.	Kuulutuse link
+				iii.	Kuulutuse nimetus
+				iv.	Otsingu avapilt
+6)	Lugeda auto24.ee otsingust välja /used/{kuulutuse id}, salvestada:
+		a.	Hind
+		b.	Kuulutuse link
+		c.	Kuulutuse nimetus
+		d.	Otsingu avapilt

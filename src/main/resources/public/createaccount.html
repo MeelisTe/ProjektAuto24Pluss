@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Signin Template · Bootstrap</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ -->
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="Images/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="Images/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="Images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="Images/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="Images/favicon.ico">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="text-center">
+<form class="form-signin">
+    <img class="mb-4" src="Images/Logo.png" alt="" width="300" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Loo kasutaja</h1>
+
+    <label for="kasutajanimi" class="sr-only">Kasutajanimi</label>
+    <input type="text" id="kasutajanimi" class="form-control" placeholder="Kasutajanimi" oninvalid="this.setCustomValidity('Sisesta kasutajanimi')" required autofocus>
+
+    <label for="parool" class="sr-only">Password</label>
+    <input type="password" id="parool" class="form-control" placeholder="Parool" oninvalid="this.setCustomValidity('Sisesta parool')" required>
+
+    <label for="eesnimi" class="sr-only">Eesnimi</label>
+    <input type="text" id="eesnimi" class="form-control" placeholder="Eesnimi" oninvalid="this.setCustomValidity('Sisesta eesnimi')" required autofocus>
+
+    <label for="perekonnanimi" class="sr-only">Perekonnanimi</label>
+    <input type="text" id="perekonnanimi" class="form-control" placeholder="Perekonnanimi" oninvalid="this.setCustomValidity('Sisesta perekonnanimi')" required autofocus>
+
+    <label for="sünniaeg" class="sr-only">Sünnikuupäev</label>
+    <input placeholder="Sünnikuupäev" type="date" id="sünniaeg" class="form-control" oninvalid="this.setCustomValidity('Sisesta sünnikuupäev')" required autofocus>
+
+    <label for="email" class="sr-only">E-mail</label>
+    <input type="E-mail" id="email" class="form-control" placeholder="E-mail" oninvalid="this.setCustomValidity('Sisesta e-mail')" required autofocus>
+
+    <br>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Loo kasutaja</button>
+
+    <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>-->
+
+</form>
+</body>
+</html>

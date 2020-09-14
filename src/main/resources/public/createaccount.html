@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +6,8 @@
 
     <title>Signin Template · Bootstrap</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
@@ -49,22 +49,34 @@
     <h1 class="h3 mb-3 font-weight-normal">Loo kasutaja</h1>
 
     <label for="kasutajanimi" class="sr-only">Kasutajanimi</label>
-    <input type="text" id="kasutajanimi" class="form-control" placeholder="Kasutajanimi" oninvalid="this.setCustomValidity('Sisesta kasutajanimi')" required autofocus>
+    <input type="text" id="kasutajanimi" class="form-control" placeholder="Kasutajanimi"
+           oninvalid="this.setCustomValidity('Sisesta kasutajanimi')"
+           onchange="this.setCustomValidity('')" required autofocus>
 
     <label for="parool" class="sr-only">Password</label>
-    <input type="password" id="parool" class="form-control" placeholder="Parool" oninvalid="this.setCustomValidity('Sisesta parool')" required>
+    <input type="password" id="parool" class="form-control" placeholder="Parool"
+           oninvalid="this.setCustomValidity('Sisesta parool')"
+           onchange="this.setCustomValidity('')" required>
 
     <label for="eesnimi" class="sr-only">Eesnimi</label>
-    <input type="text" id="eesnimi" class="form-control" placeholder="Eesnimi" oninvalid="this.setCustomValidity('Sisesta eesnimi')" required autofocus>
+    <input type="text" id="eesnimi" class="form-control" placeholder="Eesnimi"
+           oninvalid="this.setCustomValidity('Sisesta eesnimi')"
+           onchange="this.setCustomValidity('')" required>
 
     <label for="perekonnanimi" class="sr-only">Perekonnanimi</label>
-    <input type="text" id="perekonnanimi" class="form-control" placeholder="Perekonnanimi" oninvalid="this.setCustomValidity('Sisesta perekonnanimi')" required autofocus>
+    <input type="text" id="perekonnanimi" class="form-control" placeholder="Perekonnanimi"
+           oninvalid="this.setCustomValidity('Sisesta perekonnanimi')"
+           onchange="this.setCustomValidity('')" required>
 
     <label for="sünniaeg" class="sr-only">Sünnikuupäev</label>
-    <input placeholder="Sünnikuupäev" type="date" id="sünniaeg" class="form-control" oninvalid="this.setCustomValidity('Sisesta sünnikuupäev')" required autofocus>
+    <input placeholder="Sünnikuupäev" type="date" id="sünniaeg" class="form-control"
+           oninvalid="this.setCustomValidity('Sisesta sünnikuupäev')"
+           onchange="this.setCustomValidity('')" required>
 
     <label for="email" class="sr-only">E-mail</label>
-    <input type="E-mail" id="email" class="form-control" placeholder="E-mail" oninvalid="this.setCustomValidity('Sisesta e-mail')" required autofocus>
+    <input type="E-mail" id="email" class="form-control" placeholder="E-mail"
+           oninvalid="this.setCustomValidity('Sisesta e-mail')"
+           onchange="this.setCustomValidity('')" required>
 
     <br>
 

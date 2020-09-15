@@ -4,5 +4,77 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet  author="Mirko"  id="15.09.2020-Creating_tables">
+        <createTable  tableName="user">
+            <column  name="id"  type="int" autoIncrement="true">
+                <constraints  nullable="false"  primaryKey="true"  unique="false"/>
+            </column>
+            <column  name="firstname"  type="text">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="lastname"  type="text">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="username"  type="text">
+                <constraints  nullable="false"  primaryKey="false"  unique="true"/>
+            </column>
+            <column  name="password"  type="text">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="dob"  type="text">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="email"  type="text">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
 
+        </createTable>
+        <createTable  tableName="membership">
+            <column  name="id"  type="int" autoIncrement="true">
+                <constraints  nullable="false"  primaryKey="true"  unique="false" />
+            </column>
+            <column  name="user_id"  type="int">
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_membership" references="user(id)"/>
+            </column>
+            <column  name="membership"  type="boolean">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
+
+        </createTable>
+        <createTable  tableName="searches">
+            <column  name="id"  type="int" autoIncrement="true">
+                <constraints  nullable="false"  primaryKey="true"  unique="false" />
+            </column>
+            <column  name="user_id"  type="int">
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_searches" references="user(id)"/>
+            </column>
+            <column  name="searchlink"  type="text">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
+
+        </createTable>
+        <createTable  tableName="searchresults">
+            <column  name="id"  type="int" autoIncrement="true">
+                <constraints  nullable="false"  primaryKey="true"  unique="false"/>
+            </column>
+            <column  name="user_id"  type="int">
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_searchresults" references="user(id)"/>
+            </column>
+            <column  name="resultname"  type="text">
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="price"  type="int">
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="oldprice"  type="int">
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="linkurl"  type="text">
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="resultid"  type="int">
+                <constraints  nullable="true"  primaryKey="false"  unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

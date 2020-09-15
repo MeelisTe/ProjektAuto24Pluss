@@ -81,10 +81,43 @@
 
     <br>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Loo kasutaja</button>
+    <button id="createuser" class="btn btn-lg btn-primary btn-block" type="submit">Loo kasutaja</button>
 
     <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>-->
 
 </form>
+<script>
+    let createNewAccount = document.getElementById("createuser");
+    createNewAccount.onclick = function () {
+        fetch('/createaccount'), {
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                firstname: firstname.value,
+                lastname: lastname.value,
+                username: username.value,
+                password: password.value,
+                dob: dob.value,
+                email: email.value,
+            })
+        } .then(function (response) {
+            return response.json();
+
+        })
+            .then(function (jsonData) {
+                return response.json();
+
+            })
+
+            .catch(function (err) {
+            });
+        alert("Kasutaja " + username.value + " loodud")
+
+    }
+
+</script>
 </body>
 </html>

@@ -49,5 +49,13 @@ public class AccountRepository {
 
 
 
+    public void updateInformation(String password, String email) {
+        String sql = "UPDATE appuser SET password= :password and email= :email WHERE id= :1";
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("password", password);
+        paramMap.put("email", email);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
 }
 

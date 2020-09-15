@@ -84,12 +84,14 @@
         <br>
     <div align="center">
         <label for="newemail" class="sr-only">E-mail</label>
-        <input type="E-mail" id="newemail" class="form-control" style="width: 250px" placeholder="Uus E-mail"
+        <input type="E-mail" id="newemail" class="form-control" style="width: 250px" placeholder="Uus e-mail"
                oninvalid="this.setCustomValidity('Sisesta uue e-mail')" required autofocus>
     </div>
         <br>
 <div align="center">
-        <button class="btn btn-lg btn-primary btn-block" style="width: 250px; align-self: center" type="submit">Muuda andmed</button>
+        <button id="update" class="btn btn-lg btn-primary btn-block" style="width: 250px; align-self: center" type="submit">
+            Muuda andmed
+        </button>
 </div>
 </div>
 <div class="container">
@@ -118,6 +120,26 @@
     let elementlogout=document.getElementById("logout");
     elementlogout.addEventListener('click', function () {
         window.location.href = ('/logout.html')
+    })
+
+    let elementupdate=document.getElementById("update");
+    elementupdate.onclick('click', function () {
+    //    if (newpassword.value == newpasswordagain.value) {
+            fetch('/settings', {
+                method: 'PUT',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    password: newpassword.value,
+                    email: newemail.value,
+                })
+            })
+            alert("Andmed uuendatud")
+       // } else {
+      //      alert("Andmed pole õiged")
+      //  }
     })
 </script>
 </body>

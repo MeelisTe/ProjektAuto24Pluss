@@ -13,11 +13,17 @@ public class AccountController {
 
     @PutMapping("createaccount")
     public void createNewAccount(@RequestBody AccountInfo request){
-        accountService.createNewAccount(request.getFirstname(), request.getLastname(), request.getUsername(), request.getPassword(), request.getDob(), request.getEmail());
+        accountService.createNewAccount(request.getFirstname(), request.getLastname(), request.getUsername()
+                , request.getPassword(), request.getDob(), request.getEmail());
     }
 
     @PutMapping("saveurl")
     public void saveURL(@RequestBody SearchSave save){
         accountService.saveURL(save.getSearchlink(), 1l);
+    }
+
+    @PutMapping("updateinformation")
+    public void updateInformation(@RequestBody AccountInfo request){
+        accountService.updateInformation(request.getPassword(), request.getEmail());
     }
 }

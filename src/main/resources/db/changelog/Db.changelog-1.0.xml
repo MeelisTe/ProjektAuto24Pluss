@@ -46,7 +46,7 @@
                 <constraints  nullable="false"  primaryKey="true"  unique="false" />
             </column>
             <column  name="user_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_search" references="membership(id)"/>
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_search" references="appuser(id)"/>
             </column>
             <column  name="searchlink"  type="text">
                 <constraints  nullable="false"  primaryKey="false"  unique="true"/>

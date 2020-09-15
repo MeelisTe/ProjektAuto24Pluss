@@ -17,8 +17,8 @@ public class AccountRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
-        String sql = "INSERT INTO user (firstname, lastname, username, password, dob, email) values (:firstname, :lastname, :username, :password, :dob, :email)";
-        Map<String, Object> paramMap = new HashMap<>();
+        String sql = "INSERT INTO appuser (firstname, lastname, username, password, dob, email) values (:firstname, :lastname, :username, :password, :dob, :email)";
+        Map<String, String> paramMap = new HashMap<>();
         paramMap.put("firstname", firstname);
         paramMap.put("lastname", lastname);
         paramMap.put("username", username);

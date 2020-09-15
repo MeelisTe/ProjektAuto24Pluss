@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet  author="Mirko"  id="15.09.2020-Creating_tables">
-        <createTable  tableName="user">
+        <createTable  tableName="appuser">
             <column  name="id"  type="int" autoIncrement="true">
                 <constraints  nullable="false"  primaryKey="true"  unique="false"/>
             </column>
@@ -34,34 +34,37 @@
                 <constraints  nullable="false"  primaryKey="true"  unique="false" />
             </column>
             <column  name="user_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_membership" references="user(id)"/>
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_appuser_membership" references="appuser(id)"/>
             </column>
             <column  name="membership"  type="boolean">
                 <constraints  nullable="false"  primaryKey="false"  unique="false"/>
             </column>
 
         </createTable>
-        <createTable  tableName="searches">
+        <createTable  tableName="search">
             <column  name="id"  type="int" autoIncrement="true">
                 <constraints  nullable="false"  primaryKey="true"  unique="false" />
             </column>
             <column  name="user_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_searches" references="user(id)"/>
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_search" references="membership(id)"/>
             </column>
             <column  name="searchlink"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+                <constraints  nullable="false"  primaryKey="false"  unique="true"/>
             </column>
 
         </createTable>
-        <createTable  tableName="searchresults">
+        <createTable  tableName="searchresult">
             <column  name="id"  type="int" autoIncrement="true">
                 <constraints  nullable="false"  primaryKey="true"  unique="false"/>
             </column>
+            <column  name="search_id"  type="int">
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_search_searchresults" references="search(id)"/>
+            </column>
             <column  name="user_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_searchresults" references="user(id)"/>
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_searchresults" references="appuser(id)"/>
             </column>
             <column  name="resultname"  type="text">
-                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+                <constraints  nullable="true"  primaryKey="false"  unique="false" foreignKeyName="fk_search_result" references="search(searchlink)"/>
             </column>
             <column  name="price"  type="int">
                 <constraints  nullable="true"  primaryKey="false"  unique="false"/>
@@ -75,6 +78,21 @@
             <column  name="resultid"  type="int">
                 <constraints  nullable="true"  primaryKey="false"  unique="true"/>
             </column>
+        </createTable>
+        <createTable  tableName="timestamp">
+            <column  name="id"  type="int" autoIncrement="true">
+                <constraints  nullable="false"  primaryKey="true"  unique="false" />
+            </column>
+            <column  name="result_id"  type="int">
+                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_searchresult_timestamp" references="searchresult(id)"/>
+            </column>
+            <column  name="price"  type="int">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="time"  type="text">
+                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            </column>
+
         </createTable>
     </changeSet>
 </databaseChangeLog>

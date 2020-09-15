@@ -9,7 +9,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("createaccount")
+    @PutMapping("createaccount")
     public void createNewAccount(@RequestBody AccountInfo request){
         accountService.createNewAccount(request.getFirstname(), request.getLastname(), request.getUsername(), request.getPassword(), request.getDob(), request.getEmail());
     }

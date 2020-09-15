@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,71 +50,63 @@
  <!--   <h1 class="h3 mb-3 font-weight-normal">Loo kasutaja</h1>-->
 <br>
     <br>
-    <label for="kasutajanimi" class="sr-only">Kasutajanimi</label>
-    <input type="text" id="kasutajanimi" class="form-control" placeholder="Kasutajanimi"
+    <label for="username" class="sr-only">Kasutajanimi</label>
+    <input type="text" id="username" class="form-control" placeholder="Kasutajanimi"
            oninvalid="this.setCustomValidity('Sisesta kasutajanimi')"
            onchange="this.setCustomValidity('')" required autofocus>
 
-    <label for="parool" class="sr-only">Password</label>
-    <input type="password" id="parool" class="form-control" placeholder="Parool"
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="Parool"
            oninvalid="this.setCustomValidity('Sisesta parool')"
            onchange="this.setCustomValidity('')" required>
 
-    <label for="eesnimi" class="sr-only">Eesnimi</label>
-    <input type="text" id="eesnimi" class="form-control" placeholder="Eesnimi"
+    <label for="firstname" class="sr-only">Eesnimi</label>
+    <input type="text" id="firstname" class="form-control" placeholder="Eesnimi"
            oninvalid="this.setCustomValidity('Sisesta eesnimi')"
            onchange="this.setCustomValidity('')" required>
 
-    <label for="perekonnanimi" class="sr-only">Perekonnanimi</label>
-    <input type="text" id="perekonnanimi" class="form-control" placeholder="Perekonnanimi"
+    <label for="lastname" class="sr-only">Perekonnanimi</label>
+    <input type="text" id="lastname" class="form-control" placeholder="Perekonnanimi"
            oninvalid="this.setCustomValidity('Sisesta perekonnanimi')"
            onchange="this.setCustomValidity('')" required>
 
-    <label for="sünniaeg" class="sr-only">Sünnikuupäev</label>
-    <input placeholder="Sünnikuupäev" type="date" id="sünniaeg" class="form-control"
+    <label for="dob" class="sr-only">Sünnikuupäev</label>
+    <input placeholder="Sünnikuupäev" type="date" id="dob" class="form-control"
            oninvalid="this.setCustomValidity('Sisesta sünnikuupäev')"
            onchange="this.setCustomValidity('')" required>
 
     <label for="email" class="sr-only">E-mail</label>
-    <input type="E-mail" id="email" class="form-control" placeholder="E-mail"
+    <input type="email" id="email" class="form-control" placeholder="E-mail"
            oninvalid="this.setCustomValidity('Sisesta e-mail')"
            onchange="this.setCustomValidity('')" required>
 
     <br>
 
-    <button id="createuser" class="btn btn-lg btn-primary btn-block" type="submit">Loo kasutaja</button>
+    <button id="createuser" class="btn btn-lg btn-primary btn-block" type="submit">
+        Loo kasutaja
+    </button>
 
     <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>-->
 
 </form>
 <script>
-    let createNewAccount = document.getElementById("createuser");
-    createNewAccount.onclick = function () {
-        fetch('/createaccount'), {
-            method: 'POST',
+    let createAccount = document.getElementById("createuser");
+    createAccount.onclick = function () {
+        fetch('/createaccount', {
+            method: 'PUT',
             cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                firstname: firstname.value,
-                lastname: lastname.value,
                 username: username.value,
                 password: password.value,
+                firstname: firstname.value,
+                lastname: lastname.value,
                 dob: dob.value,
                 email: email.value,
             })
-        } .then(function (response) {
-            return response.json();
-
         })
-            .then(function (jsonData) {
-                return response.json();
-
-            })
-
-            .catch(function (err) {
-            });
         alert("Kasutaja " + username.value + " loodud")
 
     }

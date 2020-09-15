@@ -16,8 +16,7 @@ public class AccountService {
         accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
     }
 
-    public void saveURL(String searchlink) {
-        String username = accountRepository.getUsernameByUserId(kasutajanimi);
-        accountRepository.saveURL(username, searchlink);
+    public void saveURL(String searchlink, Long userId) {
+        accountRepository.saveURL(searchlink, userId);
     }
 }

@@ -31,24 +31,23 @@ public class AccountRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public void saveURL(BigInteger user_id, String searchlink) {
-        String sql = "INSERT INTO search (user_id, searchlink) values (:firstname, :lastname, :username, :password, :dob, :email)";
-        Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("firstname", firstname);
-        paramMap.put("lastname", lastname);
-        paramMap.put("username", username);
-        paramMap.put("password", password);
-        paramMap.put("dob", dob);
-        paramMap.put("email", email);
-        jdbcTemplate.update(sql, paramMap);
-    }
-
     public String getUsernameByUserId(String kasutajanimi) {
         String sql = "SELECT id FROM appuser WHERE username = :kasutajaNimi";
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("kasutajaNimi", kasutajanimi);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
+
+    public void saveURL(String searchlink, Long userId) {
+        String sql = "INSERT INTO search (searchlink, user_id) values (:searchlink, :userId)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("searchlink", searchlink);
+        paramMap.put("userId", userId);
+
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+
 
 }
 

@@ -18,6 +18,6 @@ public class AccountController {
 
     @PutMapping("saveurl")
     public void saveURL(@RequestBody SearchSave save){
-        accountService.saveURL(save.getUser_id(), save.getSearchlink());
+        accountService.saveURL(save.getSearchlink(), 1l);
     }
 }

@@ -19,4 +19,8 @@ public class AccountService {
     public void saveURL(String searchlink, Long userId) {
         accountRepository.saveURL(searchlink, userId);
     }
+
+    public void updateInformation(String password, String email){
+        accountRepository.updateInformation(password, email);
+    }
 }

@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
+
 
     public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email){
         accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
@@ -23,4 +25,10 @@ public class AccountService {
     public void updateInformation(String password, String email){
         accountRepository.updateInformation(password, email);
     }
+
+    public List<SearchSave> displayresults() {
+        return  accountRepository.displayresults();
+    }
+
+
 }

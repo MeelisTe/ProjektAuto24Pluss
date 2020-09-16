@@ -1,23 +1,20 @@
 package com.example.Auto24Pluss.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
-import java.util.Date;
 import java.util.HashMap;
-
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Map;
 
+import ee.bcs.valiit.controller.ObjectRowMapper;
 
 @Repository
 public class AccountRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
+
 
     public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
         String sql = "INSERT INTO appuser (firstname, lastname, username, password, dob, email) values (:firstname, :lastname, :username, :password, :dob, :email)";
@@ -48,7 +45,6 @@ public class AccountRepository {
     }
 
 
-
     public void updateInformation(String password, String email) {
         String sql = "UPDATE appuser SET password= :password and email= :email WHERE id= :1";
         Map<String, String> paramMap = new HashMap<>();
@@ -56,6 +52,12 @@ public class AccountRepository {
         paramMap.put("email", email);
         jdbcTemplate.update(sql, paramMap);
     }
+
+    public List<SearchSave> displayresults() {
+        String sql = "SELECT * FROM search";
+        return jdbcTemplate.query(sql, new HashMap<>(), new ObjectRowMapper());
+    }
+
 
 }
 

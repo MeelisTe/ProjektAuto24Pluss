@@ -65,6 +65,10 @@
     <p class="lead"></p>
 </div>
 
+<div align="center" id="displayresults">
+
+</div>
+
 
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
@@ -94,8 +98,26 @@
     let elementlogout = document.getElementById("logout");
     elementlogout.addEventListener('click', function () {
         window.location.href = ('/logout.html')
-
     })
+
+    window.onload = function () {
+        document.getElementById("displayresults");
+
+        fetch('/displayresults')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (jsonData) {
+                document.getElementById("displayresults").innerHTML = "<table><tr><td><a href='" + jsonData[0].searchlink + "'>" + jsonData[0].searchlink + "</a></td><td>" + jsonData[0].userId + "</td></tr></table>";
+
+            })
+            .catch(function (err) {
+            });
+
+
+    }
+
+
 </script>
 </body>
 </html>

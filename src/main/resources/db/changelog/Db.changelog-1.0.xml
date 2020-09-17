@@ -585,6 +585,7 @@
             INSERT INTO automargid (car_brand_id, name) VALUES (267, 'ZIL');
             INSERT INTO automargid (car_brand_id, name) VALUES (545, 'Zodiac');
             INSERT INTO automargid (car_brand_id, name) VALUES (85, 'Zorzi');
+
         </sql>
     </changeSet>
 </databaseChangeLog>

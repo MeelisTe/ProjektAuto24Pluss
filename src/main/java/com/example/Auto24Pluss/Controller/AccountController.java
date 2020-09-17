@@ -1,7 +1,10 @@
 package com.example.Auto24Pluss.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,7 +22,6 @@ public class AccountController {
 
     @PutMapping("saveurl")
     public void saveURL(@RequestBody SearchSave save) {
-        System.out.println("test");
         accountService.saveURL(save.getSearchlink(), 1l);
     }
 
@@ -29,7 +31,7 @@ public class AccountController {
     }
 
     @GetMapping("displayresults")
-    public List<SearchSave> displayresults () {
+    public List<SearchSave> displayresults() {
         return accountService.displayresults();
     }
 }

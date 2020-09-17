@@ -1,0 +1,8 @@
+"INSERT into transactions (model_id, model) values (model_id, model)"
+
+"INSERT into transactions (model_id, model) values (2162, Dokker)"
+"INSERT into transactions (model_id, model) values (2050, Duster)"
+"INSERT into transactions (model_id, model) values (2154, Lodgy)"
+"INSERT into transactions (model_id, model) values (909, Logan)"
+"INSERT into transactions (model_id, model) values (994, Logan MCV)"
+"INSERT into transactions (model_id, model) values (1612, Sandero)"

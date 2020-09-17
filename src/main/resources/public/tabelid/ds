@@ -1,0 +1,7 @@
+"INSERT into transactions (model_id, model) values (model_id, model)"
+
+"INSERT into transactions (model_id, model) values (2448, DS 3)"
+"INSERT into transactions (model_id, model) values (5309, DS 3 Crossback)"
+"INSERT into transactions (model_id, model) values (2418, DS 4)"
+"INSERT into transactions (model_id, model) values (2391, DS 5)"
+"INSERT into transactions (model_id, model) values (5080, DS 7)"

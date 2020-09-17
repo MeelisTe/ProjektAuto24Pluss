@@ -17,11 +17,14 @@ public class AccountController {
                 , request.getPassword(), request.getDob(), request.getEmail());
     }
 
-    @PutMapping("saveurl")
-    public void saveURL(@RequestBody SearchSave save) {
+  /*  @PutMapping("saveurl")
+    public void saveURL(@RequestBody List<SearchSave> save) {
         System.out.println("test");
+        for (SearchSave searchSave : save) {
+            if(searchSave.getSearchlink() != null && !searchSave.getSearchlink().isBlank())
+        }
         accountService.saveURL(save.getSearchlink(), 1l);
-    }
+    }*/
 
     @PutMapping("updateinformation")
     public void updateInformation(@RequestBody AccountInfo request) {

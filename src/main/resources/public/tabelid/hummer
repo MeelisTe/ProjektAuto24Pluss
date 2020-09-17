@@ -1,0 +1,7 @@
+"INSERT into transactions (model_id, model) values (model_id, model)"
+
+"INSERT into transactions (model_id, model) values (900, H1)"
+"INSERT into transactions (model_id, model) values (251, H2)"
+"INSERT into transactions (model_id, model) values (899, H2 SUT)"
+"INSERT into transactions (model_id, model) values (902, H3)"
+"INSERT into transactions (model_id, model) values (1213, H3T)"

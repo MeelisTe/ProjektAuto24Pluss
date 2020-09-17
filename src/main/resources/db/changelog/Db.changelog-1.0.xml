@@ -2495,7 +2495,8 @@
             INSERT into models (model_id, model) values (1104, 'Rezzo');
             INSERT into models (model_id, model) values (1096, 'Tacuma');
             INSERT into models (model_id, model) values (1097, 'Tico');
-=======
+        </sql>
+    </changeSet>
     <changeSet id="automargid" author="Meelis">
         <createTable tableName="automargid">
             <column name="id" type="int" autoIncrement="true">

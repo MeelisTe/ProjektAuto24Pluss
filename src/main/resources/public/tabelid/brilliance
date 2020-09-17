@@ -1,0 +1,6 @@
+"INSERT into transactions (model_id, model) values (model_id, model)"
+
+"INSERT into transactions (model_id, model) values (1828, BC3)"
+"INSERT into transactions (model_id, model) values (1830, BS2)"
+"INSERT into transactions (model_id, model) values (1829, BS4)"
+"INSERT into transactions (model_id, model) values (1831, BS6)"

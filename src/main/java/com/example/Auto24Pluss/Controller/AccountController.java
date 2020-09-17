@@ -20,10 +20,19 @@ public class AccountController {
                 , request.getPassword(), request.getDob(), request.getEmail());
     }
 
+ 16.09night
+  /*  @PutMapping("saveurl")
+    public void saveURL(@RequestBody List<SearchSave> save) {
+        System.out.println("test");
+        for (SearchSave searchSave : save) {
+            if(searchSave.getSearchlink() != null && !searchSave.getSearchlink().isBlank())
+        }
+=======
     @PutMapping("saveurl")
     public void saveURL(@RequestBody SearchSave save) {
+ master
         accountService.saveURL(save.getSearchlink(), 1l);
-    }
+    }*/
 
     @PutMapping("updateinformation")
     public void updateInformation(@RequestBody AccountInfo request) {

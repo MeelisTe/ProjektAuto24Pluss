@@ -108,7 +108,7 @@
                 return response.json();
             })
             .then(function (jsonData) {
-                document.getElementById("displayresults").innerHTML = "<table><tr><td><a href='" + jsonData[0].searchlink + "'>" + jsonData[0].searchlink + "</a></td><td>" + jsonData[0].userId + "</td></tr></table>";
+                document.getElementById("displayresults").innerHTML = "<table><tr><td></td><td>" + jsonData[0].userId + ". </td><td><a href='" + jsonData[0].searchlink + "'>" + jsonData[0].searchlink + "</a></td></tr></table>";
 
             })
             .catch(function (err) {

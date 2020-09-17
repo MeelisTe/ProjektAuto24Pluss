@@ -4,570 +4,588 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet  author="Mirko"  id="15.09.2020-Creating_tables">
-        <createTable  tableName="appuser">
-            <column  name="id"  type="int" autoIncrement="true">
-                <constraints  nullable="false"  primaryKey="true"  unique="false"/>
+    <changeSet author="Mirko" id="15.09.2020-Creating_tables">
+        <createTable tableName="appuser">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
             </column>
-            <column  name="firstname"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            <column name="firstname" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column  name="lastname"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            <column name="lastname" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column  name="username"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="true"/>
+            <column name="username" type="text">
+                <constraints nullable="false" primaryKey="false" unique="true"/>
             </column>
-            <column  name="password"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            <column name="password" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column  name="dob"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            <column name="dob" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column  name="email"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
-            </column>
-
-        </createTable>
-        <createTable  tableName="membership">
-            <column  name="id"  type="int" autoIncrement="true">
-                <constraints  nullable="false"  primaryKey="true"  unique="false" />
-            </column>
-            <column  name="user_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_appuser_membership" references="appuser(id)"/>
-            </column>
-            <column  name="membership"  type="boolean">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            <column name="email" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
 
         </createTable>
-        <createTable  tableName="search">
-            <column  name="id"  type="int" autoIncrement="true">
-                <constraints  nullable="false"  primaryKey="true"  unique="false" />
+        <createTable tableName="membership">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
             </column>
-            <column  name="user_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_search" references="appuser(id)"/>
+            <column name="user_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false" foreignKeyName="fk_appuser_membership"
+                             references="appuser(id)"/>
             </column>
-            <column  name="searchlink"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="true"/>
+            <column name="membership" type="boolean">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
 
         </createTable>
-        <createTable  tableName="searchresult">
-            <column  name="id"  type="int" autoIncrement="true">
-                <constraints  nullable="false"  primaryKey="true"  unique="false"/>
+        <createTable tableName="search">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
             </column>
-            <column  name="search_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_search_searchresults" references="search(id)"/>
+            <column name="user_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false" foreignKeyName="fk_user_search"
+                             references="appuser(id)"/>
             </column>
-            <column  name="user_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_user_searchresults" references="appuser(id)"/>
+            <column name="searchlink" type="text">
+                <constraints nullable="false" primaryKey="false" unique="true"/>
             </column>
-            <column  name="resultname"  type="text">
-                <constraints  nullable="true"  primaryKey="false"  unique="false" foreignKeyName="fk_search_result" references="search(searchlink)"/>
+
+        </createTable>
+        <createTable tableName="searchresult">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
             </column>
-            <column  name="price"  type="int">
-                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            <column name="search_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false" foreignKeyName="fk_search_searchresults"
+                             references="search(id)"/>
             </column>
-            <column  name="oldprice"  type="int">
-                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            <column name="user_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false" foreignKeyName="fk_user_searchresults"
+                             references="appuser(id)"/>
             </column>
-            <column  name="linkurl"  type="text">
-                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            <column name="resultname" type="text">
+                <constraints nullable="true" primaryKey="false" unique="false" foreignKeyName="fk_search_result"
+                             references="search(searchlink)"/>
             </column>
-            <column  name="resultid"  type="int">
-                <constraints  nullable="true"  primaryKey="false"  unique="true"/>
+            <column name="price" type="int">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="oldprice" type="int">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="linkurl" type="text">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="resultid" type="int">
+                <constraints nullable="true" primaryKey="false" unique="true"/>
             </column>
         </createTable>
-        <createTable  tableName="timestamp">
-            <column  name="id"  type="int" autoIncrement="true">
-                <constraints  nullable="false"  primaryKey="true"  unique="false" />
+        <createTable tableName="timestamp">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
             </column>
-            <column  name="result_id"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false" foreignKeyName="fk_searchresult_timestamp" references="searchresult(id)"/>
+            <column name="result_id" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"
+                             foreignKeyName="fk_searchresult_timestamp" references="searchresult(id)"/>
             </column>
-            <column  name="price"  type="int">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            <column name="price" type="int">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column  name="time"  type="text">
-                <constraints  nullable="false"  primaryKey="false"  unique="false"/>
+            <column name="time" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
 
         </createTable>
     </changeSet>
-    <changeSet id="" author="">
+    <changeSet id="automargid" author="Meelis">
+        <createTable tableName="automargid">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_brand_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
         <sql>
-            INSERT INTO tabel (id, name) VALUES (0, 'kõik');
-            INSERT INTO tabel (id, name) VALUES (279, 'Abbey');
-            INSERT INTO tabel (id, name) VALUES (422, 'Abi');
-            INSERT INTO tabel (id, name) VALUES (1398, 'ABT');
-            INSERT INTO tabel (id, name) VALUES (1196, 'AC');
-            INSERT INTO tabel (id, name) VALUES (286, 'Adria');
-            INSERT INTO tabel (id, name) VALUES (1329, 'AGT');
-            INSERT INTO tabel (id, name) VALUES (1096, 'Aixam');
-            INSERT INTO tabel (id, name) VALUES (1011, 'Akerman');
-            INSERT INTO tabel (id, name) VALUES (9, 'Alfa Romeo');
-            INSERT INTO tabel (id, name) VALUES (372, 'Alpina');
-            INSERT INTO tabel (id, name) VALUES (1382, 'American Ironhorse');
-            INSERT INTO tabel (id, name) VALUES (461, 'Ammann');
-            INSERT INTO tabel (id, name) VALUES (1272, 'Amor');
-            INSERT INTO tabel (id, name) VALUES (429, 'AMT');
-            INSERT INTO tabel (id, name) VALUES (319, 'Andover');
-            INSERT INTO tabel (id, name) VALUES (497, 'Ansö');
-            INSERT INTO tabel (id, name) VALUES (1135, 'Anytec');
-            INSERT INTO tabel (id, name) VALUES (1230, 'Apex');
-            INSERT INTO tabel (id, name) VALUES (465, 'Apollo');
-            INSERT INTO tabel (id, name) VALUES (197, 'Aprilia');
-            INSERT INTO tabel (id, name) VALUES (567, 'Aquador');
-            INSERT INTO tabel (id, name) VALUES (1300, 'ARB');
-            INSERT INTO tabel (id, name) VALUES (1287, 'Arcas Trailer');
-            INSERT INTO tabel (id, name) VALUES (469, 'Arctic Cat');
-            INSERT INTO tabel (id, name) VALUES (858, 'Argo');
-            INSERT INTO tabel (id, name) VALUES (149, 'Aston Martin');
-            INSERT INTO tabel (id, name) VALUES (576, 'Atlas');
-            INSERT INTO tabel (id, name) VALUES (253, 'ATM');
-            INSERT INTO tabel (id, name) VALUES (2, 'Audi');
-            INSERT INTO tabel (id, name) VALUES (700, 'Avant');
-            INSERT INTO tabel (id, name) VALUES (289, 'Avento');
-            INSERT INTO tabel (id, name) VALUES (1402, 'Avondale');
-            INSERT INTO tabel (id, name) VALUES (1461, 'Bailey');
-            INSERT INTO tabel (id, name) VALUES (221, 'Baotian');
-            INSERT INTO tabel (id, name) VALUES (1249, 'Bashan');
-            INSERT INTO tabel (id, name) VALUES (402, 'Bavaria');
-            INSERT INTO tabel (id, name) VALUES (67, 'Bayliner');
-            INSERT INTO tabel (id, name) VALUES (349, 'Belarus');
-            INSERT INTO tabel (id, name) VALUES (421, 'Bella');
-            INSERT INTO tabel (id, name) VALUES (1307, 'Bellier');
-            INSERT INTO tabel (id, name) VALUES (290, 'Benalu');
-            INSERT INTO tabel (id, name) VALUES (234, 'Benelli');
-            INSERT INTO tabel (id, name) VALUES (698, 'Beneteau');
-            INSERT INTO tabel (id, name) VALUES (247, 'Bentley');
-            INSERT INTO tabel (id, name) VALUES (441, 'Beta');
-            INSERT INTO tabel (id, name) VALUES (890, 'Big Dog');
-            INSERT INTO tabel (id, name) VALUES (1184, 'BLYSS-Transporttechnik');
-            INSERT INTO tabel (id, name) VALUES (4, 'BMW');
-            INSERT INTO tabel (id, name) VALUES (292, 'Bobcat');
-            INSERT INTO tabel (id, name) VALUES (1211, 'Bodex');
-            INSERT INTO tabel (id, name) VALUES (515, 'Bomag');
-            INSERT INTO tabel (id, name) VALUES (1335, 'Boström');
-            INSERT INTO tabel (id, name) VALUES (476, 'Branson');
-            INSERT INTO tabel (id, name) VALUES (336, 'Brenderup');
-            INSERT INTO tabel (id, name) VALUES (473, 'Brentex-Trailer');
-            INSERT INTO tabel (id, name) VALUES (1228, 'Brian James Trailers');
-            INSERT INTO tabel (id, name) VALUES (427, 'Brig');
-            INSERT INTO tabel (id, name) VALUES (599, 'Brilliance');
-            INSERT INTO tabel (id, name) VALUES (1250, 'BT');
-            INSERT INTO tabel (id, name) VALUES (438, 'Buell');
-            INSERT INTO tabel (id, name) VALUES (38, 'Buick');
-            INSERT INTO tabel (id, name) VALUES (187, 'Bulthuis');
-            INSERT INTO tabel (id, name) VALUES (262, 'Bürstner');
-            INSERT INTO tabel (id, name) VALUES (520, 'Buster');
-            INSERT INTO tabel (id, name) VALUES (44, 'Cadillac');
-            INSERT INTO tabel (id, name) VALUES (293, 'Cagiva');
-            INSERT INTO tabel (id, name) VALUES (517, 'Can-Am');
-            INSERT INTO tabel (id, name) VALUES (1296, 'Carado');
-            INSERT INTO tabel (id, name) VALUES (107, 'Caravelair');
-            INSERT INTO tabel (id, name) VALUES (271, 'Carnehl');
-            INSERT INTO tabel (id, name) VALUES (548, 'Carthago');
-            INSERT INTO tabel (id, name) VALUES (1323, 'Casalini ');
-            INSERT INTO tabel (id, name) VALUES (371, 'Case');
-            INSERT INTO tabel (id, name) VALUES (317, 'CAT / Caterpillar');
-            INSERT INTO tabel (id, name) VALUES (1504, 'Cessna');
-            INSERT INTO tabel (id, name) VALUES (633, 'CFMOTO');
-            INSERT INTO tabel (id, name) VALUES (294, 'Chateau');
-            INSERT INTO tabel (id, name) VALUES (1097, 'Chatenet');
-            INSERT INTO tabel (id, name) VALUES (145, 'Chereau');
-            INSERT INTO tabel (id, name) VALUES (31, 'Chevrolet');
-            INSERT INTO tabel (id, name) VALUES (1198, 'Chieftain');
-            INSERT INTO tabel (id, name) VALUES (28, 'Chrysler');
-            INSERT INTO tabel (id, name) VALUES (1174, 'CI');
-            INSERT INTO tabel (id, name) VALUES (20, 'Citroen');
-            INSERT INTO tabel (id, name) VALUES (782, 'Claas');
-            INSERT INTO tabel (id, name) VALUES (1367, 'Coachman');
-            INSERT INTO tabel (id, name) VALUES (1319, 'Cobra');
-            INSERT INTO tabel (id, name) VALUES (682, 'Concorde');
-            INSERT INTO tabel (id, name) VALUES (768, 'Cranchi');
-            INSERT INTO tabel (id, name) VALUES (254, 'Dacia');
-            INSERT INTO tabel (id, name) VALUES (68, 'Daewoo');
-            INSERT INTO tabel (id, name) VALUES (21, 'DAF');
-            INSERT INTO tabel (id, name) VALUES (55, 'Daihatsu');
-            INSERT INTO tabel (id, name) VALUES (207, 'DAPA');
-            INSERT INTO tabel (id, name) VALUES (46, 'DB');
-            INSERT INTO tabel (id, name) VALUES (416, 'Derbi');
-            INSERT INTO tabel (id, name) VALUES (295, 'Dethleffs');
-            INSERT INTO tabel (id, name) VALUES (1007, 'Deutz-Fahr');
-            INSERT INTO tabel (id, name) VALUES (510, 'Dieci');
-            INSERT INTO tabel (id, name) VALUES (888, 'Dinli');
-            INSERT INTO tabel (id, name) VALUES (437, 'Dnepr');
-            INSERT INTO tabel (id, name) VALUES (24, 'Dodge');
-            INSERT INTO tabel (id, name) VALUES (680, 'Dong Feng');
-            INSERT INTO tabel (id, name) VALUES (823, 'Doosan');
-            INSERT INTO tabel (id, name) VALUES (1340, 'Dragonfly');
-            INSERT INTO tabel (id, name) VALUES (1259, 'DS');
-            INSERT INTO tabel (id, name) VALUES (359, 'Ducati');
-            INSERT INTO tabel (id, name) VALUES (1362, 'Dulkan');
-            INSERT INTO tabel (id, name) VALUES (925, 'Eduard');
-            INSERT INTO tabel (id, name) VALUES (956, 'Ekeri');
-            INSERT INTO tabel (id, name) VALUES (1286, 'Elddis');
-            INSERT INTO tabel (id, name) VALUES (1454, 'Electric Motion');
-            INSERT INTO tabel (id, name) VALUES (1475, 'Elgo-Plus');
-            INSERT INTO tabel (id, name) VALUES (1192, 'Elnagh');
-            INSERT INTO tabel (id, name) VALUES (1220, 'Eurotank');
-            INSERT INTO tabel (id, name) VALUES (977, 'Eurowagon');
-            INSERT INTO tabel (id, name) VALUES (1178, 'Everun');
-            INSERT INTO tabel (id, name) VALUES (1164, 'Faster');
-            INSERT INTO tabel (id, name) VALUES (1132, 'Faun');
-            INSERT INTO tabel (id, name) VALUES (666, 'Feldbinder');
-            INSERT INTO tabel (id, name) VALUES (297, 'Fendt');
-            INSERT INTO tabel (id, name) VALUES (70, 'Ferrari');
-            INSERT INTO tabel (id, name) VALUES (1466, 'Ferrel');
-            INSERT INTO tabel (id, name) VALUES (14, 'Fiat');
-            INSERT INTO tabel (id, name) VALUES (762, 'Fiat Kobelco');
-            INSERT INTO tabel (id, name) VALUES (1416, 'Finn');
-            INSERT INTO tabel (id, name) VALUES (528, 'Finnmar');
-            INSERT INTO tabel (id, name) VALUES (446, 'Finnmaster');
-            INSERT INTO tabel (id, name) VALUES (1146, 'Finnspeed');
-            INSERT INTO tabel (id, name) VALUES (919, 'Finnsport');
-            INSERT INTO tabel (id, name) VALUES (256, 'Fliegl');
-            INSERT INTO tabel (id, name) VALUES (325, 'Flipper');
-            INSERT INTO tabel (id, name) VALUES (1338, 'Folkboot');
-            INSERT INTO tabel (id, name) VALUES (7, 'Ford');
-            INSERT INTO tabel (id, name) VALUES (932, 'Foton');
-            INSERT INTO tabel (id, name) VALUES (514, 'Four Winns');
-            INSERT INTO tabel (id, name) VALUES (1429, 'FRANKIA');
-            INSERT INTO tabel (id, name) VALUES (462, 'Gas Gas');
-            INSERT INTO tabel (id, name) VALUES (45, 'GAZ');
-            INSERT INTO tabel (id, name) VALUES (1123, 'Gehl');
-            INSERT INTO tabel (id, name) VALUES (472, 'Generic');
-            INSERT INTO tabel (id, name) VALUES (298, 'Gilera');
-            INSERT INTO tabel (id, name) VALUES (1394, 'GINAF');
-            INSERT INTO tabel (id, name) VALUES (1189, 'Giotti Line');
-            INSERT INTO tabel (id, name) VALUES (1451, 'Gladiator');
-            INSERT INTO tabel (id, name) VALUES (1153, 'Glasstream');
-            INSERT INTO tabel (id, name) VALUES (243, 'Glastron');
-            INSERT INTO tabel (id, name) VALUES (54, 'GMC');
-            INSERT INTO tabel (id, name) VALUES (1121, 'Goes');
-            INSERT INTO tabel (id, name) VALUES (321, 'Goldhofer');
-            INSERT INTO tabel (id, name) VALUES (1118, 'Grandezza');
-            INSERT INTO tabel (id, name) VALUES (230, 'Grönewegen');
-            INSERT INTO tabel (id, name) VALUES (1507, 'Grunwald');
-            INSERT INTO tabel (id, name) VALUES (1301, 'Hansa');
-            INSERT INTO tabel (id, name) VALUES (1299, 'Hanse');
-            INSERT INTO tabel (id, name) VALUES (553, 'Hapert');
-            INSERT INTO tabel (id, name) VALUES (49, 'Harley-Davidson');
-            INSERT INTO tabel (id, name) VALUES (838, 'Haulotte');
-            INSERT INTO tabel (id, name) VALUES (790, 'HFR');
-            INSERT INTO tabel (id, name) VALUES (482, 'Hidromek');
-            INSERT INTO tabel (id, name) VALUES (605, 'Hitachi');
-            INSERT INTO tabel (id, name) VALUES (77, 'Hobby');
-            INSERT INTO tabel (id, name) VALUES (333, 'Homecar');
-            INSERT INTO tabel (id, name) VALUES (1, 'Honda');
-            INSERT INTO tabel (id, name) VALUES (389, 'Honor');
-            INSERT INTO tabel (id, name) VALUES (274, 'Hüffermann');
-            INSERT INTO tabel (id, name) VALUES (511, 'Humbaur');
-            INSERT INTO tabel (id, name) VALUES (193, 'Hummer');
-            INSERT INTO tabel (id, name) VALUES (345, 'Husqvarna');
-            INSERT INTO tabel (id, name) VALUES (563, 'Hydrema');
-            INSERT INTO tabel (id, name) VALUES (334, 'Hymer');
-            INSERT INTO tabel (id, name) VALUES (299, 'Hyosung');
-            INSERT INTO tabel (id, name) VALUES (392, 'Hyster');
-            INSERT INTO tabel (id, name) VALUES (34, 'Hyundai');
-            INSERT INTO tabel (id, name) VALUES (1159, 'Indian');
-            INSERT INTO tabel (id, name) VALUES (255, 'Infiniti');
-            INSERT INTO tabel (id, name) VALUES (1496, 'Inokim');
-            INSERT INTO tabel (id, name) VALUES (1157, 'Intermoto');
-            INSERT INTO tabel (id, name) VALUES (15, 'Isuzu');
-            INSERT INTO tabel (id, name) VALUES (26, 'Iveco');
-            INSERT INTO tabel (id, name) VALUES (443, 'IZ');
-            INSERT INTO tabel (id, name) VALUES (36, 'Jaguar');
-            INSERT INTO tabel (id, name) VALUES (1204, 'Jansen');
-            INSERT INTO tabel (id, name) VALUES (486, 'Javelin');
-            INSERT INTO tabel (id, name) VALUES (300, 'Jawa');
-            INSERT INTO tabel (id, name) VALUES (350, 'JCB');
-            INSERT INTO tabel (id, name) VALUES (1101, 'JDM');
-            INSERT INTO tabel (id, name) VALUES (1025, 'Jeanneau');
-            INSERT INTO tabel (id, name) VALUES (32, 'Jeep');
-            INSERT INTO tabel (id, name) VALUES (853, 'JENZ');
-            INSERT INTO tabel (id, name) VALUES (1239, 'JerAZ');
-            INSERT INTO tabel (id, name) VALUES (301, 'John Deere');
-            INSERT INTO tabel (id, name) VALUES (228, 'Jumbo');
-            INSERT INTO tabel (id, name) VALUES (1274, 'Jungheinrich');
-            INSERT INTO tabel (id, name) VALUES (164, 'Jyki');
-            INSERT INTO tabel (id, name) VALUES (444, 'K');
-            INSERT INTO tabel (id, name) VALUES (622, 'Kabe');
-            INSERT INTO tabel (id, name) VALUES (1289, 'Kalmar');
-            INSERT INTO tabel (id, name) VALUES (268, 'Kamaz');
-            INSERT INTO tabel (id, name) VALUES (322, 'Kässbohrer');
-            INSERT INTO tabel (id, name) VALUES (1342, 'Kautec');
-            INSERT INTO tabel (id, name) VALUES (57, 'Kawasaki');
-            INSERT INTO tabel (id, name) VALUES (594, 'Kazuma');
-            INSERT INTO tabel (id, name) VALUES (347, 'Keeway');
-            INSERT INTO tabel (id, name) VALUES (270, 'Kel-berg');
-            INSERT INTO tabel (id, name) VALUES (1158, 'Kewner');
-            INSERT INTO tabel (id, name) VALUES (25, 'Kia');
-            INSERT INTO tabel (id, name) VALUES (1137, 'Kiili');
-            INSERT INTO tabel (id, name) VALUES (323, 'Kilafors');
-            INSERT INTO tabel (id, name) VALUES (845, 'Kioti');
-            INSERT INTO tabel (id, name) VALUES (263, 'KIP');
-            INSERT INTO tabel (id, name) VALUES (161, 'Knapen');
-            INSERT INTO tabel (id, name) VALUES (302, 'Knaus');
-            INSERT INTO tabel (id, name) VALUES (560, 'Kobelco');
-            INSERT INTO tabel (id, name) VALUES (91, 'Kögel');
-            INSERT INTO tabel (id, name) VALUES (525, 'Komatsu');
-            INSERT INTO tabel (id, name) VALUES (1248, 'Kome');
-            INSERT INTO tabel (id, name) VALUES (1116, 'Kraker');
-            INSERT INTO tabel (id, name) VALUES (524, 'KRAZ');
-            INSERT INTO tabel (id, name) VALUES (1372, 'Kreidler');
-            INSERT INTO tabel (id, name) VALUES (100, 'Kromhout');
-            INSERT INTO tabel (id, name) VALUES (98, 'Krone');
-            INSERT INTO tabel (id, name) VALUES (1463, 'KSR-MOTO');
-            INSERT INTO tabel (id, name) VALUES (61, 'KTM');
-            INSERT INTO tabel (id, name) VALUES (907, 'Kubota');
-            INSERT INTO tabel (id, name) VALUES (897, 'Kverneland');
-            INSERT INTO tabel (id, name) VALUES (1200, 'KXD');
-            INSERT INTO tabel (id, name) VALUES (303, 'Kymco');
-            INSERT INTO tabel (id, name) VALUES (18, 'Lada');
-            INSERT INTO tabel (id, name) VALUES (211, 'Laika');
-            INSERT INTO tabel (id, name) VALUES (376, 'Lamborghini');
-            INSERT INTO tabel (id, name) VALUES (1370, 'Lambretta');
-            INSERT INTO tabel (id, name) VALUES (37, 'Lancia');
-            INSERT INTO tabel (id, name) VALUES (42, 'Land Rover');
-            INSERT INTO tabel (id, name) VALUES (159, 'Langendorf');
-            INSERT INTO tabel (id, name) VALUES (557, 'Lännen');
-            INSERT INTO tabel (id, name) VALUES (1194, 'LarsenB');
-            INSERT INTO tabel (id, name) VALUES (639, 'Larson');
-            INSERT INTO tabel (id, name) VALUES (88, 'Latre');
-            INSERT INTO tabel (id, name) VALUES (1459, 'Leonart');
-            INSERT INTO tabel (id, name) VALUES (35, 'Lexus');
-            INSERT INTO tabel (id, name) VALUES (546, 'Liebherr');
-            INSERT INTO tabel (id, name) VALUES (887, 'Lifan');
-            INSERT INTO tabel (id, name) VALUES (1484, 'Lifestylecamper');
-            INSERT INTO tabel (id, name) VALUES (377, 'Ligier');
-            INSERT INTO tabel (id, name) VALUES (76, 'Lincoln');
-            INSERT INTO tabel (id, name) VALUES (481, 'Linde');
-            INSERT INTO tabel (id, name) VALUES (1181, 'Linder');
-            INSERT INTO tabel (id, name) VALUES (1210, 'Lingalaid');
-            INSERT INTO tabel (id, name) VALUES (1161, 'Linhai');
-            INSERT INTO tabel (id, name) VALUES (304, 'LMC');
-            INSERT INTO tabel (id, name) VALUES (175, 'Logman');
-            INSERT INTO tabel (id, name) VALUES (112, 'Logset');
-            INSERT INTO tabel (id, name) VALUES (351, 'Lokomo');
-            INSERT INTO tabel (id, name) VALUES (475, 'Loncin');
-            INSERT INTO tabel (id, name) VALUES (244, 'LUAZ');
-            INSERT INTO tabel (id, name) VALUES (425, 'Lunar');
-            INSERT INTO tabel (id, name) VALUES (575, 'LYNX');
-            INSERT INTO tabel (id, name) VALUES (523, 'MacGregor');
-            INSERT INTO tabel (id, name) VALUES (73, 'Magirus-Deutz');
-            INSERT INTO tabel (id, name) VALUES (628, 'Malaguti');
-            INSERT INTO tabel (id, name) VALUES (80, 'MAN');
-            INSERT INTO tabel (id, name) VALUES (457, 'Manitou');
-            INSERT INTO tabel (id, name) VALUES (1491, 'Marex');
-            INSERT INTO tabel (id, name) VALUES (403, 'Mariah');
-            INSERT INTO tabel (id, name) VALUES (1401, 'Marine');
-            INSERT INTO tabel (id, name) VALUES (60, 'Maserati');
-            INSERT INTO tabel (id, name) VALUES (352, 'Massey Ferguson');
-            INSERT INTO tabel (id, name) VALUES (326, 'Maxum');
-            INSERT INTO tabel (id, name) VALUES (378, 'Maybach');
-            INSERT INTO tabel (id, name) VALUES (305, 'MAZ');
-            INSERT INTO tabel (id, name) VALUES (6, 'Mazda');
-            INSERT INTO tabel (id, name) VALUES (756, 'McCauley');
-            INSERT INTO tabel (id, name) VALUES (751, 'McLaren');
-            INSERT INTO tabel (id, name) VALUES (1295, 'McLouis');
-            INSERT INTO tabel (id, name) VALUES (1103, 'Mega');
-            INSERT INTO tabel (id, name) VALUES (158, 'Meiller');
-            INSERT INTO tabel (id, name) VALUES (1470, 'Mercedes-AMG');
-            INSERT INTO tabel (id, name) VALUES (12, 'Mercedes-Benz');
-            INSERT INTO tabel (id, name) VALUES (50, 'Mercury');
-            INSERT INTO tabel (id, name) VALUES (1160, 'MF');
-            INSERT INTO tabel (id, name) VALUES (379, 'MG');
-            INSERT INTO tabel (id, name) VALUES (1100, 'Microcar');
-            INSERT INTO tabel (id, name) VALUES (327, 'Millenium');
-            INSERT INTO tabel (id, name) VALUES (144, 'MINI');
-            INSERT INTO tabel (id, name) VALUES (1480, 'MINISM');
-            INSERT INTO tabel (id, name) VALUES (899, 'Minsk');
-            INSERT INTO tabel (id, name) VALUES (3, 'Mitsubishi');
-            INSERT INTO tabel (id, name) VALUES (1387, 'Mitsubishi Fuso');
-            INSERT INTO tabel (id, name) VALUES (488, 'Mobilvetta');
-            INSERT INTO tabel (id, name) VALUES (959, 'Monark');
-            INSERT INTO tabel (id, name) VALUES (531, 'Monterey');
-            INSERT INTO tabel (id, name) VALUES (181, 'Moskvich');
-            INSERT INTO tabel (id, name) VALUES (404, 'Moto Guzzi');
-            INSERT INTO tabel (id, name) VALUES (1277, 'MTZ');
-            INSERT INTO tabel (id, name) VALUES (1479, 'Muck-Truck');
-            INSERT INTO tabel (id, name) VALUES (613, 'Müller Mitteltal');
-            INSERT INTO tabel (id, name) VALUES (1170, 'Multione');
-            INSERT INTO tabel (id, name) VALUES (477, 'MV Agusta');
-            INSERT INTO tabel (id, name) VALUES (93, 'Närko');
-            INSERT INTO tabel (id, name) VALUES (307, 'Neoplan');
-            INSERT INTO tabel (id, name) VALUES (485, 'Neptun');
-            INSERT INTO tabel (id, name) VALUES (742, 'Neuson');
-            INSERT INTO tabel (id, name) VALUES (484, 'New Holland');
-            INSERT INTO tabel (id, name) VALUES (451, 'Niewiadow');
-            INSERT INTO tabel (id, name) VALUES (1510, 'Nilfisk');
-            INSERT INTO tabel (id, name) VALUES (11, 'Nissan');
-            INSERT INTO tabel (id, name) VALUES (147, 'Nooteboom');
-            INSERT INTO tabel (id, name) VALUES (976, 'Nor Slep');
-            INSERT INTO tabel (id, name) VALUES (328, 'Nord');
-            INSERT INTO tabel (id, name) VALUES (597, 'Nord Star');
-            INSERT INTO tabel (id, name) VALUES (1278, 'Nordkapp');
-            INSERT INTO tabel (id, name) VALUES (183, 'Novatrail');
-            INSERT INTO tabel (id, name) VALUES (146, 'NTM');
-            INSERT INTO tabel (id, name) VALUES (561, 'O&amp;K');
-            INSERT INTO tabel (id, name) VALUES (1306, 'Ockelbo');
-            INSERT INTO tabel (id, name) VALUES (1389, 'Odes');
-            INSERT INTO tabel (id, name) VALUES (110, 'Oldsmobile');
-            INSERT INTO tabel (id, name) VALUES (138, 'Omavalmistatud');
-            INSERT INTO tabel (id, name) VALUES (1476, 'Oniar');
-            INSERT INTO tabel (id, name) VALUES (5, 'Opel');
-            INSERT INTO tabel (id, name) VALUES (342, 'Orthaus');
-            INSERT INTO tabel (id, name) VALUES (1000, 'Överum');
-            INSERT INTO tabel (id, name) VALUES (1455, 'Özgül Trailer');
-            INSERT INTO tabel (id, name) VALUES (90, 'Pacton');
-            INSERT INTO tabel (id, name) VALUES (1360, 'Pannonia');
-            INSERT INTO tabel (id, name) VALUES (1471, 'Parator');
-            INSERT INTO tabel (id, name) VALUES (104, 'PAZ');
-            INSERT INTO tabel (id, name) VALUES (16, 'Peugeot');
-            INSERT INTO tabel (id, name) VALUES (257, 'Piaggio');
-            INSERT INTO tabel (id, name) VALUES (66, 'Plymouth');
-            INSERT INTO tabel (id, name) VALUES (623, 'Polar');
-            INSERT INTO tabel (id, name) VALUES (109, 'Polaris');
-            INSERT INTO tabel (id, name) VALUES (174, 'Ponsse');
-            INSERT INTO tabel (id, name) VALUES (71, 'Pontiac');
-            INSERT INTO tabel (id, name) VALUES (140, 'Porsche');
-            INSERT INTO tabel (id, name) VALUES (671, 'PÖSSL');
-            INSERT INTO tabel (id, name) VALUES (1465, 'Pro-Line');
-            INSERT INTO tabel (id, name) VALUES (64, 'Progress');
-            INSERT INTO tabel (id, name) VALUES (223, 'Qingqi');
-            INSERT INTO tabel (id, name) VALUES (541, 'Quicksilver');
-            INSERT INTO tabel (id, name) VALUES (63, 'RAF');
-            INSERT INTO tabel (id, name) VALUES (1162, 'Ram');
-            INSERT INTO tabel (id, name) VALUES (360, 'Regal');
-            INSERT INTO tabel (id, name) VALUES (19, 'Renault');
-            INSERT INTO tabel (id, name) VALUES (92, 'Renders');
-            INSERT INTO tabel (id, name) VALUES (233, 'Respo');
-            INSERT INTO tabel (id, name) VALUES (1356, 'Rhon');
-            INSERT INTO tabel (id, name) VALUES (1113, 'Ridas');
-            INSERT INTO tabel (id, name) VALUES (1431, 'Rieju');
-            INSERT INTO tabel (id, name) VALUES (720, 'Rival');
-            INSERT INTO tabel (id, name) VALUES (218, 'RKP');
-            INSERT INTO tabel (id, name) VALUES (1173, 'Roller Team');
-            INSERT INTO tabel (id, name) VALUES (168, 'Rolls-Royce');
-            INSERT INTO tabel (id, name) VALUES (1364, 'Romana');
-            INSERT INTO tabel (id, name) VALUES (1505, 'ROTO');
-            INSERT INTO tabel (id, name) VALUES (30, 'Rover');
-            INSERT INTO tabel (id, name) VALUES (17, 'Saab');
-            INSERT INTO tabel (id, name) VALUES (1083, 'Sandström');
-            INSERT INTO tabel (id, name) VALUES (1508, 'Sankey');
-            INSERT INTO tabel (id, name) VALUES (631, 'Saris');
-            INSERT INTO tabel (id, name) VALUES (1482, 'Saxdor');
-            INSERT INTO tabel (id, name) VALUES (78, 'Scania');
-            INSERT INTO tabel (id, name) VALUES (363, 'Schaeff');
-            INSERT INTO tabel (id, name) VALUES (894, 'Schier');
-            INSERT INTO tabel (id, name) VALUES (87, 'Schmitz');
-            INSERT INTO tabel (id, name) VALUES (718, 'Schweriner');
-            INSERT INTO tabel (id, name) VALUES (640, 'Scion');
-            INSERT INTO tabel (id, name) VALUES (117, 'Sea Doo');
-            INSERT INTO tabel (id, name) VALUES (231, 'Sea Ray');
-            INSERT INTO tabel (id, name) VALUES (22, 'SEAT');
-            INSERT INTO tabel (id, name) VALUES (182, 'Setra');
-            INSERT INTO tabel (id, name) VALUES (1104, 'Sherco');
-            INSERT INTO tabel (id, name) VALUES (428, 'Silver');
-            INSERT INTO tabel (id, name) VALUES (86, 'Sisu');
-            INSERT INTO tabel (id, name) VALUES (439, 'Ski Doo');
-            INSERT INTO tabel (id, name) VALUES (40, 'Skoda');
-            INSERT INTO tabel (id, name) VALUES (1392, 'Skyjack');
-            INSERT INTO tabel (id, name) VALUES (102, 'Smart');
-            INSERT INTO tabel (id, name) VALUES (1399, 'SMC');
-            INSERT INTO tabel (id, name) VALUES (1269, 'Solaris');
-            INSERT INTO tabel (id, name) VALUES (310, 'Solifer');
-            INSERT INTO tabel (id, name) VALUES (199, 'Sommer');
-            INSERT INTO tabel (id, name) VALUES (1090, 'SOR');
-            INSERT INTO tabel (id, name) VALUES (1235, 'Spitzer');
-            INSERT INTO tabel (id, name) VALUES (332, 'Sprite');
-            INSERT INTO tabel (id, name) VALUES (39, 'SsangYong');
-            INSERT INTO tabel (id, name) VALUES (1412, 'STAS');
-            INSERT INTO tabel (id, name) VALUES (607, 'STC');
-            INSERT INTO tabel (id, name) VALUES (1404, 'Stels');
-            INSERT INTO tabel (id, name) VALUES (1303, 'STEMA');
-            INSERT INTO tabel (id, name) VALUES (1214, 'Steyr');
-            INSERT INTO tabel (id, name) VALUES (1139, 'Still');
-            INSERT INTO tabel (id, name) VALUES (1279, 'Sting');
-            INSERT INTO tabel (id, name) VALUES (23, 'Subaru');
-            INSERT INTO tabel (id, name) VALUES (529, 'Sunbird');
-            INSERT INTO tabel (id, name) VALUES (672, 'Sunlight');
-            INSERT INTO tabel (id, name) VALUES (535, 'Sunseeker');
-            INSERT INTO tabel (id, name) VALUES (559, 'Sunward');
-            INSERT INTO tabel (id, name) VALUES (1444, 'Super SOCO');
-            INSERT INTO tabel (id, name) VALUES (41, 'Suzuki');
-            INSERT INTO tabel (id, name) VALUES (1351, 'Swift');
-            INSERT INTO tabel (id, name) VALUES (641, 'SYM');
-            INSERT INTO tabel (id, name) VALUES (1243, 'T-16');
-            INSERT INTO tabel (id, name) VALUES (1003, 'T-25');
-            INSERT INTO tabel (id, name) VALUES (1004, 'T-40');
-            INSERT INTO tabel (id, name) VALUES (312, 'Tabbert');
-            INSERT INTO tabel (id, name) VALUES (554, 'Takeuchi');
-            INSERT INTO tabel (id, name) VALUES (1302, 'Targa');
-            INSERT INTO tabel (id, name) VALUES (357, 'Tatra');
-            INSERT INTO tabel (id, name) VALUES (1085, 'TCM');
-            INSERT INTO tabel (id, name) VALUES (313, 'TEC');
-            INSERT INTO tabel (id, name) VALUES (1263, 'Tekno-Trailer');
-            INSERT INTO tabel (id, name) VALUES (1501, 'TEMARED');
-            INSERT INTO tabel (id, name) VALUES (1119, 'Temsa');
-            INSERT INTO tabel (id, name) VALUES (503, 'Terex');
-            INSERT INTO tabel (id, name) VALUES (629, 'Terhi');
-            INSERT INTO tabel (id, name) VALUES (642, 'Tesla');
-            INSERT INTO tabel (id, name) VALUES (536, 'Texas');
-            INSERT INTO tabel (id, name) VALUES (570, 'TGB');
-            INSERT INTO tabel (id, name) VALUES (759, 'Thaler');
-            INSERT INTO tabel (id, name) VALUES (236, 'Tiki Treiler');
-            INSERT INTO tabel (id, name) VALUES (1436, 'Tinger');
-            INSERT INTO tabel (id, name) VALUES (1147, 'TM Racing');
-            INSERT INTO tabel (id, name) VALUES (13, 'Toyota');
-            INSERT INTO tabel (id, name) VALUES (1381, 'Trailermate');
-            INSERT INTO tabel (id, name) VALUES (225, 'Triumph');
-            INSERT INTO tabel (id, name) VALUES (543, 'Trophy');
-            INSERT INTO tabel (id, name) VALUES (1339, 'Tuna');
-            INSERT INTO tabel (id, name) VALUES (717, 'Tuula');
-            INSERT INTO tabel (id, name) VALUES (1144, 'TYM');
-            INSERT INTO tabel (id, name) VALUES (105, 'UAZ');
-            INSERT INTO tabel (id, name) VALUES (442, 'Ural');
-            INSERT INTO tabel (id, name) VALUES (113, 'Uralets');
-            INSERT INTO tabel (id, name) VALUES (544, 'Uttern');
-            INSERT INTO tabel (id, name) VALUES (115, 'Valmet');
-            INSERT INTO tabel (id, name) VALUES (827, 'Valtra');
-            INSERT INTO tabel (id, name) VALUES (1273, 'Vammas');
-            INSERT INTO tabel (id, name) VALUES (214, 'Van Hool');
-            INSERT INTO tabel (id, name) VALUES (500, 'Vator');
-            INSERT INTO tabel (id, name) VALUES (52, 'VAZ');
-            INSERT INTO tabel (id, name) VALUES (1498, 'VBOATS');
-            INSERT INTO tabel (id, name) VALUES (866, 'Veles');
-            INSERT INTO tabel (id, name) VALUES (654, 'Venieri');
-            INSERT INTO tabel (id, name) VALUES (828, 'Vepi');
-            INSERT INTO tabel (id, name) VALUES (1438, 'Vertigo');
-            INSERT INTO tabel (id, name) VALUES (509, 'Vespa');
-            INSERT INTO tabel (id, name) VALUES (585, 'Victory');
-            INSERT INTO tabel (id, name) VALUES (331, 'Viva');
-            INSERT INTO tabel (id, name) VALUES (8, 'Volkswagen');
-            INSERT INTO tabel (id, name) VALUES (10, 'Volvo');
-            INSERT INTO tabel (id, name) VALUES (1365, 'Volzhanka');
-            INSERT INTO tabel (id, name) VALUES (1343, 'WEINSBERG');
-            INSERT INTO tabel (id, name) VALUES (1347, 'Whaly');
-            INSERT INTO tabel (id, name) VALUES (502, 'Wielton');
-            INSERT INTO tabel (id, name) VALUES (264, 'WM Meyer');
-            INSERT INTO tabel (id, name) VALUES (593, 'X-motos');
-            INSERT INTO tabel (id, name) VALUES (1111, 'X-Yachts');
-            INSERT INTO tabel (id, name) VALUES (1023, 'XO');
-            INSERT INTO tabel (id, name) VALUES (840, 'Yale');
-            INSERT INTO tabel (id, name) VALUES (33, 'Yamaha');
-            INSERT INTO tabel (id, name) VALUES (399, 'Yamarin');
-            INSERT INTO tabel (id, name) VALUES (844, 'Yanmar');
-            INSERT INTO tabel (id, name) VALUES (1138, 'YCF');
-            INSERT INTO tabel (id, name) VALUES (1357, 'Zapporo');
-            INSERT INTO tabel (id, name) VALUES (232, 'ZAZ');
-            INSERT INTO tabel (id, name) VALUES (222, 'Zetor');
-            INSERT INTO tabel (id, name) VALUES (267, 'ZIL');
-            INSERT INTO tabel (id, name) VALUES (545, 'Zodiac');
-            INSERT INTO tabel (id, name) VALUES (85, 'Zorzi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (0, 'kõik');
+            INSERT INTO automargid (car_brand_id, name) VALUES (279, 'Abbey');
+            INSERT INTO automargid (car_brand_id, name) VALUES (422, 'Abi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1398, 'ABT');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1196, 'AC');
+            INSERT INTO automargid (car_brand_id, name) VALUES (286, 'Adria');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1329, 'AGT');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1096, 'Aixam');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1011, 'Akerman');
+            INSERT INTO automargid (car_brand_id, name) VALUES (9, 'Alfa Romeo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (372, 'Alpina');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1382, 'American Ironhorse');
+            INSERT INTO automargid (car_brand_id, name) VALUES (461, 'Ammann');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1272, 'Amor');
+            INSERT INTO automargid (car_brand_id, name) VALUES (429, 'AMT');
+            INSERT INTO automargid (car_brand_id, name) VALUES (319, 'Andover');
+            INSERT INTO automargid (car_brand_id, name) VALUES (497, 'Ansö');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1135, 'Anytec');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1230, 'Apex');
+            INSERT INTO automargid (car_brand_id, name) VALUES (465, 'Apollo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (197, 'Aprilia');
+            INSERT INTO automargid (car_brand_id, name) VALUES (567, 'Aquador');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1300, 'ARB');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1287, 'Arcas Trailer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (469, 'Arctic Cat');
+            INSERT INTO automargid (car_brand_id, name) VALUES (858, 'Argo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (149, 'Aston Martin');
+            INSERT INTO automargid (car_brand_id, name) VALUES (576, 'Atlas');
+            INSERT INTO automargid (car_brand_id, name) VALUES (253, 'ATM');
+            INSERT INTO automargid (car_brand_id, name) VALUES (2, 'Audi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (700, 'Avant');
+            INSERT INTO automargid (car_brand_id, name) VALUES (289, 'Avento');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1402, 'Avondale');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1461, 'Bailey');
+            INSERT INTO automargid (car_brand_id, name) VALUES (221, 'Baotian');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1249, 'Bashan');
+            INSERT INTO automargid (car_brand_id, name) VALUES (402, 'Bavaria');
+            INSERT INTO automargid (car_brand_id, name) VALUES (67, 'Bayliner');
+            INSERT INTO automargid (car_brand_id, name) VALUES (349, 'Belarus');
+            INSERT INTO automargid (car_brand_id, name) VALUES (421, 'Bella');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1307, 'Bellier');
+            INSERT INTO automargid (car_brand_id, name) VALUES (290, 'Benalu');
+            INSERT INTO automargid (car_brand_id, name) VALUES (234, 'Benelli');
+            INSERT INTO automargid (car_brand_id, name) VALUES (698, 'Beneteau');
+            INSERT INTO automargid (car_brand_id, name) VALUES (247, 'Bentley');
+            INSERT INTO automargid (car_brand_id, name) VALUES (441, 'Beta');
+            INSERT INTO automargid (car_brand_id, name) VALUES (890, 'Big Dog');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1184, 'BLYSS-Transporttechnik');
+            INSERT INTO automargid (car_brand_id, name) VALUES (4, 'BMW');
+            INSERT INTO automargid (car_brand_id, name) VALUES (292, 'Bobcat');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1211, 'Bodex');
+            INSERT INTO automargid (car_brand_id, name) VALUES (515, 'Bomag');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1335, 'Boström');
+            INSERT INTO automargid (car_brand_id, name) VALUES (476, 'Branson');
+            INSERT INTO automargid (car_brand_id, name) VALUES (336, 'Brenderup');
+            INSERT INTO automargid (car_brand_id, name) VALUES (473, 'Brentex-Trailer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1228, 'Brian James Trailers');
+            INSERT INTO automargid (car_brand_id, name) VALUES (427, 'Brig');
+            INSERT INTO automargid (car_brand_id, name) VALUES (599, 'Brilliance');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1250, 'BT');
+            INSERT INTO automargid (car_brand_id, name) VALUES (438, 'Buell');
+            INSERT INTO automargid (car_brand_id, name) VALUES (38, 'Buick');
+            INSERT INTO automargid (car_brand_id, name) VALUES (187, 'Bulthuis');
+            INSERT INTO automargid (car_brand_id, name) VALUES (262, 'Bürstner');
+            INSERT INTO automargid (car_brand_id, name) VALUES (520, 'Buster');
+            INSERT INTO automargid (car_brand_id, name) VALUES (44, 'Cadillac');
+            INSERT INTO automargid (car_brand_id, name) VALUES (293, 'Cagiva');
+            INSERT INTO automargid (car_brand_id, name) VALUES (517, 'Can-Am');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1296, 'Carado');
+            INSERT INTO automargid (car_brand_id, name) VALUES (107, 'Caravelair');
+            INSERT INTO automargid (car_brand_id, name) VALUES (271, 'Carnehl');
+            INSERT INTO automargid (car_brand_id, name) VALUES (548, 'Carthago');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1323, 'Casalini ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (371, 'Case');
+            INSERT INTO automargid (car_brand_id, name) VALUES (317, 'CAT / Caterpillar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1504, 'Cessna');
+            INSERT INTO automargid (car_brand_id, name) VALUES (633, 'CFMOTO');
+            INSERT INTO automargid (car_brand_id, name) VALUES (294, 'Chateau');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1097, 'Chatenet');
+            INSERT INTO automargid (car_brand_id, name) VALUES (145, 'Chereau');
+            INSERT INTO automargid (car_brand_id, name) VALUES (31, 'Chevrolet');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1198, 'Chieftain');
+            INSERT INTO automargid (car_brand_id, name) VALUES (28, 'Chrysler');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1174, 'CI');
+            INSERT INTO automargid (car_brand_id, name) VALUES (20, 'Citroen');
+            INSERT INTO automargid (car_brand_id, name) VALUES (782, 'Claas');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1367, 'Coachman');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1319, 'Cobra');
+            INSERT INTO automargid (car_brand_id, name) VALUES (682, 'Concorde');
+            INSERT INTO automargid (car_brand_id, name) VALUES (768, 'Cranchi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (254, 'Dacia');
+            INSERT INTO automargid (car_brand_id, name) VALUES (68, 'Daewoo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (21, 'DAF');
+            INSERT INTO automargid (car_brand_id, name) VALUES (55, 'Daihatsu');
+            INSERT INTO automargid (car_brand_id, name) VALUES (207, 'DAPA');
+            INSERT INTO automargid (car_brand_id, name) VALUES (46, 'DB');
+            INSERT INTO automargid (car_brand_id, name) VALUES (416, 'Derbi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (295, 'Dethleffs');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1007, 'Deutz-Fahr');
+            INSERT INTO automargid (car_brand_id, name) VALUES (510, 'Dieci');
+            INSERT INTO automargid (car_brand_id, name) VALUES (888, 'Dinli');
+            INSERT INTO automargid (car_brand_id, name) VALUES (437, 'Dnepr');
+            INSERT INTO automargid (car_brand_id, name) VALUES (24, 'Dodge');
+            INSERT INTO automargid (car_brand_id, name) VALUES (680, 'Dong Feng');
+            INSERT INTO automargid (car_brand_id, name) VALUES (823, 'Doosan');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1340, 'Dragonfly');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1259, 'DS');
+            INSERT INTO automargid (car_brand_id, name) VALUES (359, 'Ducati');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1362, 'Dulkan');
+            INSERT INTO automargid (car_brand_id, name) VALUES (925, 'Eduard');
+            INSERT INTO automargid (car_brand_id, name) VALUES (956, 'Ekeri');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1286, 'Elddis');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1454, 'Electric Motion');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1475, 'Elgo-Plus');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1192, 'Elnagh');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1220, 'Eurotank');
+            INSERT INTO automargid (car_brand_id, name) VALUES (977, 'Eurowagon');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1178, 'Everun');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1164, 'Faster');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1132, 'Faun');
+            INSERT INTO automargid (car_brand_id, name) VALUES (666, 'Feldbinder');
+            INSERT INTO automargid (car_brand_id, name) VALUES (297, 'Fendt');
+            INSERT INTO automargid (car_brand_id, name) VALUES (70, 'Ferrari');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1466, 'Ferrel');
+            INSERT INTO automargid (car_brand_id, name) VALUES (14, 'Fiat');
+            INSERT INTO automargid (car_brand_id, name) VALUES (762, 'Fiat Kobelco');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1416, 'Finn');
+            INSERT INTO automargid (car_brand_id, name) VALUES (528, 'Finnmar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (446, 'Finnmaster');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1146, 'Finnspeed');
+            INSERT INTO automargid (car_brand_id, name) VALUES (919, 'Finnsport');
+            INSERT INTO automargid (car_brand_id, name) VALUES (256, 'Fliegl');
+            INSERT INTO automargid (car_brand_id, name) VALUES (325, 'Flipper');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1338, 'Folkboot');
+            INSERT INTO automargid (car_brand_id, name) VALUES (7, 'Ford');
+            INSERT INTO automargid (car_brand_id, name) VALUES (932, 'Foton');
+            INSERT INTO automargid (car_brand_id, name) VALUES (514, 'Four Winns');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1429, 'FRANKIA');
+            INSERT INTO automargid (car_brand_id, name) VALUES (462, 'Gas Gas');
+            INSERT INTO automargid (car_brand_id, name) VALUES (45, 'GAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1123, 'Gehl');
+            INSERT INTO automargid (car_brand_id, name) VALUES (472, 'Generic');
+            INSERT INTO automargid (car_brand_id, name) VALUES (298, 'Gilera');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1394, 'GINAF');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1189, 'Giotti Line');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1451, 'Gladiator');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1153, 'Glasstream');
+            INSERT INTO automargid (car_brand_id, name) VALUES (243, 'Glastron');
+            INSERT INTO automargid (car_brand_id, name) VALUES (54, 'GMC');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1121, 'Goes');
+            INSERT INTO automargid (car_brand_id, name) VALUES (321, 'Goldhofer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1118, 'Grandezza');
+            INSERT INTO automargid (car_brand_id, name) VALUES (230, 'Grönewegen');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1507, 'Grunwald');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1301, 'Hansa');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1299, 'Hanse');
+            INSERT INTO automargid (car_brand_id, name) VALUES (553, 'Hapert');
+            INSERT INTO automargid (car_brand_id, name) VALUES (49, 'Harley-Davidson');
+            INSERT INTO automargid (car_brand_id, name) VALUES (838, 'Haulotte');
+            INSERT INTO automargid (car_brand_id, name) VALUES (790, 'HFR');
+            INSERT INTO automargid (car_brand_id, name) VALUES (482, 'Hidromek');
+            INSERT INTO automargid (car_brand_id, name) VALUES (605, 'Hitachi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (77, 'Hobby');
+            INSERT INTO automargid (car_brand_id, name) VALUES (333, 'Homecar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1, 'Honda');
+            INSERT INTO automargid (car_brand_id, name) VALUES (389, 'Honor');
+            INSERT INTO automargid (car_brand_id, name) VALUES (274, 'Hüffermann');
+            INSERT INTO automargid (car_brand_id, name) VALUES (511, 'Humbaur');
+            INSERT INTO automargid (car_brand_id, name) VALUES (193, 'Hummer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (345, 'Husqvarna');
+            INSERT INTO automargid (car_brand_id, name) VALUES (563, 'Hydrema');
+            INSERT INTO automargid (car_brand_id, name) VALUES (334, 'Hymer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (299, 'Hyosung');
+            INSERT INTO automargid (car_brand_id, name) VALUES (392, 'Hyster');
+            INSERT INTO automargid (car_brand_id, name) VALUES (34, 'Hyundai');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1159, 'Indian');
+            INSERT INTO automargid (car_brand_id, name) VALUES (255, 'Infiniti');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1496, 'Inokim');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1157, 'Intermoto');
+            INSERT INTO automargid (car_brand_id, name) VALUES (15, 'Isuzu');
+            INSERT INTO automargid (car_brand_id, name) VALUES (26, 'Iveco');
+            INSERT INTO automargid (car_brand_id, name) VALUES (443, 'IZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (36, 'Jaguar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1204, 'Jansen');
+            INSERT INTO automargid (car_brand_id, name) VALUES (486, 'Javelin');
+            INSERT INTO automargid (car_brand_id, name) VALUES (300, 'Jawa');
+            INSERT INTO automargid (car_brand_id, name) VALUES (350, 'JCB');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1101, 'JDM');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1025, 'Jeanneau');
+            INSERT INTO automargid (car_brand_id, name) VALUES (32, 'Jeep');
+            INSERT INTO automargid (car_brand_id, name) VALUES (853, 'JENZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1239, 'JerAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (301, 'John Deere');
+            INSERT INTO automargid (car_brand_id, name) VALUES (228, 'Jumbo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1274, 'Jungheinrich');
+            INSERT INTO automargid (car_brand_id, name) VALUES (164, 'Jyki');
+            INSERT INTO automargid (car_brand_id, name) VALUES (444, 'K');
+            INSERT INTO automargid (car_brand_id, name) VALUES (622, 'Kabe');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1289, 'Kalmar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (268, 'Kamaz');
+            INSERT INTO automargid (car_brand_id, name) VALUES (322, 'Kässbohrer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1342, 'Kautec');
+            INSERT INTO automargid (car_brand_id, name) VALUES (57, 'Kawasaki');
+            INSERT INTO automargid (car_brand_id, name) VALUES (594, 'Kazuma');
+            INSERT INTO automargid (car_brand_id, name) VALUES (347, 'Keeway');
+            INSERT INTO automargid (car_brand_id, name) VALUES (270, 'Kel-berg');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1158, 'Kewner');
+            INSERT INTO automargid (car_brand_id, name) VALUES (25, 'Kia');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1137, 'Kiili');
+            INSERT INTO automargid (car_brand_id, name) VALUES (323, 'Kilafors');
+            INSERT INTO automargid (car_brand_id, name) VALUES (845, 'Kioti');
+            INSERT INTO automargid (car_brand_id, name) VALUES (263, 'KIP');
+            INSERT INTO automargid (car_brand_id, name) VALUES (161, 'Knapen');
+            INSERT INTO automargid (car_brand_id, name) VALUES (302, 'Knaus');
+            INSERT INTO automargid (car_brand_id, name) VALUES (560, 'Kobelco');
+            INSERT INTO automargid (car_brand_id, name) VALUES (91, 'Kögel');
+            INSERT INTO automargid (car_brand_id, name) VALUES (525, 'Komatsu');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1248, 'Kome');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1116, 'Kraker');
+            INSERT INTO automargid (car_brand_id, name) VALUES (524, 'KRAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1372, 'Kreidler');
+            INSERT INTO automargid (car_brand_id, name) VALUES (100, 'Kromhout');
+            INSERT INTO automargid (car_brand_id, name) VALUES (98, 'Krone');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1463, 'KSR-MOTO');
+            INSERT INTO automargid (car_brand_id, name) VALUES (61, 'KTM');
+            INSERT INTO automargid (car_brand_id, name) VALUES (907, 'Kubota');
+            INSERT INTO automargid (car_brand_id, name) VALUES (897, 'Kverneland');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1200, 'KXD');
+            INSERT INTO automargid (car_brand_id, name) VALUES (303, 'Kymco');
+            INSERT INTO automargid (car_brand_id, name) VALUES (18, 'Lada');
+            INSERT INTO automargid (car_brand_id, name) VALUES (211, 'Laika');
+            INSERT INTO automargid (car_brand_id, name) VALUES (376, 'Lamborghini');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1370, 'Lambretta');
+            INSERT INTO automargid (car_brand_id, name) VALUES (37, 'Lancia');
+            INSERT INTO automargid (car_brand_id, name) VALUES (42, 'Land Rover');
+            INSERT INTO automargid (car_brand_id, name) VALUES (159, 'Langendorf');
+            INSERT INTO automargid (car_brand_id, name) VALUES (557, 'Lännen');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1194, 'LarsenB');
+            INSERT INTO automargid (car_brand_id, name) VALUES (639, 'Larson');
+            INSERT INTO automargid (car_brand_id, name) VALUES (88, 'Latre');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1459, 'Leonart');
+            INSERT INTO automargid (car_brand_id, name) VALUES (35, 'Lexus');
+            INSERT INTO automargid (car_brand_id, name) VALUES (546, 'Liebherr');
+            INSERT INTO automargid (car_brand_id, name) VALUES (887, 'Lifan');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1484, 'Lifestylecamper');
+            INSERT INTO automargid (car_brand_id, name) VALUES (377, 'Ligier');
+            INSERT INTO automargid (car_brand_id, name) VALUES (76, 'Lincoln');
+            INSERT INTO automargid (car_brand_id, name) VALUES (481, 'Linde');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1181, 'Linder');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1210, 'Lingalaid');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1161, 'Linhai');
+            INSERT INTO automargid (car_brand_id, name) VALUES (304, 'LMC');
+            INSERT INTO automargid (car_brand_id, name) VALUES (175, 'Logman');
+            INSERT INTO automargid (car_brand_id, name) VALUES (112, 'Logset');
+            INSERT INTO automargid (car_brand_id, name) VALUES (351, 'Lokomo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (475, 'Loncin');
+            INSERT INTO automargid (car_brand_id, name) VALUES (244, 'LUAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (425, 'Lunar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (575, 'LYNX');
+            INSERT INTO automargid (car_brand_id, name) VALUES (523, 'MacGregor');
+            INSERT INTO automargid (car_brand_id, name) VALUES (73, 'Magirus-Deutz');
+            INSERT INTO automargid (car_brand_id, name) VALUES (628, 'Malaguti');
+            INSERT INTO automargid (car_brand_id, name) VALUES (80, 'MAN');
+            INSERT INTO automargid (car_brand_id, name) VALUES (457, 'Manitou');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1491, 'Marex');
+            INSERT INTO automargid (car_brand_id, name) VALUES (403, 'Mariah');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1401, 'Marine');
+            INSERT INTO automargid (car_brand_id, name) VALUES (60, 'Maserati');
+            INSERT INTO automargid (car_brand_id, name) VALUES (352, 'Massey Ferguson');
+            INSERT INTO automargid (car_brand_id, name) VALUES (326, 'Maxum');
+            INSERT INTO automargid (car_brand_id, name) VALUES (378, 'Maybach');
+            INSERT INTO automargid (car_brand_id, name) VALUES (305, 'MAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (6, 'Mazda');
+            INSERT INTO automargid (car_brand_id, name) VALUES (756, 'McCauley');
+            INSERT INTO automargid (car_brand_id, name) VALUES (751, 'McLaren');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1295, 'McLouis');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1103, 'Mega');
+            INSERT INTO automargid (car_brand_id, name) VALUES (158, 'Meiller');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1470, 'Mercedes-AMG');
+            INSERT INTO automargid (car_brand_id, name) VALUES (12, 'Mercedes-Benz');
+            INSERT INTO automargid (car_brand_id, name) VALUES (50, 'Mercury');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1160, 'MF');
+            INSERT INTO automargid (car_brand_id, name) VALUES (379, 'MG');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1100, 'Microcar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (327, 'Millenium');
+            INSERT INTO automargid (car_brand_id, name) VALUES (144, 'MINI');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1480, 'MINISM');
+            INSERT INTO automargid (car_brand_id, name) VALUES (899, 'Minsk');
+            INSERT INTO automargid (car_brand_id, name) VALUES (3, 'Mitsubishi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1387, 'Mitsubishi Fuso');
+            INSERT INTO automargid (car_brand_id, name) VALUES (488, 'Mobilvetta');
+            INSERT INTO automargid (car_brand_id, name) VALUES (959, 'Monark');
+            INSERT INTO automargid (car_brand_id, name) VALUES (531, 'Monterey');
+            INSERT INTO automargid (car_brand_id, name) VALUES (181, 'Moskvich');
+            INSERT INTO automargid (car_brand_id, name) VALUES (404, 'Moto Guzzi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1277, 'MTZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1479, 'Muck-Truck');
+            INSERT INTO automargid (car_brand_id, name) VALUES (613, 'Müller Mitteltal');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1170, 'Multione');
+            INSERT INTO automargid (car_brand_id, name) VALUES (477, 'MV Agusta');
+            INSERT INTO automargid (car_brand_id, name) VALUES (93, 'Närko');
+            INSERT INTO automargid (car_brand_id, name) VALUES (307, 'Neoplan');
+            INSERT INTO automargid (car_brand_id, name) VALUES (485, 'Neptun');
+            INSERT INTO automargid (car_brand_id, name) VALUES (742, 'Neuson');
+            INSERT INTO automargid (car_brand_id, name) VALUES (484, 'New Holland');
+            INSERT INTO automargid (car_brand_id, name) VALUES (451, 'Niewiadow');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1510, 'Nilfisk');
+            INSERT INTO automargid (car_brand_id, name) VALUES (11, 'Nissan');
+            INSERT INTO automargid (car_brand_id, name) VALUES (147, 'Nooteboom');
+            INSERT INTO automargid (car_brand_id, name) VALUES (976, 'Nor Slep');
+            INSERT INTO automargid (car_brand_id, name) VALUES (328, 'Nord');
+            INSERT INTO automargid (car_brand_id, name) VALUES (597, 'Nord Star');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1278, 'Nordkapp');
+            INSERT INTO automargid (car_brand_id, name) VALUES (183, 'Novatrail');
+            INSERT INTO automargid (car_brand_id, name) VALUES (146, 'NTM');
+            INSERT INTO automargid (car_brand_id, name) VALUES (561, 'O&amp;K');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1306, 'Ockelbo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1389, 'Odes');
+            INSERT INTO automargid (car_brand_id, name) VALUES (110, 'Oldsmobile');
+            INSERT INTO automargid (car_brand_id, name) VALUES (138, 'Omavalmistatud');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1476, 'Oniar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (5, 'Opel');
+            INSERT INTO automargid (car_brand_id, name) VALUES (342, 'Orthaus');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1000, 'Överum');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1455, 'Özgül Trailer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (90, 'Pacton');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1360, 'Pannonia');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1471, 'Parator');
+            INSERT INTO automargid (car_brand_id, name) VALUES (104, 'PAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (16, 'Peugeot');
+            INSERT INTO automargid (car_brand_id, name) VALUES (257, 'Piaggio');
+            INSERT INTO automargid (car_brand_id, name) VALUES (66, 'Plymouth');
+            INSERT INTO automargid (car_brand_id, name) VALUES (623, 'Polar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (109, 'Polaris');
+            INSERT INTO automargid (car_brand_id, name) VALUES (174, 'Ponsse');
+            INSERT INTO automargid (car_brand_id, name) VALUES (71, 'Pontiac');
+            INSERT INTO automargid (car_brand_id, name) VALUES (140, 'Porsche');
+            INSERT INTO automargid (car_brand_id, name) VALUES (671, 'PÖSSL');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1465, 'Pro-Line');
+            INSERT INTO automargid (car_brand_id, name) VALUES (64, 'Progress');
+            INSERT INTO automargid (car_brand_id, name) VALUES (223, 'Qingqi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (541, 'Quicksilver');
+            INSERT INTO automargid (car_brand_id, name) VALUES (63, 'RAF');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1162, 'Ram');
+            INSERT INTO automargid (car_brand_id, name) VALUES (360, 'Regal');
+            INSERT INTO automargid (car_brand_id, name) VALUES (19, 'Renault');
+            INSERT INTO automargid (car_brand_id, name) VALUES (92, 'Renders');
+            INSERT INTO automargid (car_brand_id, name) VALUES (233, 'Respo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1356, 'Rhon');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1113, 'Ridas');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1431, 'Rieju');
+            INSERT INTO automargid (car_brand_id, name) VALUES (720, 'Rival');
+            INSERT INTO automargid (car_brand_id, name) VALUES (218, 'RKP');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1173, 'Roller Team');
+            INSERT INTO automargid (car_brand_id, name) VALUES (168, 'Rolls-Royce');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1364, 'Romana');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1505, 'ROTO');
+            INSERT INTO automargid (car_brand_id, name) VALUES (30, 'Rover');
+            INSERT INTO automargid (car_brand_id, name) VALUES (17, 'Saab');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1083, 'Sandström');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1508, 'Sankey');
+            INSERT INTO automargid (car_brand_id, name) VALUES (631, 'Saris');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1482, 'Saxdor');
+            INSERT INTO automargid (car_brand_id, name) VALUES (78, 'Scania');
+            INSERT INTO automargid (car_brand_id, name) VALUES (363, 'Schaeff');
+            INSERT INTO automargid (car_brand_id, name) VALUES (894, 'Schier');
+            INSERT INTO automargid (car_brand_id, name) VALUES (87, 'Schmitz');
+            INSERT INTO automargid (car_brand_id, name) VALUES (718, 'Schweriner');
+            INSERT INTO automargid (car_brand_id, name) VALUES (640, 'Scion');
+            INSERT INTO automargid (car_brand_id, name) VALUES (117, 'Sea Doo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (231, 'Sea Ray');
+            INSERT INTO automargid (car_brand_id, name) VALUES (22, 'SEAT');
+            INSERT INTO automargid (car_brand_id, name) VALUES (182, 'Setra');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1104, 'Sherco');
+            INSERT INTO automargid (car_brand_id, name) VALUES (428, 'Silver');
+            INSERT INTO automargid (car_brand_id, name) VALUES (86, 'Sisu');
+            INSERT INTO automargid (car_brand_id, name) VALUES (439, 'Ski Doo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (40, 'Skoda');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1392, 'Skyjack');
+            INSERT INTO automargid (car_brand_id, name) VALUES (102, 'Smart');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1399, 'SMC');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1269, 'Solaris');
+            INSERT INTO automargid (car_brand_id, name) VALUES (310, 'Solifer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (199, 'Sommer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1090, 'SOR');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1235, 'Spitzer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (332, 'Sprite');
+            INSERT INTO automargid (car_brand_id, name) VALUES (39, 'SsangYong');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1412, 'STAS');
+            INSERT INTO automargid (car_brand_id, name) VALUES (607, 'STC');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1404, 'Stels');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1303, 'STEMA');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1214, 'Steyr');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1139, 'Still');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1279, 'Sting');
+            INSERT INTO automargid (car_brand_id, name) VALUES (23, 'Subaru');
+            INSERT INTO automargid (car_brand_id, name) VALUES (529, 'Sunbird');
+            INSERT INTO automargid (car_brand_id, name) VALUES (672, 'Sunlight');
+            INSERT INTO automargid (car_brand_id, name) VALUES (535, 'Sunseeker');
+            INSERT INTO automargid (car_brand_id, name) VALUES (559, 'Sunward');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1444, 'Super SOCO');
+            INSERT INTO automargid (car_brand_id, name) VALUES (41, 'Suzuki');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1351, 'Swift');
+            INSERT INTO automargid (car_brand_id, name) VALUES (641, 'SYM');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1243, 'T-16');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1003, 'T-25');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1004, 'T-40');
+            INSERT INTO automargid (car_brand_id, name) VALUES (312, 'Tabbert');
+            INSERT INTO automargid (car_brand_id, name) VALUES (554, 'Takeuchi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1302, 'Targa');
+            INSERT INTO automargid (car_brand_id, name) VALUES (357, 'Tatra');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1085, 'TCM');
+            INSERT INTO automargid (car_brand_id, name) VALUES (313, 'TEC');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1263, 'Tekno-Trailer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1501, 'TEMARED');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1119, 'Temsa');
+            INSERT INTO automargid (car_brand_id, name) VALUES (503, 'Terex');
+            INSERT INTO automargid (car_brand_id, name) VALUES (629, 'Terhi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (642, 'Tesla');
+            INSERT INTO automargid (car_brand_id, name) VALUES (536, 'Texas');
+            INSERT INTO automargid (car_brand_id, name) VALUES (570, 'TGB');
+            INSERT INTO automargid (car_brand_id, name) VALUES (759, 'Thaler');
+            INSERT INTO automargid (car_brand_id, name) VALUES (236, 'Tiki Treiler');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1436, 'Tinger');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1147, 'TM Racing');
+            INSERT INTO automargid (car_brand_id, name) VALUES (13, 'Toyota');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1381, 'Trailermate');
+            INSERT INTO automargid (car_brand_id, name) VALUES (225, 'Triumph');
+            INSERT INTO automargid (car_brand_id, name) VALUES (543, 'Trophy');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1339, 'Tuna');
+            INSERT INTO automargid (car_brand_id, name) VALUES (717, 'Tuula');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1144, 'TYM');
+            INSERT INTO automargid (car_brand_id, name) VALUES (105, 'UAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (442, 'Ural');
+            INSERT INTO automargid (car_brand_id, name) VALUES (113, 'Uralets');
+            INSERT INTO automargid (car_brand_id, name) VALUES (544, 'Uttern');
+            INSERT INTO automargid (car_brand_id, name) VALUES (115, 'Valmet');
+            INSERT INTO automargid (car_brand_id, name) VALUES (827, 'Valtra');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1273, 'Vammas');
+            INSERT INTO automargid (car_brand_id, name) VALUES (214, 'Van Hool');
+            INSERT INTO automargid (car_brand_id, name) VALUES (500, 'Vator');
+            INSERT INTO automargid (car_brand_id, name) VALUES (52, 'VAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1498, 'VBOATS');
+            INSERT INTO automargid (car_brand_id, name) VALUES (866, 'Veles');
+            INSERT INTO automargid (car_brand_id, name) VALUES (654, 'Venieri');
+            INSERT INTO automargid (car_brand_id, name) VALUES (828, 'Vepi');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1438, 'Vertigo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (509, 'Vespa');
+            INSERT INTO automargid (car_brand_id, name) VALUES (585, 'Victory');
+            INSERT INTO automargid (car_brand_id, name) VALUES (331, 'Viva');
+            INSERT INTO automargid (car_brand_id, name) VALUES (8, 'Volkswagen');
+            INSERT INTO automargid (car_brand_id, name) VALUES (10, 'Volvo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1365, 'Volzhanka');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1343, 'WEINSBERG');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1347, 'Whaly');
+            INSERT INTO automargid (car_brand_id, name) VALUES (502, 'Wielton');
+            INSERT INTO automargid (car_brand_id, name) VALUES (264, 'WM Meyer');
+            INSERT INTO automargid (car_brand_id, name) VALUES (593, 'X-motos');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1111, 'X-Yachts');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1023, 'XO');
+            INSERT INTO automargid (car_brand_id, name) VALUES (840, 'Yale');
+            INSERT INTO automargid (car_brand_id, name) VALUES (33, 'Yamaha');
+            INSERT INTO automargid (car_brand_id, name) VALUES (399, 'Yamarin');
+            INSERT INTO automargid (car_brand_id, name) VALUES (844, 'Yanmar');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1138, 'YCF');
+            INSERT INTO automargid (car_brand_id, name) VALUES (1357, 'Zapporo');
+            INSERT INTO automargid (car_brand_id, name) VALUES (232, 'ZAZ');
+            INSERT INTO automargid (car_brand_id, name) VALUES (222, 'Zetor');
+            INSERT INTO automargid (car_brand_id, name) VALUES (267, 'ZIL');
+            INSERT INTO automargid (car_brand_id, name) VALUES (545, 'Zodiac');
+            INSERT INTO automargid (car_brand_id, name) VALUES (85, 'Zorzi');
+
         </sql>
     </changeSet>
 </databaseChangeLog>

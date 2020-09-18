@@ -2,16 +2,13 @@ package com.example.Auto24Pluss.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,25 +16,7 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-
-    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email){
-        accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
-    }
-
-    public void saveURL(String searchlink, Long userId) {
-        accountRepository.saveURL(searchlink, userId);
-    }
-
-    public void updateInformation(String password, String email){
-        accountRepository.updateInformation(password, email);
-    }
-
-    public List<SearchSave> displayresults() {
-        return  accountRepository.displayresults();
-    }
-
-
-    public static void saveHtml (){
+    public static void saveHtml() {
         {
 
             URL url;
@@ -45,7 +24,7 @@ public class AccountService {
             try {
                 // get URL content
 
-                String a="https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi";
+                String a = "https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi";
                 url = new URL(a);
                 URLConnection conn = url.openConnection();
 
@@ -68,6 +47,22 @@ public class AccountService {
             }
 
         }
+    }
+
+    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
+        accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
+    }
+
+    public void saveURL(String searchlink, Long userId) {
+        accountRepository.saveURL(searchlink, userId);
+    }
+
+    public void updateInformation(String password, String email) {
+        accountRepository.updateInformation(password, email);
+    }
+
+    public List<SearchSave> displayresults() {
+        return accountRepository.displayresults();
     }
 
 }

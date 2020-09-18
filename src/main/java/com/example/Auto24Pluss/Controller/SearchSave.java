@@ -4,6 +4,9 @@ public class SearchSave {
     private String searchlink;
     private Long userId;
 
+    public static void searchLink() {
+    }
+
     public String getSearchlink() {
 
         return searchlink;
@@ -23,6 +26,7 @@ public class SearchSave {
 
         this.userId = userId;
     }
+    
 
   /*  public String getLink(){
         String host = "https://www.auto24.ee/";

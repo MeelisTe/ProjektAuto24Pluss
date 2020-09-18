@@ -2981,7 +2981,567 @@
             INSERT INTO automargid (car_brand_id, name) VALUES (267, 'ZIL');
             INSERT INTO automargid (car_brand_id, name) VALUES (545, 'Zodiac');
             INSERT INTO automargid (car_brand_id, name) VALUES (85, 'Zorzi');
+        </sql>
+    </changeSet>
+    <changeSet id="bodytypes" author="Mirko">
+        <createTable tableName="bodytypes">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_bodytype_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="bodytype" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (00, '- vali mitu -');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (0, 'sõiduauto');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (1, 'sedaan');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (2, 'luukpära');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (3, 'universaal');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (4, 'mahtuniversaal');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (5, 'kupee');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (6, 'kabriolett');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (7, 'universaal');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (8, 'pikap');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (61, 'pikap');
+            INSERT INTO bodytypes (car_bodytype_id, bodytype) VALUES (67, 'limusiin');
+        </sql>
+        <createTable tableName="colors">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_color_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="color" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO colors (car_color_id, color) VALUES (24, 'beež');
+            INSERT INTO colors (car_color_id, color) VALUES (0, 'kõik');
+            INSERT INTO colors (car_color_id, color) VALUES (14, 'hall');
+            INSERT INTO colors (car_color_id, color) VALUES (25, 'helebeež');
+            INSERT INTO colors (car_color_id, color) VALUES (15, 'helehall');
+            INSERT INTO colors (car_color_id, color) VALUES (22, 'helekollane');
+            INSERT INTO colors (car_color_id, color) VALUES (18, 'helelilla');
+            INSERT INTO colors (car_color_id, color) VALUES (31, 'heleoranž');
+            INSERT INTO colors (car_color_id, color) VALUES (28, 'helepruun');
+            INSERT INTO colors (car_color_id, color) VALUES (11, 'helepunane');
+            INSERT INTO colors (car_color_id, color) VALUES (7, 'heleroheline');
+            INSERT INTO colors (car_color_id, color) VALUES (3, 'helesinine');
+            INSERT INTO colors (car_color_id, color) VALUES (12, 'hõbedane');
+            INSERT INTO colors (car_color_id, color) VALUES (21, 'kollane');
+            INSERT INTO colors (car_color_id, color) VALUES (19, 'kuldne');
+            INSERT INTO colors (car_color_id, color) VALUES (17, 'lilla');
+            INSERT INTO colors (car_color_id, color) VALUES (4, 'must');
+            INSERT INTO colors (car_color_id, color) VALUES (30, 'oranž');
+            INSERT INTO colors (car_color_id, color) VALUES (27, 'pruun');
+            INSERT INTO colors (car_color_id, color) VALUES (10, 'punane');
+            INSERT INTO colors (car_color_id, color) VALUES (6, 'roheline');
+            INSERT INTO colors (car_color_id, color) VALUES (32, 'roosa');
+            INSERT INTO colors (car_color_id, color) VALUES (2, 'sinine');
+            INSERT INTO colors (car_color_id, color) VALUES (23, 'tumebeež');
+            INSERT INTO colors (car_color_id, color) VALUES (13, 'tumehall');
+            INSERT INTO colors (car_color_id, color) VALUES (20, 'tumekollane');
+            INSERT INTO colors (car_color_id, color) VALUES (16, 'tumelilla');
+            INSERT INTO colors (car_color_id, color) VALUES (29, 'tumeoranž');
+            INSERT INTO colors (car_color_id, color) VALUES (26, 'tumepruun');
+            INSERT INTO colors (car_color_id, color) VALUES (9, 'tumepunane');
+            INSERT INTO colors (car_color_id, color) VALUES (5, 'tumeroheline');
+            INSERT INTO colors (car_color_id, color) VALUES (1, 'tumesinine');
+            INSERT INTO colors (car_color_id, color) VALUES (8, 'valge');
+        </sql>
+        <createTable tableName="fuels">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_fuel_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="fuel" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (8, 'etanool');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (6, 'elekter');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (17, 'pistikhübriid (diisel / elekter)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (16, 'pistikhübriid (bensiin / elekter)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (15, 'hübriid (diisel / elekter)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (14, 'hübriid (bensiin / elekter)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (5, 'hübriid');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (11, 'gaas (LNG/veeldatud maagaas)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (9, 'gaas (CNG/surugaas)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (4, 'gaas (LPG/vedelgaas)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (13, 'diisel + gaas (LNG/veeldatud maagaas)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (12, 'bensiin + gaas (LNG/veeldatud maagaas)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (10, 'bensiin + gaas (CNG/surugaas)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (3, 'bensiin + gaas (LPG/vedelgaas)');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (2, 'diisel');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (1, 'bensiin');
+            INSERT INTO fuels (car_fuel_id, fuel) VALUES (0, 'kõik');
+        </sql>
+        <createTable tableName="transmissions">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_transmission_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="transmission" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO transmissions (car_transmission_id, transmission) VALUES (0, 'kõik');
+            INSERT INTO transmissions (car_transmission_id, transmission) VALUES (1, 'manuaal');
+            INSERT INTO transmissions (car_transmission_id, transmission) VALUES (2, 'automaat');
+            INSERT INTO transmissions (car_transmission_id, transmission) VALUES (3, 'poolautomaat');
+        </sql>
+        <createTable tableName="vedavsilds">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_vedavsild_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="vedavsild" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO vedavsilds (car_vedavsild_id, vedavsild) VALUES (0, 'kõik');
+            INSERT INTO vedavsilds (car_vedavsild_id, vedavsild) VALUES (1, 'esivedu');
+            INSERT INTO vedavsilds (car_vedavsild_id, vedavsild) VALUES (2, 'tagavedu');
+            INSERT INTO vedavsilds (car_vedavsild_id, vedavsild) VALUES (3, 'nelikvedu');
+        </sql>
+        <createTable tableName="locations">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_location_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="location" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO locations (car_location_id, location) VALUES (58, 'Võrumaa');
+            INSERT INTO locations (car_location_id, location) VALUES (57, 'Viljandimaa');
+            INSERT INTO locations (car_location_id, location) VALUES (56, 'Valgamaa');
+            INSERT INTO locations (car_location_id, location) VALUES (55, 'Tartumaa');
+            INSERT INTO locations (car_location_id, location) VALUES (54, 'Saaremaa');
+            INSERT INTO locations (car_location_id, location) VALUES (53, 'Raplamaa');
+            INSERT INTO locations (car_location_id, location) VALUES (51, 'Põlvamaa');
+            INSERT INTO locations (car_location_id, location) VALUES (52, 'Pärnumaa');
+            INSERT INTO locations (car_location_id, location) VALUES (27, 'Läänemaa');
+            INSERT INTO locations (car_location_id, location) VALUES (26, 'Lääne-Virumaa');
+            INSERT INTO locations (car_location_id, location) VALUES (50, 'Jõgevamaa');
+            INSERT INTO locations (car_location_id, location) VALUES (29, 'Järvamaa');
+            INSERT INTO locations (car_location_id, location) VALUES (20, 'Ida-Virumaa');
+            INSERT INTO locations (car_location_id, location) VALUES (12, 'Hiiumaa');
+            INSERT INTO locations (car_location_id, location) VALUES (15, 'Harjumaa');
+            INSERT INTO locations (car_location_id, location) VALUES (6, 'Võru');
+            INSERT INTO locations (car_location_id, location) VALUES (8, 'Viljandi');
+            INSERT INTO locations (car_location_id, location) VALUES (4, 'Valga');
+            INSERT INTO locations (car_location_id, location) VALUES (113, 'Türi');
+            INSERT INTO locations (car_location_id, location) VALUES (105, 'Tõrva');
+            INSERT INTO locations (car_location_id, location) VALUES (1, 'Tartu');
+            INSERT INTO locations (car_location_id, location) VALUES (39, 'Tapa');
+            INSERT INTO locations (car_location_id, location) VALUES (112, 'Tamsalu');
+            INSERT INTO locations (car_location_id, location) VALUES (3, 'Tallinn');
+            INSERT INTO locations (car_location_id, location) VALUES (111, 'Suure-Jaani');
+            INSERT INTO locations (car_location_id, location) VALUES (104, 'Sindi');
+            INSERT INTO locations (car_location_id, location) VALUES (103, 'Sillamäe');
+            INSERT INTO locations (car_location_id, location) VALUES (102, 'Saue');
+            INSERT INTO locations (car_location_id, location) VALUES (11, 'Rapla');
+            INSERT INTO locations (car_location_id, location) VALUES (110, 'Räpina');
+            INSERT INTO locations (car_location_id, location) VALUES (9, 'Rakvere');
+            INSERT INTO locations (car_location_id, location) VALUES (13, 'Põlva');
+            INSERT INTO locations (car_location_id, location) VALUES (14, 'Põltsamaa');
+            INSERT INTO locations (car_location_id, location) VALUES (5, 'Pärnu');
+            INSERT INTO locations (car_location_id, location) VALUES (28, 'Paldiski');
+            INSERT INTO locations (car_location_id, location) VALUES (25, 'Paide');
+            INSERT INTO locations (car_location_id, location) VALUES (32, 'Otepää');
+            INSERT INTO locations (car_location_id, location) VALUES (100, 'Narva-Jõesuu');
+            INSERT INTO locations (car_location_id, location) VALUES (35, 'Narva');
+            INSERT INTO locations (car_location_id, location) VALUES (99, 'Mustvee');
+            INSERT INTO locations (car_location_id, location) VALUES (98, 'Mõisaküla');
+            INSERT INTO locations (car_location_id, location) VALUES (48, 'Maardu');
+            INSERT INTO locations (car_location_id, location) VALUES (97, 'Loksa');
+            INSERT INTO locations (car_location_id, location) VALUES (109, 'Lihula');
+            INSERT INTO locations (car_location_id, location) VALUES (7, 'Kuressaare');
+            INSERT INTO locations (car_location_id, location) VALUES (59, 'Kunda');
+            INSERT INTO locations (car_location_id, location) VALUES (36, 'Kohtla-Järve');
+            INSERT INTO locations (car_location_id, location) VALUES (96, 'Kiviõli');
+            INSERT INTO locations (car_location_id, location) VALUES (33, 'Kilingi-Nõmme');
+            INSERT INTO locations (car_location_id, location) VALUES (37, 'Keila');
+            INSERT INTO locations (car_location_id, location) VALUES (93, 'Kehra');
+            INSERT INTO locations (car_location_id, location) VALUES (60, 'Karksi-Nuia');
+            INSERT INTO locations (car_location_id, location) VALUES (94, 'Kallaste');
+            INSERT INTO locations (car_location_id, location) VALUES (23, 'Jõhvi');
+            INSERT INTO locations (car_location_id, location) VALUES (17, 'Jõgeva');
+            INSERT INTO locations (car_location_id, location) VALUES (19, 'Haapsalu');
+            INSERT INTO locations (car_location_id, location) VALUES (44, 'Elva');
+            INSERT INTO locations (car_location_id, location) VALUES (107, 'Abja-Paluoja');
+            INSERT INTO locations (car_location_id, location) VALUES (-18, 'VENEMAA');
+            INSERT INTO locations (car_location_id, location) VALUES (-17, 'SOOME');
+            INSERT INTO locations (car_location_id, location) VALUES (-4, 'SAKSAMAA');
+            INSERT INTO locations (car_location_id, location) VALUES (-12, 'ROOTSI');
+            INSERT INTO locations (car_location_id, location) VALUES (-10, 'PRANTSUSMAA');
+            INSERT INTO locations (car_location_id, location) VALUES (-21, 'POOLA');
+            INSERT INTO locations (car_location_id, location) VALUES (-3, 'LEEDU');
+            INSERT INTO locations (car_location_id, location) VALUES (-2, 'LÄTI');
+            INSERT INTO locations (car_location_id, location) VALUES (-32, 'HISPAANIA');
+            INSERT INTO locations (car_location_id, location) VALUES (-1, 'EESTI');
+            INSERT INTO locations (car_location_id, location) VALUES (0, 'kõik');
+        </sql>
+        <createTable tableName="sellers">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_seller_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="seller" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO sellers (car_seller_id, seller) VALUES (0, 'kõik');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (323, 'A Autod Haagised');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1418, 'A1 Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (270, 'A2-Autowelt');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (423, 'Aasta Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (58, 'Aasta Auto Pluss');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1351, 'ABC Motors Kadaka');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (187, 'ABC Motors Paldiski mnt');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1941, 'Abivam OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (126, 'Agdeck-Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (127, 'AGR Autokeskus OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (368, 'Albion Motors');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1887, 'Alke Motors OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (353, 'Alme Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (279, 'Ameerika Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1032, 'American Beauty');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (37, 'Amserv Järve');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (586, 'Amserv Paide');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (154, 'Amserv Pärnu');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (29, 'Amserv Tähe');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (691, 'Amserv Viljandi');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (572, 'AnD autoaed');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (68, 'Anne Autoaed');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1906, 'Ard Import OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (244, 'Argeauto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1045, 'Armavel OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (924, 'ASC Motors');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (36, 'Ascar Tartu');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (230, 'Asmo');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1556, 'Atfan OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (223, 'Atlante');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (682, 'Audi Kuressaare');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1025, 'Audi Pärnu');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (24, 'Audi Tallinn');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1314, 'Auteks OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1203, 'Auto 100 AS');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (656, 'Auto Forte');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1441, 'Auto Globe');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1054, 'Auto Group OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1775, 'Auto Ilustuudio');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1850, 'Auto&amp;Service OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (720, 'Auto-Bon AC');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (837, 'Autoagentuur');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1364, 'AutoDrive');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (186, 'Autoesindus OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (229, 'Autoholding OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1628, 'Autojärelmaks24');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1960, 'Autokari Eesti OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1658, 'Automaailm Tallinn');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1709, 'Automaailm Tartu');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (541, 'Automaailm Valga');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1920, 'Automaailm Võru');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1673, 'Automar OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1505, 'Automark OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (420, 'AutoSalong');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1737, 'Autosar OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (985, 'Autosky');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (53, 'Autospirit AS');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (685, 'Autospirit Sõpruse');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (533, 'Autospirit Tartu OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1935, 'Autotrade Holding OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1802, 'AVG Auto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1345, 'Baltasar Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1493, 'Baltexim');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1048, 'Baltfish Trade');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1961, 'Balti Autokeskus OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (990, 'Balti Bussi Grupp');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1785, 'Baltic Truck OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1494, 'Baulrix OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1567, 'BCS Auto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (427, 'Bestcar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1933, 'BM Auto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1801, 'Boat Sales and Service OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1214, 'Boatservice OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1410, 'Boldon Grupp');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1839, 'BRC Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1908, 'Briggson OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (271, 'Bummel OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1973, 'Canis OKP OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1968, 'Car Collection ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1704, 'Car.lv');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1535, 'CarCapital');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (265, 'Carcom');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1872, 'Carfast OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1727, 'Carfreaks OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1863, 'Carline24 OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1187, 'Carolim');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (131, 'Carring AS');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (35, 'Cars.ee');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (98, 'Catwees OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (101, 'City Motors AS');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (899, 'Citycar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (399, 'Crossar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (310, 'Dalinger Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (25, 'Decar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (819, 'DOCS.ee Tellimiskeskkond');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (32, 'E-Autoline');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (302, 'E-autopood');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (253, 'Edu Autoaed');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (113, 'EKSO');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (185, 'Elke Kuressaare');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (578, 'Elke Mustakivi');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (17, 'Elke Mustamäe');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1728, 'Elke Narva');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (155, 'Elke Rakvere');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (394, 'Elma Autoäri');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (812, 'Estauto Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (575, 'Estoger Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1438, 'Euest OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1367, 'Europe Auto Tallinn OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (41, 'EurostAuto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (23, 'Fakto Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1765, 'FDT Autopoint OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1964, 'Ferati Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (273, 'Folk Auto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (164, 'Forstal');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (375, 'Fortex Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1965, 'Forum Auto SIA');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (914, 'Fredy');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1979, 'Garage 33 OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1698, 'Global AutoCenter');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1757, 'Goldstern OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1978, 'Grossmann Transport OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1049, 'GS Motors');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1081, 'HeadAutod');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1741, 'Heftige OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (611, 'Hiiu Autod');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1852, 'Hillingar Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1458, 'Hornetauto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (393, 'Ideal Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (419, 'Import Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (22, 'Inchcape BMW');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (31, 'Inchcape Motors Estonia / Rae vald');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (27, 'Info-Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (16, 'Intertrade');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (397, 'Jamboree');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1483, 'JMV Motors OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1304, 'JP Cars');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1919, 'JRA Cars OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1311, 'Juno Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (501, 'K &amp; A');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (39, 'Kaher');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (50, 'Karlova Autopood');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (546, 'Karmani Auto-Moto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1453, 'Kindle OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1847, 'Kitmari OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1679, 'KM Trading');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (602, 'Ksauto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (220, 'KTM Autopood');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (147, 'Kuressaare Autoteenindus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1711, 'L-Kaubandus OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1956, 'Laokunn OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1843, 'Leiton Grupp OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (680, 'Lexus Tallinn');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1889, 'Longo Estonia OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1591, 'Luha Autoaed');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1522, 'Lumo Autopood');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1817, 'Luxmotors OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1175, 'Luxury Collection Automobiles');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (165, 'LX Motors');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (404, 'Madmoto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (44, 'Mariine Auto AS');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1552, 'MAXCAR');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1951, 'Miil OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (137, 'ML Autoservice');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (303, 'Mobile Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1656, 'Mobile24 OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (64, 'Mobilstar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1581, 'mogo OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (774, 'Moller Auto Mustamäe');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (233, 'Moller Auto Pärnu');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (339, 'Moller Auto Viru');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (666, 'Moller Auto Ülemiste');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1528, 'Morecar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1338, 'Motec OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (269, 'Motokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (913, 'Motoplanet');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (629, 'Nemm Autokeskus ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1361, 'Nordauto Grupp OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1856, 'Northstar Motors OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1668, 'NP Autod');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1534, 'Oliver Invest OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1024, 'Paide Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1546, 'Pakiauto24');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (905, 'Pereauto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (390, 'Plangi Trans');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (852, 'Pro Lift');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (526, 'ProREX');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1634, 'Provide OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1799, 'Punane müük');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1451, 'Põlde Traktor OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1954, 'Qwerty Consult OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (199, 'Raadi Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (148, 'Rael Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1745, 'Raetonia Invest OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (4, 'Raidsaare');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1742, 'Raihan Group OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1816, 'Rakvere Autotehnika OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (967, 'Rannasaar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (11, 'Renneks Kaubandus OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (516, 'Rommy Autoaed');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (47, 'Ropka Autoaed');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (260, 'Ropka Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1402, 'Ros Auto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (246, 'Rovelsten');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (831, 'Runso Masinakaubandus OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1738, 'RW-Trans AS');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (309, 'Sandauto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (298, 'ScanBalt Trucks OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (117, 'Sepa Autopood');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (252, 'Siller Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1648, 'Silmar Auto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1041, 'Silmar OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1886, 'Silmar Trans OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1611, 'Silvanus Transport OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (382, 'Sinu Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1740, 'Sirtaki OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1517, 'SKODA Laagri');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (334, 'SKODA Tallinn');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1938, 'Sky AutoSpa OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (478, 'SkyCar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1616, 'Solinger Invest');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (505, 'Sportauto.EE');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1932, 'Sports Car Center Eesti OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1812, 'Standard Auto OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1974, 'Stepselauto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1428, 'Suncar OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1860, 'Suve.ee');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (520, 'Tallchart OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1124, 'Tartu Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (19, 'Tauf-Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (262, 'Taunex Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1791, 'Techmark OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (123, 'Teguriauto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (218, 'Tehase Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1665, 'telliauto.ee');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (475, 'TelliAuto24 OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (190, 'Tika Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (20, 'Topauto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1809, 'Topimpex OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1052, 'Tradestar');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (146, 'Tradilo');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (704, 'Truck Trading Estonia OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (288, 'TT-Mobile Autopood');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (897, 'Tuma Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (255, 'Turu Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1240, 'Tuuliku Autoaed OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1840, 'Unicmotors OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (644, 'United Motors');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (151, 'Uuemõisa Autokeskus');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1903, 'V Motors OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (640, 'Veho AS');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (15, 'Viking Motors AS / Tammsaare');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (59, 'Viking Motors AS/ Ülemiste');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (511, 'Volvo Estonia OÜ');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (277, 'Võru Autopood');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (181, 'Warma Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (95, 'Wiru Auto');
+            INSERT INTO sellers (car_seller_id, seller) VALUES (1601, 'Yury');
+        </sql>
+        <createTable tableName="adages">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_adage_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="adage" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO adages (car_adage_id, adage) VALUES (0, 'kõik');
+            INSERT INTO adages (car_adage_id, adage) VALUES (1, 'kuni 1 päev');
+            INSERT INTO adages (car_adage_id, adage) VALUES (2, 'kuni 2 päeva');
+            INSERT INTO adages (car_adage_id, adage) VALUES (3, 'kuni 3 päeva');
+            INSERT INTO adages (car_adage_id, adage) VALUES (7, 'kuni 7 päeva');
+        </sql>
+        <createTable tableName="sorts">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_sort_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="sort" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO sorts (car_sort_id, sort) VALUES (1, 'uued eespool');
+            INSERT INTO sorts (car_sort_id, sort) VALUES (2, 'hinna järgi');
+            INSERT INTO sorts (car_sort_id, sort) VALUES (3, 'aasta järgi');
+            INSERT INTO sorts (car_sort_id, sort) VALUES (4, 'margi järgi');
 
+        </sql>
+        <createTable tableName="shows">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_show_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="show" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO shows (car_show_id, show) VALUES (50, '50 kaupa');
+            INSERT INTO shows (car_show_id, show) VALUES (20, '20 kaupa');
+            INSERT INTO shows (car_show_id, show) VALUES (100, '100 kaupa');
+            INSERT INTO shows (car_show_id, show) VALUES (200, '200 kaupa');
+
+        </sql>
+        <createTable tableName="auctions">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="false"/>
+            </column>
+            <column name="car_auction_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="auction" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <sql>
+            INSERT INTO auctions (car_auction_id, auction) VALUES (0, 'kõik');
+            INSERT INTO auctions (car_auction_id, auction) VALUES (1, 'jah');
+            INSERT INTO auctions (car_auction_id, auction) VALUES (2, 'ei');
 
         </sql>
     </changeSet>

@@ -123,17 +123,12 @@
             })
         })
 
-            .then(function (response) {
-                return response.json()
-            })
             .then(function (jsonData) {
-                flag.value = '';
-                messages.innerText = jsonData.message;
-                updateBoard();
+                window.location.href =('/results.html')
             })
             .catch(function (err) {
+                console.log(err);
             });
-        window.location.href =('/results.html')
     });
 //Kuidas saab nii, et kui 3 väljast on ainult 1 või 2 täidetud, siis ta võtaks sisu ainult taidetud väljadest.
     //sama peaks implementima ka andmete muutmise alla (kui tahan ainult parooli või ainult emaili vahetada

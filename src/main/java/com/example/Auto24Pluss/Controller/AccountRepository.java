@@ -58,6 +58,26 @@ public class AccountRepository {
         return jdbcTemplate.query(sql, new HashMap<>(), new ObjectRowMapper());
     }
 
+    public String getCarMake(int markIntValue) {
+        String sql = "SELECT name from automargid where car_brand_id= :markIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("markIntValue", markIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getCarmodel(int modelIntValue) {
+        String sql = "SELECT model from models where model_id= :modelIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("modelIntValue", modelIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+
+    public String getLink(int user_id){
+        String sql = "Select searchlink from search where user_id = :user_id";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("user_id", user_id);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+
 
 }
 

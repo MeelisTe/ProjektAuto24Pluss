@@ -62,7 +62,7 @@ public class AccountService {
                 e.printStackTrace();
             }
 
-        }
+        }SearchSave.searchLink();
     }
 
 }

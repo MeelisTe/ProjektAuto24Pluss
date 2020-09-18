@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 
 public class ScheduledTasks {
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 10000)
     public void test() {
         AccountService.saveHtml();
     }

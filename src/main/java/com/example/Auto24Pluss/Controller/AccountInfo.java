@@ -1,7 +1,5 @@
 package com.example.Auto24Pluss.Controller;
 
-import java.util.Date;
-
 public class AccountInfo {
     private String firstname;
     private String lastname;

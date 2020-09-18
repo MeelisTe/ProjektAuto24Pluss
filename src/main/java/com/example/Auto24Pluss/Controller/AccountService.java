@@ -16,6 +16,22 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
+    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
+        accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
+    }
+
+    public void saveURL(String searchlink, Long userId) {
+        accountRepository.saveURL(searchlink, userId);
+    }
+
+    public void updateInformation(String password, String email) {
+        accountRepository.updateInformation(password, email);
+    }
+
+    public List<SearchSave> displayresults() {
+        return accountRepository.displayresults();
+    }
+
     public static void saveHtml() {
         {
 
@@ -47,22 +63,6 @@ public class AccountService {
             }
 
         }
-    }
-
-    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
-        accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
-    }
-
-    public void saveURL(String searchlink, Long userId) {
-        accountRepository.saveURL(searchlink, userId);
-    }
-
-    public void updateInformation(String password, String email) {
-        accountRepository.updateInformation(password, email);
-    }
-
-    public List<SearchSave> displayresults() {
-        return accountRepository.displayresults();
     }
 
 }

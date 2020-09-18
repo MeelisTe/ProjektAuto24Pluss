@@ -3,26 +3,17 @@ package com.example.Auto24Pluss.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-
-
 import java.util.List;
 
 @Service
 public class AccountService {
     public static String displayresults;
-    @Autowired
-    private AccountRepository accountRepository;
-
-
-    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
-
     final String autoMudel = "&bw=";
     final String autoMark = "&b=";
     final String keretyyp = "&j=";
@@ -43,24 +34,8 @@ public class AccountService {
     final String jarjesta = "&ae=";
     final String naita = "&af=";
     final String oksjon = "&by=";
-
-    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email){
-
-        accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
-    }
-
-    public void saveURL(String searchlink, Long userId) {
-        accountRepository.saveURL(searchlink, 1l);
-    }
-
-    public void updateInformation(String password, String email) {
-        accountRepository.updateInformation(password, email);
-    }
-
-    public List<SearchSave> displayresults() {
-        return accountRepository.displayresults();
-    }
-
+    @Autowired
+    private AccountRepository accountRepository;
 
     public static void saveHtml() {
         {
@@ -92,10 +67,27 @@ public class AccountService {
                 e.printStackTrace();
             }
 
-        }SearchSave.searchLink();
+        }
+        SearchSave.searchLink();
     }
 
-    public GetcarMarkResult markResult (int user_id) {
+    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
+        accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
+    }
+
+    public void saveURL(String searchlink, Long userId) {
+        accountRepository.saveURL(searchlink, 1l);
+    }
+
+    public void updateInformation(String password, String email) {
+        accountRepository.updateInformation(password, email);
+    }
+
+    public List<SearchSave> displayresults() {
+        return accountRepository.displayresults();
+    }
+
+    public GetcarMarkResult markResult(int user_id) {
 
 
         String searchLink = accountRepository.getLink(user_id);
@@ -109,7 +101,8 @@ public class AccountService {
         result.setMark(accountRepository.getCarMake(markIntValue));
         return result;
     }
-    public GetcarMarkResult modelResult (int user_id) {
+
+    public GetcarMarkResult modelResult(int user_id) {
         String searchLink = accountRepository.getLink(user_id);
 
         int mudelStartIndex = searchLink.indexOf(autoMudel) + autoMudel.length();
@@ -148,7 +141,4 @@ public class AccountService {
         }*/
 
 
-
-
-
-    }
+}

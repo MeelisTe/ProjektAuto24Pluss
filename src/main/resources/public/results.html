@@ -124,18 +124,7 @@
             .then(function (jsonData) {
                 console.log(jsonData);
                 document.getElementById("getCarMake").innerHTML = "<table><tr><td></td><td>" + "Mark: " + jsonData.mark + "</td></tr></table>";
-            })
-            .catch(function (err) {
-            });
-        document.getElementById("getCarmodel");
-        fetch('/modelResult')
-            .then(function (response) {
-                console.log(response);
-                return response.json();
-            })
-            .then(function (jsonData) {
-                console.log(jsonData);
-                document.getElementById("getCarmodel").innerHTML = "<table><tr><td></td><td>"  + "Mudel: " + jsonData.mudel + "</td></tr></table>";
+                document.getElementById("getCarmodel").innerHTML = "<table><tr><td></td><td>"  + "Mudel: " + jsonData.keretüüp + "</td></tr></table>";
             })
             .catch(function (err) {
             });

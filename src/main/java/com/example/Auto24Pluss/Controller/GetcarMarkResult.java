@@ -1,9 +1,9 @@
 package com.example.Auto24Pluss.Controller;
 
 public class GetcarMarkResult {
-    private String mark;
-    private String mudel;
-    private String keretüüp;
+    private String mark = "";
+    private String mudel = "";
+    private String keretüüp = "";
     private Integer aasta_alates;
     private Integer aasta_kuni;
     private Integer hind_alates;
@@ -12,16 +12,16 @@ public class GetcarMarkResult {
     private Integer võimsus_kuni;
     private Integer läbisõit_alates;
     private Integer läbisõit_kuni;
-    private String värv;
-    private String kütus;
-    private String käigukast;
-    private String vedav_sild;
-    private String asukoht;
-    private String müüja;
-    private String kuulutuse_vanus;
-    private String järjesta;
-    private String näita;
-    private String oksjon;
+    private String värv = "";
+    private String kütus = "";
+    private String käigukast = "";
+    private String vedav_sild = "";
+    private String asukoht = "";
+    private String müüja = "";
+    private String kuulutuse_vanus = "";
+    private String järjesta = "";
+    private String näita = "";
+    private String oksjon = "";
 
     public String getMudel() {
         return mudel;

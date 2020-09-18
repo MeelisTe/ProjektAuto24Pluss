@@ -21,7 +21,7 @@ public class AccountService {
     private AccountRepository accountRepository;
 
 
-    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
+
 
     final String autoMudel = "&bw=";
     final String autoMark = "&b=";
@@ -96,30 +96,18 @@ public class AccountService {
     }
 
     public GetcarMarkResult markResult (int user_id) {
-
-
         String searchLink = accountRepository.getLink(user_id);
-
-        int markStartindex = searchLink.indexOf(autoMark) + autoMark.length();
-        int markEndIndex = searchLink.indexOf("&", markStartindex);
-        String markValue = searchLink.substring(markStartindex, markEndIndex);
-        Integer markIntValue = Integer.valueOf(markValue);
-
         GetcarMarkResult result = new GetcarMarkResult();
-        result.setMark(accountRepository.getCarMake(markIntValue));
+        result.setMark(accountRepository.getCarMake(findElementByCode(searchLink, autoMark)));
+        result.setMudel(accountRepository.getCarmodel(findElementByCode(searchLink, autoMudel)));
         return result;
     }
-    public GetcarMarkResult modelResult (int user_id) {
-        String searchLink = accountRepository.getLink(user_id);
 
-        int mudelStartIndex = searchLink.indexOf(autoMudel) + autoMudel.length();
-        int mudelEndIndex = searchLink.indexOf("&", mudelStartIndex);
-        String modelValue = searchLink.substring(mudelStartIndex, mudelEndIndex);
-        Integer modelIntValue = Integer.valueOf(modelValue);
-
-        GetcarMarkResult result = new GetcarMarkResult();
-        result.setMudel(accountRepository.getCarmodel(modelIntValue));
-        return result;
+    private Integer findElementByCode(String searchLink, String code){
+        int markStartindex = searchLink.indexOf(code) + code.length();
+        int markEndIndex = searchLink.indexOf("&", markStartindex);
+        String markValue = searchLink.substring(markStartindex, markEndIndex);
+        return Integer.valueOf(markValue);
     }
 
 
@@ -129,19 +117,19 @@ public class AccountService {
             int mudelEndIndex = searchLink.indexOf("&", mudelStartIndex);
             String mudelValue = searchLink.substring(mudelStartIndex, mudelEndIndex);
             Integer mudelIntValue = Integer.valueOf(mudelValue);
- //           System.out.println(mudelIntValue);
+            System.out.println(mudelIntValue);
 
             int markStartindex = searchLink.indexOf(autoMark) + autoMark.length();
             int markEndIndex = searchLink.indexOf("&", markStartindex);
             String markValue = searchLink.substring(markStartindex, markEndIndex);
             Integer markIntValue = Integer.valueOf(markValue);
- //           System.out.println(markIntValue);
+            System.out.println(markIntValue);
 
             int naitaStartindex = searchLink.indexOf(naita) + naita.length();
             int naitaEndIndex = searchLink.indexOf("&", naitaStartindex);
             String naitaValue = searchLink.substring(naitaStartindex, naitaEndIndex);
             Integer naitaIntValue = Integer.valueOf(naitaValue);
- //           System.out.println(naitaIntValue);
+            System.out.println(naitaIntValue);
 
         return mudelIntValue + markIntValue + naitaIntValue;
 

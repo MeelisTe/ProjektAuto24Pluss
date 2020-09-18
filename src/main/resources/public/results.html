@@ -66,9 +66,11 @@
 </div>
 
 <div align="center" id="displayresults">
-
 </div>
-
+<div align="center" id="getCarMake">
+</div>
+<div align="center" id="getCarmodel">
+</div>
 
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
@@ -109,7 +111,31 @@
             })
             .then(function (jsonData) {
                 document.getElementById("displayresults").innerHTML = "<table><tr><td></td><td>" + jsonData[0].userId + ". </td><td><a href='" + jsonData[0].searchlink + "'>" + jsonData[0].searchlink + "</a></td></tr></table>";
+            })
+            .catch(function (err) {
+            });
 
+        document.getElementById("getCarMake");
+        fetch('/markResult')
+            .then(function (response) {
+                console.log(response);
+                return response.json();
+            })
+            .then(function (jsonData) {
+                console.log(jsonData);
+                document.getElementById("getCarMake").innerHTML = "<table><tr><td></td><td>" + "Mark: " + jsonData.mark + "</td></tr></table>";
+            })
+            .catch(function (err) {
+            });
+        document.getElementById("getCarmodel");
+        fetch('/modelResult')
+            .then(function (response) {
+                console.log(response);
+                return response.json();
+            })
+            .then(function (jsonData) {
+                console.log(jsonData);
+                document.getElementById("getCarmodel").innerHTML = "<table><tr><td></td><td>"  + "Mudel: " + jsonData.mudel + "</td></tr></table>";
             })
             .catch(function (err) {
             });

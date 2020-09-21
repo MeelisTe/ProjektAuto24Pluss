@@ -3,25 +3,33 @@ package com.example.Auto24Pluss.Controller;
 public class GetcarMarkResult {
     private String mark = "";
     private String mudel = "";
-    private String keretüüp = "";
+    private String keretyyp = "";
     private Integer aasta_alates;
     private Integer aasta_kuni;
     private Integer hind_alates;
     private Integer hind_kuni;
-    private Integer võimsus_alates;
-    private Integer võimsus_kuni;
-    private Integer läbisõit_alates;
-    private Integer läbisõit_kuni;
-    private String värv = "";
-    private String kütus = "";
-    private String käigukast = "";
+    private Integer voimsus_alates;
+    private Integer voimsus_kuni;
+    private Integer labisoit_alates;
+    private Integer labisoit_kuni;
+    private String varv = "";
+    private String kutus = "";
+    private String kaigukast = "";
     private String vedav_sild = "";
     private String asukoht = "";
-    private String müüja = "";
+    private String muuja = "";
     private String kuulutuse_vanus = "";
-    private String järjesta = "";
-    private String näita = "";
+    private String jarjesta = "";
+    private String naita = "";
     private String oksjon = "";
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
 
     public String getMudel() {
         return mudel;
@@ -31,12 +39,12 @@ public class GetcarMarkResult {
         this.mudel = mudel;
     }
 
-    public String getKeretüüp() {
-        return keretüüp;
+    public String getKeretyyp() {
+        return keretyyp;
     }
 
-    public void setKeretüüp(String keretüüp) {
-        this.keretüüp = keretüüp;
+    public void setKeretyyp(String keretyyp) {
+        this.keretyyp = keretyyp;
     }
 
     public Integer getAasta_alates() {
@@ -71,60 +79,60 @@ public class GetcarMarkResult {
         this.hind_kuni = hind_kuni;
     }
 
-    public Integer getVõimsus_alates() {
-        return võimsus_alates;
+    public Integer getVoimsus_alates() {
+        return voimsus_alates;
     }
 
-    public void setVõimsus_alates(Integer võimsus_alates) {
-        this.võimsus_alates = võimsus_alates;
+    public void setVoimsus_alates(Integer voimsus_alates) {
+        this.voimsus_alates = voimsus_alates;
     }
 
-    public Integer getVõimsus_kuni() {
-        return võimsus_kuni;
+    public Integer getVoimsus_kuni() {
+        return voimsus_kuni;
     }
 
-    public void setVõimsus_kuni(Integer võimsus_kuni) {
-        this.võimsus_kuni = võimsus_kuni;
+    public void setVoimsus_kuni(Integer voimsus_kuni) {
+        this.voimsus_kuni = voimsus_kuni;
     }
 
-    public Integer getLäbisõit_alates() {
-        return läbisõit_alates;
+    public Integer getLabisoit_alates() {
+        return labisoit_alates;
     }
 
-    public void setLäbisõit_alates(Integer läbisõit_alates) {
-        this.läbisõit_alates = läbisõit_alates;
+    public void setLabisoit_alates(Integer labisoit_alates) {
+        this.labisoit_alates = labisoit_alates;
     }
 
-    public Integer getLäbisõit_kuni() {
-        return läbisõit_kuni;
+    public Integer getLabisoit_kuni() {
+        return labisoit_kuni;
     }
 
-    public void setLäbisõit_kuni(Integer läbisõit_kuni) {
-        this.läbisõit_kuni = läbisõit_kuni;
+    public void setLabisoit_kuni(Integer labisoit_kuni) {
+        this.labisoit_kuni = labisoit_kuni;
     }
 
-    public String getVärv() {
-        return värv;
+    public String getVarv() {
+        return varv;
     }
 
-    public void setVärv(String värv) {
-        this.värv = värv;
+    public void setVarv(String varv) {
+        this.varv = varv;
     }
 
-    public String getKütus() {
-        return kütus;
+    public String getKutus() {
+        return kutus;
     }
 
-    public void setKütus(String kütus) {
-        this.kütus = kütus;
+    public void setKutus(String kutus) {
+        this.kutus = kutus;
     }
 
-    public String getKäigukast() {
-        return käigukast;
+    public String getKaigukast() {
+        return kaigukast;
     }
 
-    public void setKäigukast(String käigukast) {
-        this.käigukast = käigukast;
+    public void setKaigukast(String kaigukast) {
+        this.kaigukast = kaigukast;
     }
 
     public String getVedav_sild() {
@@ -143,12 +151,12 @@ public class GetcarMarkResult {
         this.asukoht = asukoht;
     }
 
-    public String getMüüja() {
-        return müüja;
+    public String getMuuja() {
+        return muuja;
     }
 
-    public void setMüüja(String müüja) {
-        this.müüja = müüja;
+    public void setMuuja(String muuja) {
+        this.muuja = muuja;
     }
 
     public String getKuulutuse_vanus() {
@@ -159,20 +167,20 @@ public class GetcarMarkResult {
         this.kuulutuse_vanus = kuulutuse_vanus;
     }
 
-    public String getJärjesta() {
-        return järjesta;
+    public String getJarjesta() {
+        return jarjesta;
     }
 
-    public void setJärjesta(String järjesta) {
-        this.järjesta = järjesta;
+    public void setJarjesta(String jarjesta) {
+        this.jarjesta = jarjesta;
     }
 
-    public String getNäita() {
-        return näita;
+    public String getNaita() {
+        return naita;
     }
 
-    public void setNäita(String näita) {
-        this.näita = näita;
+    public void setNaita(String naita) {
+        this.naita = naita;
     }
 
     public String getOksjon() {
@@ -181,13 +189,5 @@ public class GetcarMarkResult {
 
     public void setOksjon(String oksjon) {
         this.oksjon = oksjon;
-    }
-
-    public String getMark() {
-        return mark;
-    }
-
-    public void setMark(String mark) {
-        this.mark = mark;
     }
 }

@@ -9,6 +9,11 @@ import java.util.List;
 @Service
 public class AccountService {
     public static String displayresults;
+
+    @Autowired
+    private AccountRepository accountRepository;
+
+
     final String autoMudel = "&bw=";
     final String autoMark = "&b=";
     final String keretyyp = "&j=";
@@ -29,6 +34,8 @@ public class AccountService {
     final String jarjesta = "&ae=";
     final String naita = "&af=";
     final String oksjon = "&by=";
+    final String adage = "&bl="
+    
     @Autowired
     private AccountRepository accountRepository;
 
@@ -130,6 +137,25 @@ public class AccountService {
         GetcarMarkResult result = new GetcarMarkResult();
         result.setMark(accountRepository.getCarMake(findElementByCode(searchLink, autoMark)));
         result.setMudel(accountRepository.getCarmodel(findElementByCode(searchLink, autoMudel)));
+        result.setKeretyyp(accountRepository.getKeretyyp(findElementByCode(searchLink, keretyyp)));
+        result.setAasta_alates(findElementByCode(searchLink, aastaAlates));
+        result.setAasta_kuni(findElementByCode(searchLink, aastaKuni));
+        result.setHind_alates(findElementByCode(searchLink, hindAlates));
+        result.setHind_kuni(findElementByCode(searchLink, hindKuni));
+        result.setVoimsus_alates(findElementByCode(searchLink, voimsusAlates));
+        result.setVoimsus_kuni(findElementByCode(searchLink, voimsusKuni));
+        result.setLabisoit_alates(findElementByCode(searchLink, labisoitAlates));
+        result.setLabisoit_kuni(findElementByCode(searchLink, labisoitKuni));
+        result.setVarv(accountRepository.getCarcolor(findElementByCode(searchLink, varv)));
+        result.setKutus(accountRepository.getCarfuel(findElementByCode(searchLink, kytus)));
+        result.setKaigukast(accountRepository.getTransmission(findElementByCode(searchLink, kaigukast)));
+        result.setVedav_sild(accountRepository.getVedavsild(findElementByCode(searchLink, vedavsild)));
+        result.setAsukoht(accountRepository.getAsukoht(findElementByCode(searchLink, asukoht)));
+        result.setMuuja(accountRepository.getMuuja(findElementByCode(searchLink, myyja)));
+        result.setKuulutuse_vanus(accountRepository.getKuulutusevanus(findElementByCode(searchLink, adage)));
+        result.setJarjesta(accountRepository.getJarjesta(findElementByCode(searchLink, jarjesta)));
+        result.setNaita(accountRepository.getNaita(findElementByCode(searchLink, naita)));
+        result.setOksjon(accountRepository.getOksjon(findElementByCode(searchLink, oksjon)));
         return result;
     }
 
@@ -166,4 +192,8 @@ public class AccountService {
         }*/
 
 
+
 }
+
+    
+

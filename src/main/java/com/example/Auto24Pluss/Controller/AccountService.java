@@ -34,10 +34,8 @@ public class AccountService {
     final String jarjesta = "&ae=";
     final String naita = "&af=";
     final String oksjon = "&by=";
-    final String adage = "&bl="
-    
-    @Autowired
-    private AccountRepository accountRepository;
+    final String adage = "&bl=";
+
 
     @Autowired
     private RestTemplate restTemplate;

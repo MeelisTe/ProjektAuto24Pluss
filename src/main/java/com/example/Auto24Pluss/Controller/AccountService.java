@@ -94,7 +94,8 @@ public class AccountService {
         lastIndex = 0;
         i = 0;
 
-        while(i < sõidukid){
+        while(i < sõidukid){ //nimetus loop
+
             int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex) + link.length();
             nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
             int nimetusEndIndex = htmlString.indexOf("</a>", nimetusStartIndex);

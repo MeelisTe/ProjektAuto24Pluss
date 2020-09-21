@@ -2,27 +2,13 @@ package com.example.Auto24Pluss.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @Service
 public class AccountService {
     public static String displayresults;
-    @Autowired
-    private AccountRepository accountRepository;
-
-
-
-
     final String autoMudel = "&bw=";
     final String autoMark = "&b=";
     final String keretyyp = "&j=";
@@ -43,8 +29,85 @@ public class AccountService {
     final String jarjesta = "&ae=";
     final String naita = "&af=";
     final String oksjon = "&by=";
+    @Autowired
+    private AccountRepository accountRepository;
 
-    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email){
+    @Autowired
+    private RestTemplate restTemplate;
+
+    String hind = "<td class=\"price\">";
+    String sõidukeid = "<span class=\"item\">1&ndash;";
+
+    String link = "<td class=\"make_and_model\"><a href=\"/used/";
+
+    public void saveHtml() {
+        String htmlString = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
+
+        System.out.println(htmlString);
+
+        System.out.println("");
+
+        System.out.println("Done");
+
+        System.out.println("");
+
+
+        int sõidukeidStartIndex = htmlString.indexOf(sõidukeid) + sõidukeid.length();
+        int sõidukeidEndIndex = htmlString.indexOf("<", sõidukeidStartIndex);
+        String sõidukeidkokku = htmlString.substring(sõidukeidStartIndex, sõidukeidEndIndex);
+        int sõidukid = Integer.valueOf(sõidukeidkokku);
+        System.out.println("Sõidukeid kokku: " + sõidukeidkokku + "\n");
+
+        int i = 0;
+        int lastIndex = 0;
+
+        while (i < sõidukid) { //hind loop
+
+            int hindStartIndex = htmlString.indexOf(hind, lastIndex) + hind.length();
+            lastIndex = hindStartIndex + hind.length();
+            int hindEndIndex = htmlString.indexOf("<", hindStartIndex);
+            String hindValue = htmlString.substring(hindStartIndex, hindEndIndex);
+            hindValue = hindValue.replace("&nbsp;", "");
+            System.out.println(hindValue);
+            i++;
+
+        }
+
+        System.out.println("");
+
+        lastIndex = 0;
+        i = 0;
+
+        while (i < sõidukid) { // link loop
+
+            int linkStartIndex = htmlString.indexOf(link, lastIndex) + link.length();
+            lastIndex = linkStartIndex + link.length();
+            int linkEndIndex = htmlString.indexOf("\">", linkStartIndex);
+            String linkValue = htmlString.substring(linkStartIndex, linkEndIndex);
+            System.out.println("https://www.auto24.ee/used/" + linkValue);
+            i++;
+
+        }
+
+        System.out.println("");
+
+        lastIndex = 0;
+        i = 0;
+
+        while(i < sõidukid){
+            int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex) + link.length();
+            nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
+            int nimetusEndIndex = htmlString.indexOf("</a>", nimetusStartIndex);
+            lastIndex = nimetusEndIndex;
+            String nimetusValue = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
+            System.out.println(nimetusValue);
+            i++;
+        }
+
+    }
+
+
+    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
 
         accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
     }
@@ -61,41 +124,7 @@ public class AccountService {
         return accountRepository.displayresults();
     }
 
-
-    public static void saveHtml() {
-        {
-
-            URL url;
-
-            try {
-                // get URL content
-
-                String a = "https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi";
-                url = new URL(a);
-                URLConnection conn = url.openConnection();
-
-                // open the stream and put it into BufferedReader
-                BufferedReader br = new BufferedReader(
-                        new InputStreamReader(conn.getInputStream()));
-
-                String inputLine;
-                while ((inputLine = br.readLine()) != null) {
-                    System.out.println(inputLine);
-                }
-                br.close();
-
-                System.out.println("Done");
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }SearchSave.searchLink();
-    }
-
-    public GetcarMarkResult markResult (int user_id) {
+    public GetcarMarkResult markResult(int user_id) {
         String searchLink = accountRepository.getLink(user_id);
         GetcarMarkResult result = new GetcarMarkResult();
         result.setMark(accountRepository.getCarMake(findElementByCode(searchLink, autoMark)));
@@ -103,7 +132,7 @@ public class AccountService {
         return result;
     }
 
-    private Integer findElementByCode(String searchLink, String code){
+    private Integer findElementByCode(String searchLink, String code) {
         int markStartindex = searchLink.indexOf(code) + code.length();
         int markEndIndex = searchLink.indexOf("&", markStartindex);
         String markValue = searchLink.substring(markStartindex, markEndIndex);
@@ -136,7 +165,4 @@ public class AccountService {
         }*/
 
 
-
-
-
-    }
+}

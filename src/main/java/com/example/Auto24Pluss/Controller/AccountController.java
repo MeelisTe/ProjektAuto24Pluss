@@ -47,6 +47,7 @@ public class AccountController {
     public GetcarMarkResult markResult(){
         return accountService.markResult(1);
     }
+
 /*    @GetMapping("getLink")
     public String getLink(){
         return accountService.markResult(1);

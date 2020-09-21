@@ -70,6 +70,72 @@ public class AccountRepository {
         paramMap.put("modelIntValue", modelIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
+    public String getKeretyyp(int typeIntValue) {
+        String sql = "SELECT bodytype from bodytypes where car_bodytype_id= :typeIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("typeIntValue", typeIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getCarcolor(int colorIntValue) {
+        String sql = "SELECT color from colors where car_color_id= :colorIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("colorIntValue", colorIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getCarfuel(int fuelIntValue) {
+        String sql = "SELECT fuel from fuels where car_fuel_id= :fuelIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("fuelIntValue", fuelIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getTransmission(int transmissionIntValue) {
+        String sql = "SELECT transmission from transmissions where car_transmission_id= :transmissionIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("transmissionIntValue", transmissionIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getVedavsild(int vedavsildIntValue) {
+        String sql = "SELECT vedavsild from vedavsilds where car_vedavsild_id= :vedavsildIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("vedavsildIntValue", vedavsildIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getAsukoht(int asukohtIntValue) {
+        String sql = "SELECT location from locations where car_location_id= :asukohtIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("asukohtIntValue", asukohtIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getMuuja(int myyjaIntValue) {
+        String sql = "SELECT seller from sellers where car_seller_id= :myyjaIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("myyjaIntValue", myyjaIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getJarjesta(int jarjestaIntValue) {
+        String sql = "SELECT sort from sorts where car_sort_id= :jarjestaIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("jarjestaIntValue", jarjestaIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getNaita(int naitaIntValue) {
+        String sql = "SELECT show from shows where car_show_id= :naitaIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("naitaIntValue", naitaIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getOksjon(int oksjonIntValue) {
+        String sql = "SELECT auction from auctions where car_auction_id= :oksjonIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("oksjonIntValue", oksjonIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public String getKuulutusevanus(int kuulutusevanusIntValue) {
+        String sql = "SELECT adage from adages where car_adage_id= :kuulutusevanusIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("kuulutusevanusIntValue", kuulutusevanusIntValue);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
 
     public String getLink(int user_id){
         String sql = "Select searchlink from search where user_id = :user_id";
@@ -80,4 +146,3 @@ public class AccountRepository {
 
 
 }
-

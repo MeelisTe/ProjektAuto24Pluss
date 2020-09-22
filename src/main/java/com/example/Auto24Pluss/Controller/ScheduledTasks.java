@@ -5,6 +5,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.net.URL;
+
 
 @EnableScheduling
 
@@ -18,10 +21,13 @@ public class ScheduledTasks {
 
 
     @Scheduled(fixedRate = 10000000)
-    public void test() {
+    public void test() throws IOException {
      //   accountService.saveHtml();
 
-        contentReaderService.readContent();
+        String link = "https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi";
+
+
+        contentReaderService.readContent(link);
     }
 }
 

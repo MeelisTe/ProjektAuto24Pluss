@@ -65,7 +65,7 @@ public class AccountRepository {
     }
 
     public String getCarMake(Integer markIntValue) {
-        if(markIntValue== null){
+        if (markIntValue == null) {
             return "-";
         }
         String sql = "SELECT name from automargid where car_brand_id= :markIntValue";
@@ -75,7 +75,7 @@ public class AccountRepository {
     }
 
     public String getCarmodel(Integer modelIntValue) { //null väärtus saab olla ainult Integeril (int ei tööta)
-        if(modelIntValue== null){
+        if (modelIntValue == null) {
             return "-";
         }
         String sql = "SELECT model from models where model_id= :modelIntValue";
@@ -85,7 +85,7 @@ public class AccountRepository {
     }
 
     public String getKeretyyp(Integer typeIntValue) {
-        if(typeIntValue== null){
+        if (typeIntValue == null) {
             return "-";
         }
         String sql = "SELECT bodytype from bodytypes where car_bodytype_id= :typeIntValue";
@@ -95,7 +95,7 @@ public class AccountRepository {
     }
 
     public String getCarcolor(Integer colorIntValue) {
-        if(colorIntValue== null){
+        if (colorIntValue == null) {
             return "-";
         }
         String sql = "SELECT color from colors where car_color_id= :colorIntValue";
@@ -105,7 +105,7 @@ public class AccountRepository {
     }
 
     public String getCarfuel(Integer fuelIntValue) {
-        if(fuelIntValue== null){
+        if (fuelIntValue == null) {
             return "-";
         }
         String sql = "SELECT fuel from fuels where car_fuel_id= :fuelIntValue";
@@ -115,7 +115,7 @@ public class AccountRepository {
     }
 
     public String getTransmission(Integer transmissionIntValue) {
-        if(transmissionIntValue== null){
+        if (transmissionIntValue == null) {
             return "-";
         }
         String sql = "SELECT transmission from transmissions where car_transmission_id= :transmissionIntValue";
@@ -125,7 +125,7 @@ public class AccountRepository {
     }
 
     public String getVedavsild(Integer vedavsildIntValue) {
-        if(vedavsildIntValue== null){
+        if (vedavsildIntValue == null) {
             return "-";
         }
         String sql = "SELECT vedavsild from vedavsilds where car_vedavsild_id= :vedavsildIntValue";
@@ -135,7 +135,7 @@ public class AccountRepository {
     }
 
     public String getAsukoht(Integer asukohtIntValue) {
-        if(asukohtIntValue== null){
+        if (asukohtIntValue == null) {
             return "-";
         }
         String sql = "SELECT location from locations where car_location_id= :asukohtIntValue";
@@ -145,7 +145,7 @@ public class AccountRepository {
     }
 
     public String getMuuja(Integer myyjaIntValue) {
-        if(myyjaIntValue== null){
+        if (myyjaIntValue == null) {
             return "-";
         }
         String sql = "SELECT seller from sellers where car_seller_id= :myyjaIntValue";
@@ -155,7 +155,7 @@ public class AccountRepository {
     }
 
     public String getJarjesta(Integer jarjestaIntValue) {
-        if(jarjestaIntValue== null){
+        if (jarjestaIntValue == null) {
             return "-";
         }
         String sql = "SELECT sort from sorts where car_sort_id= :jarjestaIntValue";
@@ -165,7 +165,7 @@ public class AccountRepository {
     }
 
     public String getNaita(Integer naitaIntValue) {
-        if(naitaIntValue== null){
+        if (naitaIntValue == null) {
             return "-";
         }
         String sql = "SELECT show from shows where car_show_id= :naitaIntValue";
@@ -175,7 +175,7 @@ public class AccountRepository {
     }
 
     public String getOksjon(Integer oksjonIntValue) {
-        if(oksjonIntValue== null){
+        if (oksjonIntValue == null) {
             return "-";
         }
         String sql = "SELECT auction from auctions where car_auction_id= :oksjonIntValue";
@@ -185,7 +185,7 @@ public class AccountRepository {
     }
 
     public String getKuulutusevanus(Integer kuulutusevanusIntValue) {
-        if(kuulutusevanusIntValue== null){
+        if (kuulutusevanusIntValue == null) {
             return "-";
         }
         String sql = "SELECT adage from adages where car_adage_id= :kuulutusevanusIntValue";

@@ -70,41 +70,41 @@
         <input type="password" id="oldpassword" class="form-control" style="width: 250px" placeholder="Vana parool"
                oninvalid="this.setCustomValidity('Sisesta vana parool')" required autofocus>
     </div>
-        <br>
+    <br>
     <div align="center">
         <label for="newpassword" class="sr-only">Password</label>
-        <input type="password" id="newpassword" class="form-control" style="width: 250px" position="relative" placeholder=" Uus parool"
+        <input type="password" id="newpassword" class="form-control" style="width: 250px" position="relative"
+               placeholder=" Uus parool"
                oninvalid="this.setCustomValidity('Sisesta uus parool')" required>
     </div>
     <br>
     <div align="center">
         <label for="newpasswordagain" class="sr-only">Password</label>
-        <input type="password" id="newpasswordagain" class="form-control" style="width: 250px" position="relative" placeholder=" Uus parool uuesti"
+        <input type="password" id="newpasswordagain" class="form-control" style="width: 250px" position="relative"
+               placeholder=" Uus parool uuesti"
                oninvalid="this.setCustomValidity('Sisesta uus parool')" required>
     </div>
-        <br>
+    <br>
     <div align="center">
         <label for="newemail" class="sr-only">E-mail</label>
         <input type="E-mail" id="newemail" class="form-control" style="width: 250px" placeholder="Uus e-mail"
                oninvalid="this.setCustomValidity('Sisesta uue e-mail')" required autofocus>
     </div>
-        <br>
-<div align="center">
-        <button id="update" class="btn btn-lg btn-primary btn-block" style="width: 250px; align-self: center" type="submit">
+    <br>
+    <div align="center">
+        <button id="update" class="btn btn-lg btn-primary btn-block" style="width: 250px; align-self: center"
+                type="submit">
             Muuda andmed
         </button>
+    </div>
 </div>
-</div>
-<div class="container">
-
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-            <div class="col-12 col-md" align="center">
-                <small class="d-block mb-3 text-muted">&copy; 2020</small>
-            </div>
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+        <div class="col-12 col-md" align="center">
+            <small class="d-block mb-3 text-muted">&copy; 2020</small>
         </div>
-    </footer>
-</div>
+    </div>
+</footer>
 <script>
     let element1 = document.getElementById("otsingud");
     element1.addEventListener('click', function () {
@@ -112,39 +112,39 @@
     })
     let element2 = document.getElementById("kasutusjuhend");
     element2.addEventListener('click', function () {
-        window.location.href =("/kasutusjuhend.html")
+        window.location.href = ("/kasutusjuhend.html")
     })
     let element3 = document.getElementById("liikmelisus");
     element3.addEventListener('click', function () {
         window.location.href = ("/pricing.html")
     })
-    let element4=document.getElementById("tulemused");
+    let element4 = document.getElementById("tulemused");
     element4.addEventListener('click', function () {
         window.location.href = ('/results.html')
     })
-    let elementlogout=document.getElementById("logout");
+    let elementlogout = document.getElementById("logout");
     elementlogout.addEventListener('click', function () {
         window.location.href = ('/logout.html')
     })
 
-    let elementupdate=document.getElementById("update");
+    let elementupdate = document.getElementById("update");
     elementupdate.onclick('click', function () {
-    //    if (newpassword.value == newpasswordagain.value) {
-            fetch('/settings', {
-                method: 'PUT',
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    password: newpassword.value,
-                    email: newemail.value,
-                })
+        //    if (newpassword.value == newpasswordagain.value) {
+        fetch('/settings', {
+            method: 'PUT',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                password: newpassword.value,
+                email: newemail.value,
             })
-            alert("Andmed uuendatud")
-       // } else {
-      //      alert("Kontrolli sisestatud andmeid")
-      //  }
+        })
+        alert("Andmed uuendatud")
+        // } else {
+        //      alert("Kontrolli sisestatud andmeid")
+        //  }
     })
 </script>
 </body>

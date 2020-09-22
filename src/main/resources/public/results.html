@@ -69,12 +69,11 @@
     <div class="card-deck mb-3 text-center">
         <div class="card mb-4 shadow-sm">
             <div class="card-header text-center">
-                <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr.1</a></h4>
+                <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr. 1</a></h4>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled mt-3 mb-4">
-                    <div align="left" id="getCarMake">
-                    </div>
+                    <div align="left" id="getCarMake" aria-valuetext="Mark: "></div>
                     <div align="left" id="getCarmodel">
                     </div>
                     <div align="left" id="getKeretyyp">
@@ -108,13 +107,14 @@
                     <div align="left" id="getOksjon">
                     </div>
                 </ul>
-                <!-- <button type="button" class="btn btn-lg btn-block btn-outline-primary">Jätka tasuta</button>-->
+                <button id="buttonDelete" type="submit" class="btn btn-lg btn-block btn-outline-primary"
+                        Style="color: #a71d2a; background-color: white">Kustuta otsing
+                </button>
             </div>
-
         </div>
         <div class="card mb-4 shadow-sm">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal"><a id="displayresults">Otsing Nr.2</a></h4>
+                <h4 class="my-0 font-weight-normal"><a id="displayresults0">Otsing Nr.2</a></h4>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled mt-3 mb-4">
@@ -127,44 +127,10 @@
         </div>
         <div class="card mb-4 shadow-sm">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal"><a id="displayresults">Otsing Nr.3</a></h4>
+                <h4 class="my-0 font-weight-normal"><a id="displayresults1">Otsing Nr.3</a></h4>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled mt-3 mb-4">
-                    <div align="left" id="getCarMake">
-                    </div>
-                    <div align="left" id="getCarmodel">
-                    </div>
-                    <div align="left" id="getKeretyyp">
-                    </div>
-                    <div align="left" id="aastavahemik">
-                    </div>
-                    <div align="left" id="hinnavahemik">
-                    </div>
-                    <div align="left" id="voimsus">
-                    </div>
-                    <div align="left" id="labisoit">
-                    </div>
-                    <div align="left" id="getCarcolor">
-                    </div>
-                    <div align="left" id="getCarfuel">
-                    </div>
-                    <div align="left" id="getCartransmission">
-                    </div>
-                    <div align="left" id="getVedavsild">
-                    </div>
-                    <div align="left" id="getAsukoht">
-                    </div>
-                    <div align="left" id="getMyyja">
-                    </div>
-                    <div align="left" id="getAdage">
-                    </div>
-                    <div align="left" id="getJarjesta">
-                    </div>
-                    <div align="left" id="getNaita">
-                    </div>
-                    <div align="left" id="getOksjon">
-                    </div>
                 </ul>
                 <button type="button" class="btn btn-lg btn-block btn-primary">Hakka kliendiks</button>
             </div>
@@ -203,6 +169,23 @@
     elementlogout.addEventListener('click', function () {
         window.location.href = ('/logout.html')
     })
+    let elementdelete = document.getElementById("buttonDelete");
+    elementdelete.addEventListener('click', function () {
+        fetch('/deleteSearch', {
+            method: 'DELETE',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+            .then(function (jsonData) {
+                window.location.href = ('/results.html')
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    })
 
     window.onload = function () {
         document.getElementById("displayresults");
@@ -225,25 +208,70 @@
                 return response.json();
             })
             .then(function (jsonData) {
-                console.log(jsonData);
-                document.getElementById("getCarMake").innerHTML = "<table><tr><td></td><td>" + "<b>Mark: </b>" + jsonData.mark + "</td></tr></table>";
-                document.getElementById("getCarmodel").innerHTML = "<table><tr><td></td><td>" + "<b>Mudel: </b>" + jsonData.mudel + "</td></tr></table>";
-                document.getElementById("getKeretyyp").innerHTML = "<table><tr><td></td><td>" + "<b>Keretüüp: </b>" + jsonData.keretyyp + "</td></tr></table>";
-                document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>" + jsonData.aasta_alates + " - " + jsonData.aasta_kuni + "</td></tr></table>";
-                document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>" + jsonData.hind_alates + " - " + jsonData.hind_kuni + "</td></tr></table>";
-                document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>" + jsonData.voimsus_alates + " - " + jsonData.voimsus_kuni + " (kw)" + "</td></tr></table>";
-                document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisõit: </b>" + jsonData.labisoit_alates + " - " + jsonData.labisoit_kuni + " (km)" + "</td></tr></table>";
-                document.getElementById("getCarcolor").innerHTML = "<table><tr><td></td><td>" + "<b>Värv: </b>" + jsonData.varv + "</td></tr></table>";
-                document.getElementById("getCarfuel").innerHTML = "<table><tr><td></td><td>" + "<b>Kütus: </b>" + jsonData.kutus + "</td></tr></table>";
-                document.getElementById("getCartransmission").innerHTML = "<table><tr><td></td><td>" + "<b>Käigukast: </b>" + jsonData.kaigukast + "</td></tr></table>";
-                document.getElementById("getVedavsild").innerHTML = "<table><tr><td></td><td>" + "<b>Vedav sild: </b>" + jsonData.vedav_sild + "</td></tr></table>";
-                document.getElementById("getAsukoht").innerHTML = "<table><tr><td></td><td>" + "<b>Asukoht: </b>" + jsonData.asukoht + "</td></tr></table>";
-                document.getElementById("getMyyja").innerHTML = "<table><tr><td></td><td>" + "<b>Müüja: </b>" + jsonData.muuja + "</td></tr></table>";
-                document.getElementById("getAdage").innerHTML = "<table><tr><td></td><td>" + "<b>Kuulutuse vanus: </b>" + jsonData.kuulutuse_vanus + "</td></tr></table>";
-                document.getElementById("getJarjesta").innerHTML = "<table><tr><td></td><td>" + "<b>Järjesta: </b>" + jsonData.jarjesta + "</td></tr></table>";
-                document.getElementById("getNaita").innerHTML = "<table><tr><td></td><td>" + "<b>Näita: </b>" + jsonData.naita + "</td></tr></table>";
-                document.getElementById("getOksjon").innerHTML = "<table><tr><td></td><td>" + "<b>Oksjon: </b>" + jsonData.oksjon + "</td></tr></table>";
-            })
+                    console.log(jsonData);
+                    if (jsonData.mark != null) {
+                        document.getElementById("getCarMake").innerHTML = "<table><tr><td></td><td>" + "<b>Mark: </b>" + jsonData.mark + "</td></tr></table>";
+                    } else {
+                        document.getElementById("getCarMake").innerHTML = "<b>" + "Mark:" + "</b>";
+                    }
+                    if (jsonData.mudel != null) {
+                        document.getElementById("getCarmodel").innerHTML = "<table><tr><td></td><td>" + "<b>Mudel: </b>" + jsonData.mudel + "</td></tr></table>";
+                    } else {
+                        document.getElementById("getCarmodel").innerHTML = "<b>" + "Mudel:" + "</b>";
+                    }
+                    if (jsonData.keretyyp != null) {
+                        document.getElementById("getKeretyyp").innerHTML = "<table><tr><td></td><td>" + "<b>Keretüüp: </b>" + jsonData.keretyyp + "</td></tr></table>";
+                    } else {
+                        document.getElementById("getKeretyyp").innerHTML = "<b>" + "Keretüüp:" + "</b>";
+                    }
+                    if (jsonData.aasta_alates != null && jsonData.aasta_kuni != null) {
+                        document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>" + jsonData.aasta_alates + " kuni " + jsonData.aasta_kuni + "</td></tr></table>";
+                    } else if (jsonData.aasta_alates == null && jsonData.aasta_kuni != null) {
+                        document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>" + " kuni " + jsonData.aasta_kuni + "</td></tr></table>";
+                    } else if (jsonData.aasta_alates == null && jsonData.aasta_kuni == null) {
+                        document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>" + "</td></tr></table>";
+                    } else {
+                        document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>alates " + jsonData.aasta_alates + "</td></tr></table>";
+                    }
+                    if (jsonData.hind_alates != null && jsonData.hind_kuni != null) {
+                        document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>" + jsonData.hind_alates + " kuni " + jsonData.hind_kuni + "</td></tr></table>";
+                    } else if (jsonData.hind_alates == null && jsonData.hind_kuni != null) {
+                        document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>" + " kuni " + jsonData.hind_kuni + "</td></tr></table>";
+                    } else if (jsonData.hind_alates == null && jsonData.hind_kuni == null) {
+                        document.getElementById("hinnavahemik").innerHTML = "<b>" + "Hind:" + "</b>";
+                    } else {
+                        document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>alates " + jsonData.hind_alates + "</td></tr></table>";
+                    }
+                    if (jsonData.voimsus_alates != null && jsonData.voimsus_kuni != null) {
+                        document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>" + jsonData.voimsus_alates + " kuni " + jsonData.voimsus_kuni + "(kw)" + "</td></tr></table>";
+                    } else if (jsonData.voimsus_alates == null && jsonData.voimsus_kuni != null) {
+                        document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>" + " kuni " + jsonData.voimsus_kuni + "(kw)" + "</td></tr></table>";
+                    } else if (jsonData.voimsus_alates == null && jsonData.voimsus_kuni == null) {
+                        document.getElementById("voimsus").innerHTML = "<b>" + "Võimsus:" + "</b>";
+                    } else {
+                        document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>alates " + jsonData.voimsus_alates + "(kw)" + "</td></tr></table>";
+                    }
+                    if (jsonData.labisoit_alates != null && jsonData.labisoit_kuni != null) {
+                        document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>" + jsonData.labisoit_alates + " kuni " + jsonData.labisoit_kuni + "(km)" + "</td></tr></table>";
+                    } else if (jsonData.labisoit_alates == null && jsonData.labisoit_kuni != null) {
+                        document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>" + " kuni " + jsonData.labisoit_kuni + "(km)" + "</td></tr></table>";
+                    } else if (jsonData.labisoit_alates == null && jsonData.labisoit_kuni == null) {
+                        document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>" + "</td></tr></table>";
+                    } else {
+                        document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>alates " + jsonData.labisoit_alates + "(km)" + "</td></tr></table>";
+                    }
+                    document.getElementById("getCarcolor").innerHTML = "<table><tr><td></td><td>" + "<b>Värv: </b>" + jsonData.varv + "</td></tr></table>";
+                    document.getElementById("getCarfuel").innerHTML = "<table><tr><td></td><td>" + "<b>Kütus: </b>" + jsonData.kutus + "</td></tr></table>";
+                    document.getElementById("getCartransmission").innerHTML = "<table><tr><td></td><td>" + "<b>Käigukast: </b>" + jsonData.kaigukast + "</td></tr></table>";
+                    document.getElementById("getVedavsild").innerHTML = "<table><tr><td></td><td>" + "<b>Vedav sild: </b>" + jsonData.vedav_sild + "</td></tr></table>";
+                    document.getElementById("getAsukoht").innerHTML = "<table><tr><td></td><td>" + "<b>Asukoht: </b>" + jsonData.asukoht + "</td></tr></table>";
+                    document.getElementById("getMyyja").innerHTML = "<table><tr><td></td><td>" + "<b>Müüja: </b>" + jsonData.muuja + "</td></tr></table>";
+                    document.getElementById("getAdage").innerHTML = "<table><tr><td></td><td>" + "<b>Kuulutuse vanus: </b>" + jsonData.kuulutuse_vanus + "</td></tr></table>";
+                    document.getElementById("getJarjesta").innerHTML = "<table><tr><td></td><td>" + "<b>Järjesta: </b>" + jsonData.jarjesta + "</td></tr></table>";
+                    document.getElementById("getNaita").innerHTML = "<table><tr><td></td><td>" + "<b>Näita: </b>" + jsonData.naita + "</td></tr></table>";
+                    document.getElementById("getOksjon").innerHTML = "<table><tr><td></td><td>" + "<b>Oksjon: </b>" + jsonData.oksjon + "</td></tr></table>";
+                }
+            )
             .catch(function (err) {
                 console.log(err)
             });

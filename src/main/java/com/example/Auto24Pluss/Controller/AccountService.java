@@ -1,10 +1,12 @@
 package com.example.Auto24Pluss.Controller;
 
+import antlr.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -12,6 +14,8 @@ public class AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private FuelRepository fuelRepository;
 
 
     final String autoMudel = "&bw=";
@@ -114,12 +118,15 @@ public class AccountService {
 
 
     public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
-
         accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
     }
 
     public void saveURL(String searchlink, Long userId) {
         accountRepository.saveURL(searchlink, 1l);
+    }
+
+    public void deleteSearch(Integer user_id) {
+        accountRepository.deleteSearch(1);
     }
 
     public void updateInformation(String password, String email) {
@@ -158,7 +165,11 @@ public class AccountService {
     }
 
     private Integer findElementByCode(String searchLink, String code) {
-        int markStartindex = searchLink.indexOf(code) + code.length();
+        int markStartindex = searchLink.indexOf(code);
+        if(markStartindex == -1){
+            return null;
+        }
+        markStartindex += code.length();
         int markEndIndex = searchLink.indexOf("&", markStartindex);
         String markValue = searchLink.substring(markStartindex, markEndIndex);
         return Integer.valueOf(markValue);
@@ -193,5 +204,5 @@ public class AccountService {
 
 }
 
-    
+
 

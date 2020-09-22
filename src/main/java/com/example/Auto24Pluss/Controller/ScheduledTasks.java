@@ -14,10 +14,14 @@ public class ScheduledTasks {
     @Autowired
     private AccountService accountService;
 
+    @Autowired ContentReaderService contentReaderService;
+
 
     @Scheduled(fixedRate = 10000000)
     public void test() {
-        accountService.saveHtml();
+     //   accountService.saveHtml();
+
+        contentReaderService.readContent();
     }
 }
 

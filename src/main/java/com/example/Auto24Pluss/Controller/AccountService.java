@@ -61,6 +61,7 @@ public class AccountService {
         System.out.println("");
 
 
+
         int sõidukeidStartIndex = htmlString.indexOf(sõidukeid) + sõidukeid.length();
         int sõidukeidEndIndex = htmlString.indexOf("<", sõidukeidStartIndex);
         String sõidukeidkokku = htmlString.substring(sõidukeidStartIndex, sõidukeidEndIndex);

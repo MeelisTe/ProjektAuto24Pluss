@@ -1,10 +1,7 @@
 package com.example.Auto24Pluss.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,6 +45,10 @@ public class AccountController {
         return accountService.markResult(1);
     }
 
+    @DeleteMapping("deleteSearch")
+    public void deleteSearch(){
+        accountService.deleteSearch(1);
+    }
 /*    @GetMapping("getLink")
     public String getLink(){
         return accountService.markResult(1);

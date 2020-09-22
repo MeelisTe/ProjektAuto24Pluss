@@ -1,5 +1,6 @@
 package com.example.Auto24Pluss.Controller;
 
+import antlr.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +14,15 @@ import java.net.URLConnection;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
     public static String displayresults;
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private FuelRepository fuelRepository;
 
     final String autoMudel = "&bw=";
     final String autoMark = "&b=";
@@ -42,13 +46,16 @@ public class AccountService {
     final String oksjon = "&by=";
     final String adage = "&bl=";
 
-    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email){
-
+    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
         accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
     }
 
     public void saveURL(String searchlink, Long userId) {
         accountRepository.saveURL(searchlink, 1l);
+    }
+
+    public void deleteSearch(Integer user_id) {
+        accountRepository.deleteSearch(1);
     }
 
     public void updateInformation(String password, String email) {
@@ -58,7 +65,6 @@ public class AccountService {
     public List<SearchSave> displayresults() {
         return accountRepository.displayresults();
     }
-
 
     public static void saveHtml() {
         {
@@ -90,10 +96,11 @@ public class AccountService {
                 e.printStackTrace();
             }
 
-        }SearchSave.searchLink();
+        }
+        SearchSave.searchLink();
     }
 
-    public GetcarMarkResult markResult (int user_id) {
+    public GetcarMarkResult markResult(int user_id) {
         String searchLink = accountRepository.getLink(user_id);
         GetcarMarkResult result = new GetcarMarkResult();
         result.setMark(accountRepository.getCarMake(findElementByCode(searchLink, autoMark)));
@@ -120,8 +127,12 @@ public class AccountService {
         return result;
     }
 
-    private Integer findElementByCode(String searchLink, String code){
-        int markStartindex = searchLink.indexOf(code) + code.length();
+    private Integer findElementByCode(String searchLink, String code) {
+        int markStartindex = searchLink.indexOf(code);
+        if(markStartindex == -1){
+            return null;
+        }
+        markStartindex += code.length();
         int markEndIndex = searchLink.indexOf("&", markStartindex);
         String markValue = searchLink.substring(markStartindex, markEndIndex);
         return Integer.valueOf(markValue);
@@ -151,4 +162,4 @@ public class AccountService {
         return mudelIntValue + markIntValue + naitaIntValue;
 
         }*/
-    }
+}

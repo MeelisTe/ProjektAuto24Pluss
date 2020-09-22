@@ -44,7 +44,6 @@ public class AccountRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-
     public void updateInformation(String password, String email) {
         String sql = "UPDATE appuser SET password= :password and email= :email WHERE id= :1";
         Map<String, String> paramMap = new HashMap<>();
@@ -58,86 +57,145 @@ public class AccountRepository {
         return jdbcTemplate.query(sql, new HashMap<>(), new ObjectRowMapper());
     }
 
-    public String getCarMake(int markIntValue) {
+    public void deleteSearch(Integer user_id) {
+        String sql = "DELETE FROM search where user_id = :user_id";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("user_id", user_id);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+    public String getCarMake(Integer markIntValue) {
+        if(markIntValue== null){
+            return "-";
+        }
         String sql = "SELECT name from automargid where car_brand_id= :markIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("markIntValue", markIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getCarmodel(int modelIntValue) {
+
+    public String getCarmodel(Integer modelIntValue) { //null väärtus saab olla ainult Integeril (int ei tööta)
+        if(modelIntValue== null){
+            return "-";
+        }
         String sql = "SELECT model from models where model_id= :modelIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("modelIntValue", modelIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getKeretyyp(int typeIntValue) {
+
+    public String getKeretyyp(Integer typeIntValue) {
+        if(typeIntValue== null){
+            return "-";
+        }
         String sql = "SELECT bodytype from bodytypes where car_bodytype_id= :typeIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("typeIntValue", typeIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getCarcolor(int colorIntValue) {
+
+    public String getCarcolor(Integer colorIntValue) {
+        if(colorIntValue== null){
+            return "-";
+        }
         String sql = "SELECT color from colors where car_color_id= :colorIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("colorIntValue", colorIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getCarfuel(int fuelIntValue) {
+
+    public String getCarfuel(Integer fuelIntValue) {
+        if(fuelIntValue== null){
+            return "-";
+        }
         String sql = "SELECT fuel from fuels where car_fuel_id= :fuelIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("fuelIntValue", fuelIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getTransmission(int transmissionIntValue) {
+
+    public String getTransmission(Integer transmissionIntValue) {
+        if(transmissionIntValue== null){
+            return "-";
+        }
         String sql = "SELECT transmission from transmissions where car_transmission_id= :transmissionIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("transmissionIntValue", transmissionIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getVedavsild(int vedavsildIntValue) {
+
+    public String getVedavsild(Integer vedavsildIntValue) {
+        if(vedavsildIntValue== null){
+            return "-";
+        }
         String sql = "SELECT vedavsild from vedavsilds where car_vedavsild_id= :vedavsildIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("vedavsildIntValue", vedavsildIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getAsukoht(int asukohtIntValue) {
+
+    public String getAsukoht(Integer asukohtIntValue) {
+        if(asukohtIntValue== null){
+            return "-";
+        }
         String sql = "SELECT location from locations where car_location_id= :asukohtIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("asukohtIntValue", asukohtIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getMuuja(int myyjaIntValue) {
+
+    public String getMuuja(Integer myyjaIntValue) {
+        if(myyjaIntValue== null){
+            return "-";
+        }
         String sql = "SELECT seller from sellers where car_seller_id= :myyjaIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("myyjaIntValue", myyjaIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getJarjesta(int jarjestaIntValue) {
+
+    public String getJarjesta(Integer jarjestaIntValue) {
+        if(jarjestaIntValue== null){
+            return "-";
+        }
         String sql = "SELECT sort from sorts where car_sort_id= :jarjestaIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("jarjestaIntValue", jarjestaIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getNaita(int naitaIntValue) {
+
+    public String getNaita(Integer naitaIntValue) {
+        if(naitaIntValue== null){
+            return "-";
+        }
         String sql = "SELECT show from shows where car_show_id= :naitaIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("naitaIntValue", naitaIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getOksjon(int oksjonIntValue) {
+
+    public String getOksjon(Integer oksjonIntValue) {
+        if(oksjonIntValue== null){
+            return "-";
+        }
         String sql = "SELECT auction from auctions where car_auction_id= :oksjonIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("oksjonIntValue", oksjonIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public String getKuulutusevanus(int kuulutusevanusIntValue) {
+
+    public String getKuulutusevanus(Integer kuulutusevanusIntValue) {
+        if(kuulutusevanusIntValue== null){
+            return "-";
+        }
         String sql = "SELECT adage from adages where car_adage_id= :kuulutusevanusIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("kuulutusevanusIntValue", kuulutusevanusIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
 
-    public String getLink(int user_id){
+    public String getLink(int user_id) {
+
         String sql = "Select searchlink from search where user_id = :user_id";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("user_id", user_id);

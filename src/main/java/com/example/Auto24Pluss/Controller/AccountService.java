@@ -1,12 +1,10 @@
 package com.example.Auto24Pluss.Controller;
 
-import antlr.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -16,7 +14,8 @@ public class AccountService {
     private AccountRepository accountRepository;
     @Autowired
     private FuelRepository fuelRepository;
-
+    @Autowired
+    private SearchRepository searchRepository;
 
     final String autoMudel = "&bw=";
     final String autoMark = "&b=";
@@ -49,7 +48,7 @@ public class AccountService {
 
     String link = "<td class=\"make_and_model\"><a href=\"/used/";
 
-    public void saveHtml() {
+    public void saveHtml(int hindValue, String linkValue, String nimetusValue) {
         String htmlString = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
 
         System.out.println(htmlString);
@@ -61,12 +60,12 @@ public class AccountService {
         System.out.println("");
 
 
-
         int sõidukeidStartIndex = htmlString.indexOf(sõidukeid) + sõidukeid.length();
         int sõidukeidEndIndex = htmlString.indexOf("<", sõidukeidStartIndex);
         String sõidukeidkokku = htmlString.substring(sõidukeidStartIndex, sõidukeidEndIndex);
         int sõidukid = Integer.valueOf(sõidukeidkokku);
         System.out.println("Sõidukeid kokku: " + sõidukeidkokku + "\n");
+
 
         int i = 0;
         int lastIndex = 0;
@@ -76,11 +75,11 @@ public class AccountService {
             int hindStartIndex = htmlString.indexOf(hind, lastIndex) + hind.length();
             lastIndex = hindStartIndex + hind.length();
             int hindEndIndex = htmlString.indexOf("<", hindStartIndex);
-            String hindValue = htmlString.substring(hindStartIndex, hindEndIndex);
-            hindValue = hindValue.replace("&nbsp;", "");
+            String hindValueString = htmlString.substring(hindStartIndex, hindEndIndex);
+            hindValueString = hindValueString.replace("&nbsp;", "");
+            hindValue = Integer.valueOf(hindValueString.trim());
             System.out.println(hindValue);
             i++;
-
         }
 
         System.out.println("");
@@ -93,10 +92,10 @@ public class AccountService {
             int linkStartIndex = htmlString.indexOf(link, lastIndex) + link.length();
             lastIndex = linkStartIndex + link.length();
             int linkEndIndex = htmlString.indexOf("\">", linkStartIndex);
-            String linkValue = htmlString.substring(linkStartIndex, linkEndIndex);
-            System.out.println("https://www.auto24.ee/used/" + linkValue);
+            String linkValueIdentifier = htmlString.substring(linkStartIndex, linkEndIndex);
+            linkValue = "https://www.auto24.ee/used/" + linkValueIdentifier;
+            System.out.println(linkValue);
             i++;
-
         }
 
         System.out.println("");
@@ -110,10 +109,11 @@ public class AccountService {
             nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
             int nimetusEndIndex = htmlString.indexOf("</a>", nimetusStartIndex);
             lastIndex = nimetusEndIndex;
-            String nimetusValue = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
+            nimetusValue = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
             System.out.println(nimetusValue);
             i++;
         }
+        searchRepository.searchResultsToTable(hindValue, linkValue, nimetusValue);
 
     }
 

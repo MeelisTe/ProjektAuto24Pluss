@@ -30,4 +30,13 @@ public class SearchRepository {
         int id = jdbcTemplate.update(sql, paramMap);
         return id;
     }
+
+    public void searchResultsToTable (int hindValue, String linkValue, String nimetusValue) {
+        String sql = "INSERT INTO searchresult (price, resultname, linkurl, user_id) values(:price, :name, :link, 1)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("price", hindValue);
+        paramMap.put("name", nimetusValue);
+        paramMap.put("link", linkValue);
+        jdbcTemplate.update(sql, paramMap);
+    }
 }

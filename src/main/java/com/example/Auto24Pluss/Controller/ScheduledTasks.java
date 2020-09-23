@@ -22,12 +22,12 @@ public class ScheduledTasks {
 
     @Scheduled(fixedRate = 10000000)
     public void test() throws IOException {
-     //   accountService.saveHtml();
+        accountService.saveHtml(hindValue, linkValue, nimetusValue);
 
         String link = "https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi";
 
 
-        contentReaderService.readContent(link);
+     //   contentReaderService.readContent(link);
     }
 }
 

@@ -48,7 +48,7 @@ public class AccountService {
 
     String link = "<td class=\"make_and_model\"><a href=\"/used/";
 
-    public void saveHtml(int hindValue, String linkValue, String nimetusValue) {
+    public void saveHtml(int price, String link, String name) {
         String htmlString = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
 
         System.out.println(htmlString);
@@ -77,8 +77,8 @@ public class AccountService {
             int hindEndIndex = htmlString.indexOf("<", hindStartIndex);
             String hindValueString = htmlString.substring(hindStartIndex, hindEndIndex);
             hindValueString = hindValueString.replace("&nbsp;", "");
-            hindValue = Integer.valueOf(hindValueString.trim());
-            System.out.println(hindValue);
+            price = Integer.valueOf(hindValueString.trim());
+            System.out.println(price);
             i++;
         }
 
@@ -93,8 +93,8 @@ public class AccountService {
             lastIndex = linkStartIndex + link.length();
             int linkEndIndex = htmlString.indexOf("\">", linkStartIndex);
             String linkValueIdentifier = htmlString.substring(linkStartIndex, linkEndIndex);
-            linkValue = "https://www.auto24.ee/used/" + linkValueIdentifier;
-            System.out.println(linkValue);
+            link = "https://www.auto24.ee/used/" + linkValueIdentifier;
+            System.out.println(link);
             i++;
         }
 
@@ -109,11 +109,11 @@ public class AccountService {
             nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
             int nimetusEndIndex = htmlString.indexOf("</a>", nimetusStartIndex);
             lastIndex = nimetusEndIndex;
-            nimetusValue = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
-            System.out.println(nimetusValue);
+            name = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
+            System.out.println(name);
             i++;
         }
-        searchRepository.searchResultsToTable(hindValue, linkValue, nimetusValue);
+        searchRepository.saveHtml(price, link, name);
 
     }
 

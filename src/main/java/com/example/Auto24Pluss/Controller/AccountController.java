@@ -18,15 +18,16 @@ public class AccountController {
     }
 
 
-  /*  @PutMapping("saveurl")
-    public void saveURL(@RequestBody List<SearchSave> save) {
-        System.out.println("test");
-        for (SearchSave searchSave : save) {
-            if (searchSave.getSearchlink() != null && !searchSave.getSearchlink().isBlank())
-        }
-    }*/
+    /*  @PutMapping("saveurl")
+      public void saveURL(@RequestBody List<SearchSave> save) {
+          System.out.println("test");
+          for (SearchSave searchSave : save) {
+              if (searchSave.getSearchlink() != null && !searchSave.getSearchlink().isBlank())
+          }
+      }*/
     @PutMapping("saveurl")
     public void saveURL(@RequestBody SearchSave save) {
+
         accountService.saveURL(save.getSearchlink(), 1l);
     }
 
@@ -40,17 +41,22 @@ public class AccountController {
         return accountService.displayresults();
     }
 
-   @GetMapping("markResult")
-    public GetcarMarkResult markResult(){
+    @GetMapping("markResult")
+    public GetcarMarkResult markResult() {
         return accountService.markResult(1);
     }
 
     @DeleteMapping("deleteSearch")
-    public void deleteSearch(){
+    public void deleteSearch() {
         accountService.deleteSearch(1);
     }
 /*    @GetMapping("getLink")
     public String getLink(){
         return accountService.markResult(1);
     }*/
+
+    @PutMapping("saveHtml")
+    public void saveHtml(@RequestBody SearchResult searchResult) {
+        accountService.saveHtml(searchResult.getPrice(), searchResult.getLink(), searchResult.getName());
+    }
 }

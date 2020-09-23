@@ -13,7 +13,7 @@ public class SearchRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void saveSearchResult (int searchId, String name, int price, String link) {
+  /*  public void saveSearchResult (int searchId, String name, int price, String link) {
         String sql = "INSERT INTO searchresult (resultname, price, linkurl, search_id, user_id) values(:name, :price, :link, :searchId, 1)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", name);
@@ -21,7 +21,7 @@ public class SearchRepository {
         paramMap.put("link", link);
         paramMap.put("searchId", searchId);
         jdbcTemplate.update(sql, paramMap);
-    }
+    }*/
 
     public int saveSearch (String link) {
         String sql = "INSERT INTO search (searchlink, user_id) values(:link, 1)";
@@ -31,12 +31,12 @@ public class SearchRepository {
         return id;
     }
 
-    public void searchResultsToTable (int hindValue, String linkValue, String nimetusValue) {
+    public void saveHtml(int price, String link, String name) {
         String sql = "INSERT INTO searchresult (price, resultname, linkurl, user_id) values(:price, :name, :link, 1)";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("price", hindValue);
-        paramMap.put("name", nimetusValue);
-        paramMap.put("link", linkValue);
+        paramMap.put("price", price);
+        paramMap.put("name", name);
+        paramMap.put("link", link);
         jdbcTemplate.update(sql, paramMap);
     }
 }

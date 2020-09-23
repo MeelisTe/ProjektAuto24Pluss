@@ -31,12 +31,15 @@ public class SearchRepository {
         return id;
     }
 
-    public void saveHtml(int price, String link, String name) {
-        String sql = "INSERT INTO searchresult (price, resultname, linkurl, user_id) values(:price, :name, :link, 1)";
+    public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
+        String sql = "INSERT INTO searchresult (search_id, user_id, resultname, price, oldprice, linkurl) values(1, 1, :name, :price, :oldprice, :link)";
         Map<String, Object> paramMap = new HashMap<>();
+        //paramMap.put("searchid", searchId);
+      //  paramMap.put("userId", userId);
+        paramMap.put("name", resultName);
         paramMap.put("price", price);
-        paramMap.put("name", name);
-        paramMap.put("link", link);
+        paramMap.put("oldprice", oldPrice);
+        paramMap.put("link", linkUrl);
         jdbcTemplate.update(sql, paramMap);
     }
 }

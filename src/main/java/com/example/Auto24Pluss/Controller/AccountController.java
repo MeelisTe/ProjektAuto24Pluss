@@ -55,8 +55,8 @@ public class AccountController {
         return accountService.markResult(1);
     }*/
 
-    @PutMapping("saveHtml")
+   /* @PutMapping("saveHtml")
     public void saveHtml(@RequestBody SearchResult searchResult) {
         accountService.saveHtml(searchResult.getPrice(), searchResult.getLink(), searchResult.getName());
-    }
+    }*/
 }

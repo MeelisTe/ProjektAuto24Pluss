@@ -26,15 +26,14 @@ public class ScheduledTasks {
 
     @Autowired AccountController accountController;
 
+    SearchResult searchResult = new SearchResult();
+
 
     @Scheduled(fixedRate = 10000000)
+    public void test() {
+        accountService.saveHtml(searchResult.getSearchId(), searchResult.getUserId(), searchResult.getName(), searchResult.getPrice(), searchResult.getOldPrice(), searchResult.getLink());
 
-
-    public void saveHtml {
-        accountController.saveHtml();
-
-
-        String link = "https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi";
+      //  String link = "https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi";
 
 
      //   contentReaderService.readContent(link);

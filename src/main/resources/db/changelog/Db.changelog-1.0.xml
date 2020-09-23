@@ -68,8 +68,7 @@
                              references="appuser(id)"/>
             </column>
             <column name="resultname" type="text">
-                <constraints nullable="true" primaryKey="false" unique="false" foreignKeyName="fk_search_result"
-                             references="search(searchlink)"/>
+                <constraints nullable="true" primaryKey="false" unique="false" />
             </column>
             <column name="price" type="int">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
@@ -80,9 +79,9 @@
             <column name="linkurl" type="text">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
-            <column name="resultid" type="int">
+            <!--<column name="resultid" type="int">
                 <constraints nullable="true" primaryKey="false" unique="true"/>
-            </column>
+            </column>-->
         </createTable>
         <createTable tableName="timestamp">
             <column name="id" type="int" autoIncrement="true">

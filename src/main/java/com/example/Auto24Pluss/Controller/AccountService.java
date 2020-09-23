@@ -9,14 +9,6 @@ import java.util.List;
 @Service
 public class AccountService {
     public static String displayresults;
-
-    @Autowired
-    private AccountRepository accountRepository;
-    @Autowired
-    private FuelRepository fuelRepository;
-    @Autowired
-    private SearchRepository searchRepository;
-
     final String autoMudel = "&bw=";
     final String autoMark = "&b=";
     final String keretyyp = "&j=";
@@ -38,17 +30,19 @@ public class AccountService {
     final String naita = "&af=";
     final String oksjon = "&by=";
     final String adage = "&bl=";
-
-
+    String hind = "<td class=\"price\">";
+    String sõidukeid = "<span class=\"item\">1&ndash;";
+    String link = "<td class=\"make_and_model\"><a href=\"/used/";
+    @Autowired
+    private AccountRepository accountRepository;
+    @Autowired
+    private FuelRepository fuelRepository;
+    @Autowired
+    private SearchRepository searchRepository;
     @Autowired
     private RestTemplate restTemplate;
 
-    String hind = "<td class=\"price\">";
-    String sõidukeid = "<span class=\"item\">1&ndash;";
-
-    String link = "<td class=\"make_and_model\"><a href=\"/used/";
-
-    public void saveHtml(int price, String link, String name) {
+    public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
         String htmlString = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
 
         System.out.println(htmlString);
@@ -64,61 +58,57 @@ public class AccountService {
         int sõidukeidEndIndex = htmlString.indexOf("<", sõidukeidStartIndex);
         String sõidukeidkokku = htmlString.substring(sõidukeidStartIndex, sõidukeidEndIndex);
         int sõidukid = Integer.valueOf(sõidukeidkokku);
-        System.out.println("Sõidukeid kokku: " + sõidukeidkokku + "\n");
+        System.out.println("Sõidukeid kokku: " + sõidukid + "\n");
 
 
         int i = 0;
-        int lastIndex = 0;
+        int lastIndex1 = 0;
+        int lastIndex2 = 0;
+        int lastIndex3 = 0;
 
         while (i < sõidukid) { //hind loop
 
-            int hindStartIndex = htmlString.indexOf(hind, lastIndex) + hind.length();
-            lastIndex = hindStartIndex + hind.length();
+            int hindStartIndex = htmlString.indexOf(hind, lastIndex1) + hind.length();
+            lastIndex1 = hindStartIndex + hind.length();
             int hindEndIndex = htmlString.indexOf("<", hindStartIndex);
             String hindValueString = htmlString.substring(hindStartIndex, hindEndIndex);
             hindValueString = hindValueString.replace("&nbsp;", "");
             price = Integer.valueOf(hindValueString.trim());
             System.out.println(price);
-            i++;
-        }
 
-        System.out.println("");
 
-        lastIndex = 0;
-        i = 0;
-
-        while (i < sõidukid) { // link loop
-
-            int linkStartIndex = htmlString.indexOf(link, lastIndex) + link.length();
-            lastIndex = linkStartIndex + link.length();
+            int linkStartIndex = htmlString.indexOf(link, lastIndex2) + link.length();
+            lastIndex2 = linkStartIndex + link.length();
             int linkEndIndex = htmlString.indexOf("\">", linkStartIndex);
             String linkValueIdentifier = htmlString.substring(linkStartIndex, linkEndIndex);
-            link = "https://www.auto24.ee/used/" + linkValueIdentifier;
-            System.out.println(link);
-            i++;
-        }
+            linkUrl = "https://www.auto24.ee/used/" + linkValueIdentifier;
+            System.out.println(linkUrl);
 
-        System.out.println("");
 
-        lastIndex = 0;
-        i = 0;
-
-        while(i < sõidukid){ //nimetus loop
-
-            int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex) + link.length();
+            int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex3) + link.length();
             nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
             int nimetusEndIndex = htmlString.indexOf("</a>", nimetusStartIndex);
-            lastIndex = nimetusEndIndex;
-            name = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
-            System.out.println(name);
+            lastIndex3 = nimetusEndIndex;
+            resultName = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
+            System.out.println(resultName);
+
+
+            System.out.println("");
+
+
+            searchRepository.saveHtml(searchId, userId, resultName, price, oldPrice, linkUrl);
+
             i++;
-        }
-        searchRepository.saveHtml(price, link, name);
+
 
     }
 
 
-    public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
+}
+
+
+    public void createNewAccount(String firstname, String lastname, String username, String password, String
+            dob, String email) {
         accountRepository.createNewAccount(firstname, lastname, username, password, dob, email);
     }
 
@@ -167,7 +157,7 @@ public class AccountService {
 
     private Integer findElementByCode(String searchLink, String code) {
         int markStartindex = searchLink.indexOf(code);
-        if(markStartindex == -1){
+        if (markStartindex == -1) {
             return null;
         }
         markStartindex += code.length();
@@ -200,7 +190,6 @@ public class AccountService {
         return mudelIntValue + markIntValue + naitaIntValue;
 
         }*/
-
 
 
 }

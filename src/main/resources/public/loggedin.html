@@ -64,15 +64,24 @@
     <h3 class="display-4">Otsingud</h3>
     <!--    <p class="lead">Sisesta otsingu url</p> -->
 </div>
+
+<div align="center" id="searches">
+    <div>
+        <input type="" style="width: 600px" class="form-control" placeholder="Otsingu link" id="linkurl1" required>
+        <br>
+    </div>
+</div>
 <div align="center">
-    <input type="" id="linkurl1" style="width: 600px" class="form-control" placeholder="Otsingu link" required>
-    <br>
     <!--    <input type="" id="linkurl2" style="width: 600px" class="form-control" placeholder="Otsingu link">
         <br>
         <input type="" id="linkurl3" style="width: 600px" class="form-control" placeholder="Otsingu link">
         <br>-->
-    <button id="käivita" class="btn btn-lg btn-primary btn-block" style="width: 250px" type="button">Käivita</button>
+    <button id="addRows" class="btn btn-lg btn-primary btn-block" style="width: 250px" type="button">Lisa ridasid
+    </button>
+    <button id="käivita" class="btn btn-lg btn-primary btn-block" style="width: 250px" type="button">Käivita
+    </button>
 </div>
+
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
         <div class="col-12 col-md" align="center">
@@ -123,6 +132,25 @@
                 console.log(err);
             });
     });
+    let elementNewInput = document.getElementById("searches")
+    let elementaddRows = document.getElementById("addRows");
+    elementaddRows.onclick = function () {
+
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "";
+        input.style = "width: 600px";
+        input.className = "form-control";
+        input.placeholder = "Otsingu link";
+//        input.required;
+
+        elementNewInput.append(input);
+        // Append a line break
+       elementNewInput.appendChild(document.createElement("br"));
+ //      elementNewInput.appendChild(document.createElement("br"));
+    }
+
+
     //Kuidas saab nii, et kui 3 väljast on ainult 1 või 2 täidetud, siis ta võtaks sisu ainult taidetud väljadest.
     //sama peaks implementima ka andmete muutmise alla (kui tahan ainult parooli või ainult emaili vahetada
 </script>

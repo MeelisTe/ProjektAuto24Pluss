@@ -49,6 +49,8 @@ public class AccountController {
     public void deleteSearch() {
         accountService.deleteSearch(1);
     }
+  /*  @PostMapping("/addRows")
+    public void addRows(@RequestBody )*/
 /*    @GetMapping("getLink")
     public String getLink(){
         return accountService.markResult(1);

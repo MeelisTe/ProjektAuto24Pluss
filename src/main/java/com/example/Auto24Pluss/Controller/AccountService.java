@@ -76,14 +76,12 @@ public class AccountService {
             price = Integer.valueOf(hindValueString.trim());
             System.out.println(price);
 
-
             int linkStartIndex = htmlString.indexOf(link, lastIndex2) + link.length();
             lastIndex2 = linkStartIndex + link.length();
             int linkEndIndex = htmlString.indexOf("\">", linkStartIndex);
             String linkValueIdentifier = htmlString.substring(linkStartIndex, linkEndIndex);
             linkUrl = "https://www.auto24.ee/used/" + linkValueIdentifier;
             System.out.println(linkUrl);
-
 
             int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex3) + link.length();
             nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
@@ -92,19 +90,13 @@ public class AccountService {
             resultName = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
             System.out.println(resultName);
 
-
             System.out.println("");
-
 
             searchRepository.saveHtml(searchId, userId, resultName, price, oldPrice, linkUrl);
 
             i++;
-
-
+        }
     }
-
-
-}
 
 
     public void createNewAccount(String firstname, String lastname, String username, String password, String

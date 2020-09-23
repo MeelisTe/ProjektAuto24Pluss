@@ -67,26 +67,19 @@
 <div align="center">
     <input type="" id="linkurl1" style="width: 600px" class="form-control" placeholder="Otsingu link" required>
     <br>
-    <input type="" id="linkurl2" style="width: 600px" class="form-control" placeholder="Otsingu link">
-    <br>
-    <input type="" id="linkurl3" style="width: 600px" class="form-control" placeholder="Otsingu link">
-    <br>
+    <!--    <input type="" id="linkurl2" style="width: 600px" class="form-control" placeholder="Otsingu link">
+        <br>
+        <input type="" id="linkurl3" style="width: 600px" class="form-control" placeholder="Otsingu link">
+        <br>-->
     <button id="käivita" class="btn btn-lg btn-primary btn-block" style="width: 250px" type="button">Käivita</button>
-
 </div>
-<div class="container">
-
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-            <div class="col-12 col-md" align="center">
-
-                <small class="d-block mb-3 text-muted" ,>&copy; 2020</small>
-            </div>
-
-
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+        <div class="col-12 col-md" align="center">
+            <small class="d-block mb-3 text-muted" ,>&copy; 2020</small>
         </div>
-    </footer>
-</div>
+    </div>
+</footer>
 <script>
     let element1 = document.getElementById("seaded");
     element1.addEventListener('click', function () {
@@ -124,13 +117,13 @@
         })
 
             .then(function (jsonData) {
-                window.location.href =('/results.html')
+                window.location.href = ('/results.html')
             })
             .catch(function (err) {
                 console.log(err);
             });
     });
-//Kuidas saab nii, et kui 3 väljast on ainult 1 või 2 täidetud, siis ta võtaks sisu ainult taidetud väljadest.
+    //Kuidas saab nii, et kui 3 väljast on ainult 1 või 2 täidetud, siis ta võtaks sisu ainult taidetud väljadest.
     //sama peaks implementima ka andmete muutmise alla (kui tahan ainult parooli või ainult emaili vahetada
 </script>
 </body>

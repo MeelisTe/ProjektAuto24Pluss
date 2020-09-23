@@ -38,7 +38,7 @@ public class AccountService {
     final String jarjesta = "&ae=";
     final String naita = "&af=";
     final String oksjon = "&by=";
-    final String adage = "&bl=";
+    final String adage = "&ad=";
 
 
     @Autowired
@@ -103,7 +103,7 @@ public class AccountService {
         lastIndex = 0;
         i = 0;
 
-        while(i < sõidukid){ //nimetus loop
+        while (i < sõidukid) { //nimetus loop
 
             int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex) + link.length();
             nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
@@ -166,7 +166,7 @@ public class AccountService {
 
     private Integer findElementByCode(String searchLink, String code) {
         int markStartindex = searchLink.indexOf(code);
-        if(markStartindex == -1){
+        if (markStartindex == -1) {
             return null;
         }
         markStartindex += code.length();
@@ -199,7 +199,6 @@ public class AccountService {
         return mudelIntValue + markIntValue + naitaIntValue;
 
         }*/
-
 
 
 }

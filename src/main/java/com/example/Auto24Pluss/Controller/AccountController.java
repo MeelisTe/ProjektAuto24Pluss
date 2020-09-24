@@ -27,6 +27,7 @@ public class AccountController {
       }*/
     @PutMapping("saveurl")
     public void saveURL(@RequestBody SearchSave save) {
+
         accountService.saveURL(save.getSearchlink(), 1l);
     }
 
@@ -54,5 +55,10 @@ public class AccountController {
 /*    @GetMapping("getLink")
     public String getLink(){
         return accountService.markResult(1);
+    }*/
+
+   /* @PutMapping("saveHtml")
+    public void saveHtml(@RequestBody SearchResult searchResult) {
+        accountService.saveHtml(searchResult.getPrice(), searchResult.getLink(), searchResult.getName());
     }*/
 }

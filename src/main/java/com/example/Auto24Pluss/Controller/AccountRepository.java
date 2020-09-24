@@ -1,9 +1,11 @@
 package com.example.Auto24Pluss.Controller;
 
+import liquibase.pro.packaged.O;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,8 +73,9 @@ public class AccountRepository {
         String sql = "SELECT name from automargid where car_brand_id= :markIntValue";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("markIntValue", markIntValue);
-        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+      return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
+
 
     public String getCarmodel(Integer modelIntValue) { //null väärtus saab olla ainult Integeril (int ei tööta)
         if(modelIntValue== null){

@@ -44,10 +44,15 @@ public class AccountService {
     private FuelRepository fuelRepository;
     @Autowired
     private SearchRepository searchRepository;
-    @Autowired
-    private RestTemplate restTemplate;
 
     public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
+// TODO
+        // 1) tee andmebaasi päring ja saa kõik urlid
+        // 2) tee tsükkel mis käib nii kaua kui palju päringuid (urle) on vaja teha
+        // 3) tõsta vastuse töötlus eraldi alamfunktsiooni, et kood loetav oleks
+        // 4) pane päringu tegemine ja vastuse töötlemine loodud tsükklisse
+
+
         String htmlString = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
 
         System.out.println(htmlString);

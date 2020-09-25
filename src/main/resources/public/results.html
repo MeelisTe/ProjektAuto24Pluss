@@ -20,7 +20,6 @@
     <link rel="apple-touch-icon" href="Images/Logo.png" sizes="180x180">
     <link rel="icon" href="Images/Logo.png" sizes="32x32" type="image/png">
     <link rel="icon" href="Images/Logo.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
     <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
     <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
@@ -66,7 +65,7 @@
 </div>
 
 <div class="container">
-    <div class="card-deck mb-3 text-center">
+    <div id="result-container" class="card-deck mb-3 text-center">
         <div class="card mb-4 shadow-sm">
             <div class="card-header text-center">
                 <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr. 1</a></h4>
@@ -185,20 +184,61 @@
     })
 
     window.onload = function () {
-        document.getElementById("displayresults");
+        let resultContainer = document.getElementById("result-container");
 
-        fetch('/displayresults')
+        fetch('/markResult')
             .then(function (response) {
                 return response.json();
             })
             .then(function (jsonData) {
                 //              document.getElementById("displayresults").innerHTML = "<table><tr><td></td><td>" + jsonData[0].userId + ". </td><td><a href='" + jsonData[0].searchlink + "'>" + jsonData[0].searchlink + "</a></td></tr></table>";
-                document.getElementById("displayresults").innerHTML = "<table><tr><td><a href='" + jsonData[0].searchlink + "'>Otsing Nr. 1" + "</a></td></tr></table>";
+                let html = '';
+                for(let i = 0; i < jsonData.length; i++){
+                    html += '        <div class="card mb-4 shadow-sm">\n' +
+                        '            <div class="card-header text-center">\n' +
+                        '                <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr. 1</a></h4>\n' +
+                        '            </div>\n' +
+                        '            <div class="card-body">\n' +
+                        '                <ul class="list-unstyled mt-3 mb-4">\n' +
+                        '                    <div align="left" id="getCarMake" aria-valuetext="Mark: "><b>Mark: </b>'+jsonData[i].mark+'</div>\n' +
+                        '                    <div align="left" id="getCarmodel" aria-valuetext="Mudel: "><b>Mudel: </b>'+jsonData[i].mudel+'</div>\n' +
+                        '                    <div align="left" id="getKeretyyp" aria-valuetext="Keretüüp: "><b>Keretüüp: </b>'+jsonData[i].keretyyp+'</div>\n' +
+                        '                    <div align="left" id="aastavahemik" aria-valuetext="Aasta: "><b>Aasta: </b>'+jsonData[i].aasta_alates+' kuni '+jsonData[i].aasta_kuni+'</div>\n' +
+                        '                    <div align="left" id="hinnavahemik"aria-valuetext="Aasta: "><b>Hind: </b>'+jsonData[i].hind_alates+' kuni '+jsonData[i].hind_kuni+'</div>\n' +
+                        '                    <div align="left" id="voimsus"aria-valuetext="Võimsus: "><b>Võimsus: </b>'+jsonData[i].voimsus_alates+' kuni '+jsonData[i].voimsus_kuni+'</div>\n' +
+                        '                    <div align="left" id="labisoit"aria-valuetext="Läbisõit: "><b>Läbisõit: </b>'+jsonData[i].labisoit_alates+' kuni '+jsonData[i].labisoit_kuni+'</div>\n' +
+                        '                    <div align="left" id="getCarcolor" aria-valuetext="Värv: "><b>Värv: </b>'+jsonData[i].varv+'</div>\n' +
+                        '                    <div align="left" id="getCarfuel">\n' +
+                        '                    </div>\n' +
+                        '                    <div align="left" id="getCartransmission">\n' +
+                        '                    </div>\n' +
+                        '                    <div align="left" id="getVedavsild">\n' +
+                        '                    </div>\n' +
+                        '                    <div align="left" id="getAsukoht">\n' +
+                        '                    </div>\n' +
+                        '                    <div align="left" id="getMyyja">\n' +
+                        '                    </div>\n' +
+                        '                    <div align="left" id="getAdage">\n' +
+                        '                    </div>\n' +
+                        '                    <div align="left" id="getJarjesta">\n' +
+                        '                    </div>\n' +
+                        '                    <div align="left" id="getNaita">\n' +
+                        '                    </div>\n' +
+                        '                    <div align="left" id="getOksjon">\n' +
+                        '                    </div>\n' +
+                        '                </ul>\n' +
+                        '                <button id="buttonDelete" type="submit" class="btn btn-lg btn-block btn-outline-primary"\n' +
+                        '                        Style="color: #a71d2a; background-color: white">Kustuta otsing\n' +
+                        '                </button>\n' +
+                        '            </div>\n' +
+                        '        </div>\n';
+                }
+                resultContainer.innerHTML = html;
             })
             .catch(function (err) {
             });
 
-        document.getElementById("getCarMake")
+  /*      document.getElementById("getCarMake")
         fetch('/markResult')
             .then(function (response) {
                 console.log(response);
@@ -321,7 +361,7 @@
             )
             .catch(function (err) {
                 console.log(err)
-            });
+            });*/
     }
 
 </script>

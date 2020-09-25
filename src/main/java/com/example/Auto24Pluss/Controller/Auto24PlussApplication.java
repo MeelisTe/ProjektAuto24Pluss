@@ -10,6 +10,9 @@ public class Auto24PlussApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Auto24PlussApplication.class, args);
+
+
+
 	}
 
 }

@@ -32,7 +32,7 @@ public class SearchRepository {
         return id;
     }
 
-    public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
+   /* public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
         String sql = "INSERT INTO searchresult (search_id, user_id, resultname, price, oldprice, linkurl) values(1, 1, :name, :price, :oldprice, :link)";
         Map<String, Object> paramMap = new HashMap<>();
         //paramMap.put("searchid", searchId);
@@ -42,19 +42,20 @@ public class SearchRepository {
         paramMap.put("oldprice", oldPrice);
         paramMap.put("link", linkUrl);
         jdbcTemplate.update(sql, paramMap);
-    }
+    }*/
 
-    public List<String> getSearchLink(String searchlink) {
+    public List<String> getSearchLink() {
         String sql = "SELECT searchLink from search";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("searchlink", searchlink);
-        return jdbcTemplate.queryForList(sql, paramMap, String.class);
+        return jdbcTemplate.queryForList(sql, paramMap, ObjectRowMapper2);
     }
 
-    public List<String> getSearchId(int id) {
-        String sql = "SELECT id from search";
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("id", id);
-        return jdbcTemplate.queryForList(sql, paramMap, String.class);
-    }
+
+   /* public Integer getSearchLinkCount(String searchLink) {
+        String sql = "SELECT COUNT(searchlink) FROM search";
+        Map<String, List> paramMap = new HashMap<>();
+        *//*paramMap.put("searchlink", searchlink);*//*
+        return jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
+    }*/
+
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,10 +32,6 @@ public class AccountService {
     final String oksjon = "&by=";
     final String adage = "&ad=";
 
-
-    @Autowired
-    private RestTemplate restTemplate;
-
     String hind = "<td class=\"price\">";
     String sõidukeid = "<span class=\"item\">1&ndash;";
     String link = "<td class=\"make_and_model\"><a href=\"/used/";
@@ -44,6 +41,8 @@ public class AccountService {
     private FuelRepository fuelRepository;
     @Autowired
     private SearchRepository searchRepository;
+    @Autowired
+    private RestTemplate restTemplate;
 
     public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
 // TODO
@@ -55,7 +54,7 @@ public class AccountService {
 
         String htmlString = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
 
-        System.out.println(htmlString);
+     //   System.out.println(htmlString);
 
         System.out.println("");
 
@@ -84,29 +83,51 @@ public class AccountService {
             String hindValueString = htmlString.substring(hindStartIndex, hindEndIndex);
             hindValueString = hindValueString.replace("&nbsp;", "");
             price = Integer.valueOf(hindValueString.trim());
-            System.out.println(price);
+        //    System.out.println(price);
 
             int linkStartIndex = htmlString.indexOf(link, lastIndex2) + link.length();
             lastIndex2 = linkStartIndex + link.length();
             int linkEndIndex = htmlString.indexOf("\">", linkStartIndex);
             String linkValueIdentifier = htmlString.substring(linkStartIndex, linkEndIndex);
             linkUrl = "https://www.auto24.ee/used/" + linkValueIdentifier;
-            System.out.println(linkUrl);
+        //    System.out.println(linkUrl);
 
             int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex3) + link.length();
             nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
             int nimetusEndIndex = htmlString.indexOf("</a>", nimetusStartIndex);
             lastIndex3 = nimetusEndIndex;
             resultName = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
-            System.out.println(resultName);
+        //    System.out.println(resultName);
 
-            System.out.println("");
+        //    System.out.println("");
 
-            searchRepository.saveHtml(searchId, userId, resultName, price, oldPrice, linkUrl);
+            //        searchRepository.saveHtml(searchId, userId, resultName, price, oldPrice, linkUrl);
 
             i++;
         }
     }
+
+
+    public void searchLink(List<String> searchLink) {
+
+        System.out.println("test");
+
+        for (int i = 0; i < searchLink.size(); i++) {
+
+            List<String> linkResultList = searchRepository.getSearchLink();
+            System.out.println(linkResultList.size());
+        } System.out.println(searchLink);
+
+   /*     searchRepository.getSearchLinkCount().size();
+
+        List <String> a = searchRepository.getSearchLinkCount();
+        System.out.println(a);*/
+    }
+
+    // 1) tee andmebaasi päring ja saa kõik urlid
+    // 2) tee tsükkel mis käib nii kaua kui palju päringuid (urle) on vaja teha
+    // 3) tõsta vastuse töötlus eraldi alamfunktsiooni, et kood loetav oleks
+    // 4) pane päringu tegemine ja vastuse töötlemine loodud tsükklisse
 
 
     public void createNewAccount(String firstname, String lastname, String username, String password, String

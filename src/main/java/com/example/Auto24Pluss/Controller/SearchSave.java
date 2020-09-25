@@ -4,9 +4,6 @@ public class SearchSave {
     private String searchlink;
     private Long userId;
 
-    public static void searchLink() {
-    }
-
     public String getSearchlink() {
 
         return searchlink;

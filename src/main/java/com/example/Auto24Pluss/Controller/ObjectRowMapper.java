@@ -1,6 +1,5 @@
-package ee.bcs.valiit.controller;
+package com.example.Auto24Pluss.Controller;
 
-import com.example.Auto24Pluss.Controller.SearchSave;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

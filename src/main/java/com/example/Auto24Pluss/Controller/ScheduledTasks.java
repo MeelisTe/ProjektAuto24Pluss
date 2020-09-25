@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @EnableScheduling
@@ -22,7 +26,10 @@ public class ScheduledTasks {
     @Autowired
     private AccountService accountService;
     SearchSave searchSave = new SearchSave();
-    SearchSaveLink searchSaveLink = new SearchSaveLink();
+
+    @Autowired
+    private SearchRepository searchRepository;
+
 
     @Scheduled(fixedRate = 10000000)
     public void test() {
@@ -36,7 +43,9 @@ public class ScheduledTasks {
 
     @Scheduled(fixedRate = 10000000)
     public void test2() {
-        accountService.searchLink(searchSaveLink.getSearchlink());
+
+        List<String> searchLink = new ArrayList<>();
+        accountService.searchLink(searchLink);
 
 
     }

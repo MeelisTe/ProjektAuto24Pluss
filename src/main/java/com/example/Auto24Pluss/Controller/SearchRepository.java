@@ -47,7 +47,7 @@ public class SearchRepository {
     public List<String> getSearchLink() {
         String sql = "SELECT searchLink from search";
         Map<String, Object> paramMap = new HashMap<>();
-        return jdbcTemplate.queryForList(sql, paramMap, ObjectRowMapper2);
+        return jdbcTemplate.queryForList(sql, paramMap, String.class);
     }
 
 

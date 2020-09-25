@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ee.bcs.valiit.controller.ObjectRowMapper;
-
 @Repository
 public class AccountRepository {
     @Autowired
@@ -52,7 +50,7 @@ public class AccountRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public List<SearchSave> displayresults() {
+    public List<SearchLinkSave> displayresults() {
         String sql = "SELECT * FROM search";
         return jdbcTemplate.query(sql, new HashMap<>(), new ObjectRowMapper());
     }
@@ -194,12 +192,12 @@ public class AccountRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
 
-    public String getLink(int user_id) {
+    public List<String> getLink(int user_id) {
 
         String sql = "Select searchlink from search where user_id = :user_id";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("user_id", user_id);
-        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+        return jdbcTemplate.queryForList(sql, paramMap, String.class);
     }
 
 

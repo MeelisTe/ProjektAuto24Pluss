@@ -1,4 +1,4 @@
-package ee.bcs.valiit.controller;
+package com.example.Auto24Pluss.Controller;
 
 import com.example.Auto24Pluss.Controller.SearchSave;
 import org.springframework.jdbc.core.RowMapper;
@@ -6,12 +6,15 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ObjectRowMapper implements RowMapper<SearchSave> {
+public class ObjectRowMapper implements RowMapper<SearchLinkSave> {
 
     @Override
-    public SearchSave mapRow(ResultSet resultSet, int i) throws SQLException {
-        SearchSave savedresults = new SearchSave();
-        savedresults.setSearchlink(resultSet.getString("searchlink")); //''account_nr'' nimetus(väärtus) tuleb Postgre'st account tabelist. getString - võtame account nr'i väärtuse. resultSet anname ''accounts.setAccountNr'' accountNr'le väärtuse, ''accounts.setAccountNr'' annab väärtuse klassi BankAccount ''account_Nr'' muutujale
+    public SearchLinkSave mapRow(ResultSet resultSet, int i) throws SQLException {
+        SearchLinkSave savedresults = new SearchLinkSave();
+        savedresults.setSearchlink(resultSet.getString("searchlink"));
+        //''account_nr'' nimetus(väärtus) tuleb Postgre'st account tabelist. getString - võtame account nr'i väärtuse.
+        // resultSet anname ''accounts.setAccountNr'' accountNr'le väärtuse, ''accounts.setAccountNr'' annab väärtuse
+        // klassi BankAccount ''account_Nr'' muutujale
         savedresults.setUserId(resultSet.getLong("user_id"));
         return savedresults;
     }

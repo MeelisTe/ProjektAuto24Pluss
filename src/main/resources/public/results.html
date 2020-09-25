@@ -263,70 +263,60 @@
                     } else {
                         document.getElementById("getCarcolor").innerHTML = "<b>" + "Värv:" + "</b>" + "-";
                     }
-                    //                  document.getElementById("getCarcolor").innerHTML = "<table><tr><td></td><td>" + "<b>Värv: </b>" + jsonData.varv + "</td></tr></table>";
 
                     if (jsonData.kutus != null) {
                         document.getElementById("getCarfuel").innerHTML = "<table><tr><td></td><td>" + "<b>Kütus: </b>" + jsonData.kutus + "</td></tr></table>";
                     } else {
                         document.getElementById("getCarfuel").innerHTML = "<b>" + "Kütus:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getCarfuel").innerHTML = "<table><tr><td></td><td>" + "<b>Kütus: </b>" + jsonData.kutus + "</td></tr></table>";
 
                     if (jsonData.kaigukast != null) {
                         document.getElementById("getCartransmission").innerHTML = "<table><tr><td></td><td>" + "<b>Käigukast: </b>" + jsonData.kaigukast + "</td></tr></table>";
                     } else {
                         document.getElementById("getCartransmission").innerHTML = "<b>" + "Käigukast:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getCartransmission").innerHTML = "<table><tr><td></td><td>" + "<b>Käigukast: </b>" + jsonData.kaigukast + "</td></tr></table>";
 
                     if (jsonData.vedav_sild != null) {
                         document.getElementById("getVedavsild").innerHTML = "<table><tr><td></td><td>" + "<b>Vedav sild: </b>" + jsonData.vedav_sild + "</td></tr></table>";
                     } else {
                         document.getElementById("getVedavsild").innerHTML = "<b>" + "Vedav sild:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getVedavsild").innerHTML = "<table><tr><td></td><td>" + "<b>Vedav sild: </b>" + jsonData.vedav_sild + "</td></tr></table>";
 
                     if (jsonData.asukoht != null) {
                         document.getElementById("getAsukoht").innerHTML = "<table><tr><td></td><td>" + "<b>Asukoht: </b>" + jsonData.asukoht + "</td></tr></table>";
                     } else {
                         document.getElementById("getAsukoht").innerHTML = "<b>" + "Asukoht:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getAsukoht").innerHTML = "<table><tr><td></td><td>" + "<b>Asukoht: </b>" + jsonData.asukoht + "</td></tr></table>";
 
                     if (jsonData.muuja != null) {
                         document.getElementById("getMyyja").innerHTML = "<table><tr><td></td><td>" + "<b>Müüja: </b>" + jsonData.muuja + "</td></tr></table>";
                     } else {
                         document.getElementById("getMyyja").innerHTML = "<b>" + "Müüja:" + "</b>" + "-";
                     }
-                    //                  document.getElementById("getMyyja").innerHTML = "<table><tr><td></td><td>" + "<b>Müüja: </b>" + jsonData.muuja + "</td></tr></table>";
 
                     if (jsonData.kuulutuse_vanus != null) {
                         document.getElementById("getAdage").innerHTML = "<table><tr><td></td><td>" + "<b>Kuulutuse vanus: </b>" + jsonData.kuulutuse_vanus + "</td></tr></table>";
                     } else {
                         document.getElementById("getAdage").innerHTML = "<b>" + "Kuulutuse vanus:" + "</b>" + "-";
                     }
-                    //                  document.getElementById("getAdage").innerHTML = "<table><tr><td></td><td>" + "<b>Kuulutuse vanus: </b>" + jsonData.kuulutuse_vanus + "</td></tr></table>";
 
                     if (jsonData.jarjesta != null) {
                         document.getElementById("getJarjesta").innerHTML = "<table><tr><td></td><td>" + "<b>Järjesta: </b>" + jsonData.jarjesta + "</td></tr></table>";
                     } else {
                         document.getElementById("getJarjesta").innerHTML = "<b>" + "Järjesta:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getJarjesta").innerHTML = "<table><tr><td></td><td>" + "<b>Järjesta: </b>" + jsonData.jarjesta + "</td></tr></table>";
 
                     if (jsonData.naita != null) {
                         document.getElementById("getNaita").innerHTML = "<table><tr><td></td><td>" + "<b>Näita: </b>" + jsonData.naita + "</td></tr></table>";
                     } else {
                         document.getElementById("getNaita").innerHTML = "<b>" + "Näita:" + "</b>" + "-";
                     }
-                    //                  document.getElementById("getNaita").innerHTML = "<table><tr><td></td><td>" + "<b>Näita: </b>" + jsonData.naita + "</td></tr></table>";
 
                     if (jsonData.oksjon != null) {
                         document.getElementById("getOksjon").innerHTML = "<table><tr><td></td><td>" + "<b>Oksjon: </b>" + jsonData.oksjon + "</td></tr></table>";
                     } else {
                         document.getElementById("getOksjon").innerHTML = "<b>" + "Oksjon:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getOksjon").innerHTML = "<table><tr><td></td><td>" + "<b>Oksjon: </b>" + jsonData.oksjon + "</td></tr></table>";
                 }
             )
             .catch(function (err) {

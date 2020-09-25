@@ -6,12 +6,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.naming.directory.SearchResult;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AccountService {
-    public static String displayresults;
+
 
     @Autowired
     private AccountRepository accountRepository;
@@ -138,35 +139,41 @@ public class AccountService {
     public void updateInformation(String password, String email) {
         accountRepository.updateInformation(password, email);
     }
-
- /*   public List<SearchSave> displayresults() {
+/*
+    public List<SearchSave> displayresults() {
         return accountRepository.displayresults();
-    }*/
+    }
+*/
+    public List<GetcarMarkResult> markResult(int user_id) {
+        List<GetcarMarkResult> result = new ArrayList<>();
+        List<String> searchLinkList = accountRepository.getLink(user_id);
+        for (int i = 0; i < searchLinkList.size(); i++) {
+            String searchLink = searchLinkList.get(i);
+            GetcarMarkResult resultElement = new GetcarMarkResult();
+            resultElement.setMark(accountRepository.getCarMake(findElementByCode(searchLink, autoMark)));
+            resultElement.setMudel(accountRepository.getCarmodel(findElementByCode(searchLink, autoMudel)));
+            resultElement.setKeretyyp(accountRepository.getKeretyyp(findElementByCode(searchLink, keretyyp)));
+            resultElement.setAasta_alates(findElementByCode(searchLink, aastaAlates));
+            resultElement.setAasta_kuni(findElementByCode(searchLink, aastaKuni));
+            resultElement.setHind_alates(findElementByCode(searchLink, hindAlates));
+            resultElement.setHind_kuni(findElementByCode(searchLink, hindKuni));
+            resultElement.setVoimsus_alates(findElementByCode(searchLink, voimsusAlates));
+            resultElement.setVoimsus_kuni(findElementByCode(searchLink, voimsusKuni));
+            resultElement.setLabisoit_alates(findElementByCode(searchLink, labisoitAlates));
+            resultElement.setLabisoit_kuni(findElementByCode(searchLink, labisoitKuni));
+            resultElement.setVarv(accountRepository.getCarcolor(findElementByCode(searchLink, varv)));
+            resultElement.setKutus(accountRepository.getCarfuel(findElementByCode(searchLink, kytus)));
+            resultElement.setKaigukast(accountRepository.getTransmission(findElementByCode(searchLink, kaigukast)));
+            resultElement.setVedav_sild(accountRepository.getVedavsild(findElementByCode(searchLink, vedavsild)));
+            resultElement.setAsukoht(accountRepository.getAsukoht(findElementByCode(searchLink, asukoht)));
+            resultElement.setMuuja(accountRepository.getMuuja(findElementByCode(searchLink, myyja)));
+            resultElement.setKuulutuse_vanus(accountRepository.getKuulutusevanus(findElementByCode(searchLink, adage)));
+            resultElement.setJarjesta(accountRepository.getJarjesta(findElementByCode(searchLink, jarjesta)));
+            resultElement.setNaita(accountRepository.getNaita(findElementByCode(searchLink, naita)));
+            resultElement.setOksjon(accountRepository.getOksjon(findElementByCode(searchLink, oksjon)));
+            result.add(resultElement);
 
-    public GetcarMarkResult markResult(int user_id) {
-        List<String> searchLink = accountRepository.getLink(user_id);
-        GetcarMarkResult result = new GetcarMarkResult();
-        result.setMark(accountRepository.getCarMake(findElementByCode(String.valueOf(searchLink), autoMark)));
-        result.setMudel(accountRepository.getCarmodel(findElementByCode(String.valueOf(searchLink), autoMudel)));
-        result.setKeretyyp(accountRepository.getKeretyyp(findElementByCode(String.valueOf(searchLink), keretyyp)));
-        result.setAasta_alates(findElementByCode(String.valueOf(searchLink), aastaAlates));
-        result.setAasta_kuni(findElementByCode(String.valueOf(searchLink), aastaKuni));
-        result.setHind_alates(findElementByCode(String.valueOf(searchLink), hindAlates));
-        result.setHind_kuni(findElementByCode(String.valueOf(searchLink), hindKuni));
-        result.setVoimsus_alates(findElementByCode(String.valueOf(searchLink), voimsusAlates));
-        result.setVoimsus_kuni(findElementByCode(String.valueOf(searchLink), voimsusKuni));
-        result.setLabisoit_alates(findElementByCode(String.valueOf(searchLink), labisoitAlates));
-        result.setLabisoit_kuni(findElementByCode(String.valueOf(searchLink), labisoitKuni));
-        result.setVarv(accountRepository.getCarcolor(findElementByCode(String.valueOf(searchLink), varv)));
-        result.setKutus(accountRepository.getCarfuel(findElementByCode(String.valueOf(searchLink), kytus)));
-        result.setKaigukast(accountRepository.getTransmission(findElementByCode(String.valueOf(searchLink), kaigukast)));
-        result.setVedav_sild(accountRepository.getVedavsild(findElementByCode(String.valueOf(searchLink), vedavsild)));
-        result.setAsukoht(accountRepository.getAsukoht(findElementByCode(String.valueOf(searchLink), asukoht)));
-        result.setMuuja(accountRepository.getMuuja(findElementByCode(String.valueOf(searchLink), myyja)));
-        result.setKuulutuse_vanus(accountRepository.getKuulutusevanus(findElementByCode(String.valueOf(searchLink), adage)));
-        result.setJarjesta(accountRepository.getJarjesta(findElementByCode(String.valueOf(searchLink), jarjesta)));
-        result.setNaita(accountRepository.getNaita(findElementByCode(String.valueOf(searchLink), naita)));
-        result.setOksjon(accountRepository.getOksjon(findElementByCode(String.valueOf(searchLink), oksjon)));
+        }
         return result;
     }
 
@@ -180,7 +187,6 @@ public class AccountService {
         String markValue = searchLink.substring(markStartindex, markEndIndex);
         return Integer.valueOf(markValue);
     }
-
 
 /*   public int searchSettings() {
 

@@ -20,7 +20,6 @@
     <link rel="apple-touch-icon" href="Images/Logo.png" sizes="180x180">
     <link rel="icon" href="Images/Logo.png" sizes="32x32" type="image/png">
     <link rel="icon" href="Images/Logo.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
     <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
     <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
@@ -67,7 +66,8 @@
 
 <div align="center" id="searches">
     <div>
-        <input type="" style="width: 600px" class="form-control" placeholder="Otsingu link" id="linkurl1" required>
+        <input class="form-control" id="linkurl1" name="searchbar" placeholder="Otsingu link" required
+               style="width: 600px" type="url">
         <br>
     </div>
 </div>
@@ -85,35 +85,48 @@
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
         <div class="col-12 col-md" align="center">
-            <small class="d-block mb-3 text-muted" ,>&copy; 2020</small>
+            <small class="d-block mb-3 text-muted">&copy; 2020</small>
         </div>
     </div>
 </footer>
 <script>
     let element1 = document.getElementById("seaded");
+    let element2 = document.getElementById("kasutusjuhend");
+    let element3 = document.getElementById("liikmelisus");
+    let elementlogout = document.getElementById("logout");
+    let element4 = document.getElementById("tulemused");
+    let elementkäivita = document.getElementById("käivita");
+    let elementNewInput = document.getElementById("searches");
+    let elementaddRows = document.getElementById("addRows");
+
     element1.addEventListener('click', function () {
         window.location.href = ("/settings.html")
     })
-    let element2 = document.getElementById("kasutusjuhend");
+
     element2.addEventListener('click', function () {
         window.location.href = ("/kasutusjuhend.html")
     })
-    let element3 = document.getElementById("liikmelisus");
+
     element3.addEventListener('click', function () {
         window.location.href = ("/pricing.html")
     })
-    let elementlogout = document.getElementById("logout");
+
     elementlogout.addEventListener('click', function () {
         window.location.href = ('/logout.html')
     })
-    let element4 = document.getElementById("tulemused");
+
     element4.addEventListener('click', function () {
         window.location.href = ('/results.html')
     })
 
-    let elementkäivita = document.getElementById("käivita");
     elementkäivita.addEventListener('click', function () {
-
+        let elementOtsingud = document.getElementsByName("searchbar");
+        console.log(elementOtsingud);
+        let links = [];
+        for (let i = 0; i < elementOtsingud.length; i++) {
+            links.push(elementOtsingud[i].value)
+            console.log(links);
+        }
         fetch('/saveurl', {
             method: 'PUT',
             cache: 'no-cache',
@@ -121,33 +134,30 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                searchlink: linkurl1.value,
+                searchlink: links
             })
         })
-
             .then(function (jsonData) {
                 window.location.href = ('/results.html')
             })
             .catch(function (err) {
                 console.log(err);
-            });
+            })
     });
-    let elementNewInput = document.getElementById("searches")
-    let elementaddRows = document.getElementById("addRows");
-    elementaddRows.onclick = function () {
 
+    elementaddRows.onclick = function () {
+// See tekitab iga "addRows" nupu vajutuse peale uue inputi allolevate parameetritega
         var input = document.createElement("input");
-        input.type = "text";
-        input.name = "";
+        input.type = "url";
+//        input.id = "linkurl1";
+        input.name = "searchbar";
         input.style = "width: 600px";
         input.className = "form-control";
         input.placeholder = "Otsingu link";
 //        input.required;
-
         elementNewInput.append(input);
-        // Append a line break
-       elementNewInput.appendChild(document.createElement("br"));
- //      elementNewInput.appendChild(document.createElement("br"));
+// See tekitab uue tekitatud inputi järele breaki
+        elementNewInput.appendChild(document.createElement("br"));
     }
 
 

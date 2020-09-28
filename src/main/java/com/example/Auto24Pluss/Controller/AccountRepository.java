@@ -50,7 +50,7 @@ public class AccountRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public List<SearchSave> displayresults() {
+    public List<SearchLinkSave> displayresults() {
         String sql = "SELECT * FROM search";
         return jdbcTemplate.query(sql, new HashMap<>(), new ObjectRowMapper());
     }
@@ -82,6 +82,55 @@ public class AccountRepository {
         paramMap.put("modelIntValue", modelIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
+    public Object getAasta_alates(Integer aasta_alatesIntValue) {
+        if (aasta_alatesIntValue == null) {
+            return "-";
+        }
+        return aasta_alatesIntValue;
+    }
+    public Object getAasta_kuni(Integer aasta_kuniIntValue) {
+        if (aasta_kuniIntValue == null) {
+            return "-";
+        }
+        return aasta_kuniIntValue;
+    }
+    public Object getHind_alates(Object hind_alatesIntValue) {
+        if (hind_alatesIntValue == null) {
+            return "-";
+        }
+        return hind_alatesIntValue;
+    }
+    public Object getHind_kuni(Object hind_kuniIntValue) {
+        if (hind_kuniIntValue == null) {
+            return "-";
+        }
+        return hind_kuniIntValue;
+    }
+    public Object getVoimsus_alates(Object voimsus_alatesIntValue) {
+        if (voimsus_alatesIntValue == null) {
+            return "-";
+        }
+        return voimsus_alatesIntValue;
+    }
+    public Object getVoimsus_kuni(Object voimsus_kuniIntValue) {
+        if (voimsus_kuniIntValue == null) {
+            return "-";
+        }
+        return voimsus_kuniIntValue;
+    }
+    public Object getLabisoit_alates(Object labisoit_alatesIntValue) {
+        if (labisoit_alatesIntValue == null) {
+            return "-";
+        }
+        return labisoit_alatesIntValue;
+    }
+    public Object getLabisoit_kuni(Object labisoit_kuniIntValue) {
+        if (labisoit_kuniIntValue == null) {
+            return "-";
+        }
+        return labisoit_kuniIntValue;
+    }
+
 
     public String getKeretyyp(Integer typeIntValue) {
         if (typeIntValue == null) {
@@ -91,6 +140,12 @@ public class AccountRepository {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("typeIntValue", typeIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+    public List<Object> getSearchId(String searchlinkIntValue) {
+        String sql = "SELECT id from search where searchlink= :searchlinkIntValue";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("searchlinkIntValue", searchlinkIntValue);
+        return jdbcTemplate.queryForList(sql, paramMap, Object.class);
     }
 
     public String getCarcolor(Integer colorIntValue) {
@@ -193,12 +248,12 @@ public class AccountRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
 
-    public String getLink(int user_id) {
+    public List<SearchEntity> getLink(int user_id) {
 
-        String sql = "Select searchlink from search where user_id = :user_id";
+        String sql = "Select id, searchlink from search where user_id = :user_id";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("user_id", user_id);
-        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+        return jdbcTemplate.query(sql, paramMap, new SearchEntityRowMapper());
     }
 
 

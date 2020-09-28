@@ -40,8 +40,6 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
-    private FuelRepository fuelRepository;
-    @Autowired
     private SearchRepository searchRepository;
     @Autowired
     private RestTemplate restTemplate;
@@ -49,12 +47,9 @@ public class AccountService {
 
 
     public void saveHtml() {
-        List<String> links = searchRepository.getSearchLink();
+        List<SearchEntity> links = accountRepository.getLink(1);
         System.out.println("\n" + links.size() + "\n");
-        for (String s : links) {
-            System.out.println(s);
-
-
+        for (SearchEntity s : links) {
 // TODO
             // 1) tee andmebaasi päring ja saa kõik urlid
             // 2) tee tsükkel mis käib nii kaua kui palju päringuid (urle) on vaja teha
@@ -62,7 +57,7 @@ public class AccountService {
             // 3) tõsta vastuse töötlus eraldi alamfunktsiooni, et kood loetav oleks
             // 4) pane päringu tegemine ja vastuse töötlemine loodud tsükklisse
 
-            String htmlString = restTemplate.getForObject(s, String.class);
+            String htmlString = restTemplate.getForObject(s.getLink(), String.class);
             //  String htmlString1 = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
 
             System.out.println("\n" + "Done" + "\n");
@@ -77,7 +72,6 @@ public class AccountService {
             int lastIndex1 = 0;
             int lastIndex2 = 0;
             int lastIndex3 = 0;
-            int searchId = 0;
             int userId = 0;
             int oldPrice = 0;
 
@@ -108,7 +102,7 @@ public class AccountService {
 
                 //    System.out.println("");
 
-                searchRepository.saveHtml(searchId, userId, resultName, price, oldPrice, linkUrl);
+                searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
 
                 i++;
             }

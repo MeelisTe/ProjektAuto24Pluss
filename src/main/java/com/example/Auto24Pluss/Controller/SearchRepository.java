@@ -24,13 +24,13 @@ public class SearchRepository {
         jdbcTemplate.update(sql, paramMap);
     }*/
 
-    public int saveSearch(String link, int userId) {
+   /* public int saveSearch(String link, int userId) {
         String sql = "INSERT INTO search (searchlink, user_id) values(:link, 0)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("link", link);
         int id = jdbcTemplate.update(sql, paramMap);
         return id;
-    }
+    }*/
 
     public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
         String sql = "INSERT INTO searchresult (search_id, user_id, resultname, price, oldprice, linkurl) values(:searchId, 1, :name, :price, :oldprice, :link)";

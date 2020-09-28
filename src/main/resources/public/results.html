@@ -20,7 +20,6 @@
     <link rel="apple-touch-icon" href="Images/Logo.png" sizes="180x180">
     <link rel="icon" href="Images/Logo.png" sizes="32x32" type="image/png">
     <link rel="icon" href="Images/Logo.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
     <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
     <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
@@ -66,11 +65,11 @@
 </div>
 
 <div class="container">
-    <div class="card-deck mb-3 text-center">
+    <div id="result-container" class="card-deck mb-3 text-center">
         <div class="card mb-4 shadow-sm">
-            <div class="card-header text-center">
+  <!--          <div class="card-header text-center">
                 <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr. 1</a></h4>
-            </div>
+            </div>-->
             <div class="card-body">
                 <ul class="list-unstyled mt-3 mb-4">
                     <div align="left" id="getCarMake" aria-valuetext="Mark: "></div>
@@ -183,20 +182,58 @@
                 console.log(err);
             });
     })
+    function deleteElement(searchId){
+        alert(searchId);
+    }
 
     window.onload = function () {
-        document.getElementById("displayresults");
+        let resultContainer = document.getElementById("result-container");
 
-        fetch('/displayresults')
+        fetch('/markResult')
             .then(function (response) {
                 return response.json();
             })
             .then(function (jsonData) {
-                //              document.getElementById("displayresults").innerHTML = "<table><tr><td></td><td>" + jsonData[0].userId + ". </td><td><a href='" + jsonData[0].searchlink + "'>" + jsonData[0].searchlink + "</a></td></tr></table>";
-                document.getElementById("displayresults").innerHTML = "<table><tr><td><a href='" + jsonData[0].searchlink + "'>Otsing Nr. 1" + "</a></td></tr></table>";
+  //              document.getElementById("displayresults").innerHTML = "<table><tr><td><a href='" + jsonData[i].searchlink + "'>" + jsonData[i].searchlink + "</a></td></tr></table>";
+                let html = '';
+                for(let i = 0; i < jsonData.length; i++){
+                    html += '        <div class="card mb-4 shadow-sm">\n' +
+  /*                      '            <div class="card-header text-center">\n' +
+                        '                <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr.'+jsonData[i].searchlink +'</a></h4>\n' +
+                        '            </div>\n' +*/
+                        '            <div class="card-body">\n' +
+                        '                <ul class="list-unstyled mt-3 mb-4">\n' +
+           //                                  <div align="left" id="searchId"></div>\n' +
+                        '                    <div align="left" id="getCarMake" aria-valuetext="Mark: "><b>Mark: </b>'+jsonData[i].mark+'</div>\n' +
+                        '                    <div align="left" id="getCarmodel" aria-valuetext="Mudel: "><b>Mudel: </b>'+jsonData[i].mudel+'</div>\n' +
+                        '                    <div align="left" id="getKeretyyp" aria-valuetext="Keretüüp: "><b>Keretüüp: </b>'+jsonData[i].keretyyp+'</div>\n' +
+                        '                    <div align="left" id="aastavahemik" aria-valuetext="Aasta: "><b>Aasta: </b>'+jsonData[i].aasta_alates+' kuni '+jsonData[i].aasta_kuni+'</div>\n' +
+                        '                    <div align="left" id="hinnavahemik"aria-valuetext="Aasta: "><b>Hind: </b>'+jsonData[i].hind_alates+' kuni '+jsonData[i].hind_kuni+'</div>\n' +
+                        '                    <div align="left" id="voimsus"aria-valuetext="Võimsus: "><b>Võimsus: </b>'+jsonData[i].voimsus_alates+' kuni '+jsonData[i].voimsus_kuni+'</div>\n' +
+                        '                    <div align="left" id="labisoit"aria-valuetext="Läbisõit: "><b>Läbisõit: </b>'+jsonData[i].labisoit_alates+' kuni '+jsonData[i].labisoit_kuni+'</div>\n' +
+                        '                    <div align="left" id="getCarcolor" aria-valuetext="Värv: "><b>Värv: </b>'+jsonData[i].varv+'</div>\n' +
+                        '                    <div align="left" id="getCarfuel" aria-valuetext="Kütus: "><b>Kütus: </b>'+jsonData[i].kutus+'</div>\n' +
+                        '                    <div align="left" id="getCartransmission" aria-valuetext="Käigukast: "><b>Käigukast: </b>'+jsonData[i].kaigukast+'</div>\n' +
+                        '                    <div align="left" id="getVedavsild" aria-valuetext="Vedav sild: "><b>Vedav sild: </b>'+jsonData[i].vedav_sild+'</div>\n' +
+                        '                    <div align="left" id="getAsukoht" aria-valuetext="Asukoht: "><b>Asukoht: </b>'+jsonData[i].asukoht+'</div>\n' +
+                        '                    <div align="left" id="getMyyja" aria-valuetext="Müüja: "><b>Müüja: </b>'+jsonData[i].muuja+'</div>\n' +
+                        '                    <div align="left" id="getAdage" aria-valuetext="Kuulutuse_vanus: "><b>Kuulutuse vanus: </b>'+jsonData[i].kuulutuse_vanus+'</div>\n' +
+                        '                    <div align="left" id="getJarjesta" aria-valuetext="Järjesta: "><b>Järjesta: </b>'+jsonData[i].jarjesta+'</div>\n' +
+                        '                    <div align="left" id="getNaita" aria-valuetext="Näita: "><b>Näita: </b>'+jsonData[i].naita+'</div>\n' +
+                        '                    <div align="left" id="getOksjon" aria-valuetext="Oksjon: "><b>Oksjon: </b>'+jsonData[i].oksjon+'</div>\n' +
+                        '                </ul>\n' +
+                        '                <button onclick="deleteElement('+jsonData[i].searchId+')" type="submit" class="btn btn-lg btn-block btn-outline-primary"\n' +
+                        '                        Style="color: #a71d2a; background-color: white">Kustuta otsing\n' +
+                        '                </button>\n' +
+                        '            </div>\n' +
+                        '        </div>\n';
+                }
+                resultContainer.innerHTML = html;
             })
             .catch(function (err) {
             });
+
+  /*      Selle kõik kirjutasin back-i üle
 
         document.getElementById("getCarMake")
         fetch('/markResult')
@@ -263,75 +300,65 @@
                     } else {
                         document.getElementById("getCarcolor").innerHTML = "<b>" + "Värv:" + "</b>" + "-";
                     }
-                    //                  document.getElementById("getCarcolor").innerHTML = "<table><tr><td></td><td>" + "<b>Värv: </b>" + jsonData.varv + "</td></tr></table>";
 
                     if (jsonData.kutus != null) {
                         document.getElementById("getCarfuel").innerHTML = "<table><tr><td></td><td>" + "<b>Kütus: </b>" + jsonData.kutus + "</td></tr></table>";
                     } else {
                         document.getElementById("getCarfuel").innerHTML = "<b>" + "Kütus:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getCarfuel").innerHTML = "<table><tr><td></td><td>" + "<b>Kütus: </b>" + jsonData.kutus + "</td></tr></table>";
 
                     if (jsonData.kaigukast != null) {
                         document.getElementById("getCartransmission").innerHTML = "<table><tr><td></td><td>" + "<b>Käigukast: </b>" + jsonData.kaigukast + "</td></tr></table>";
                     } else {
                         document.getElementById("getCartransmission").innerHTML = "<b>" + "Käigukast:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getCartransmission").innerHTML = "<table><tr><td></td><td>" + "<b>Käigukast: </b>" + jsonData.kaigukast + "</td></tr></table>";
 
                     if (jsonData.vedav_sild != null) {
                         document.getElementById("getVedavsild").innerHTML = "<table><tr><td></td><td>" + "<b>Vedav sild: </b>" + jsonData.vedav_sild + "</td></tr></table>";
                     } else {
                         document.getElementById("getVedavsild").innerHTML = "<b>" + "Vedav sild:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getVedavsild").innerHTML = "<table><tr><td></td><td>" + "<b>Vedav sild: </b>" + jsonData.vedav_sild + "</td></tr></table>";
 
                     if (jsonData.asukoht != null) {
                         document.getElementById("getAsukoht").innerHTML = "<table><tr><td></td><td>" + "<b>Asukoht: </b>" + jsonData.asukoht + "</td></tr></table>";
                     } else {
                         document.getElementById("getAsukoht").innerHTML = "<b>" + "Asukoht:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getAsukoht").innerHTML = "<table><tr><td></td><td>" + "<b>Asukoht: </b>" + jsonData.asukoht + "</td></tr></table>";
 
                     if (jsonData.muuja != null) {
                         document.getElementById("getMyyja").innerHTML = "<table><tr><td></td><td>" + "<b>Müüja: </b>" + jsonData.muuja + "</td></tr></table>";
                     } else {
                         document.getElementById("getMyyja").innerHTML = "<b>" + "Müüja:" + "</b>" + "-";
                     }
-                    //                  document.getElementById("getMyyja").innerHTML = "<table><tr><td></td><td>" + "<b>Müüja: </b>" + jsonData.muuja + "</td></tr></table>";
 
                     if (jsonData.kuulutuse_vanus != null) {
                         document.getElementById("getAdage").innerHTML = "<table><tr><td></td><td>" + "<b>Kuulutuse vanus: </b>" + jsonData.kuulutuse_vanus + "</td></tr></table>";
                     } else {
                         document.getElementById("getAdage").innerHTML = "<b>" + "Kuulutuse vanus:" + "</b>" + "-";
                     }
-                    //                  document.getElementById("getAdage").innerHTML = "<table><tr><td></td><td>" + "<b>Kuulutuse vanus: </b>" + jsonData.kuulutuse_vanus + "</td></tr></table>";
 
                     if (jsonData.jarjesta != null) {
                         document.getElementById("getJarjesta").innerHTML = "<table><tr><td></td><td>" + "<b>Järjesta: </b>" + jsonData.jarjesta + "</td></tr></table>";
                     } else {
                         document.getElementById("getJarjesta").innerHTML = "<b>" + "Järjesta:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getJarjesta").innerHTML = "<table><tr><td></td><td>" + "<b>Järjesta: </b>" + jsonData.jarjesta + "</td></tr></table>";
 
                     if (jsonData.naita != null) {
                         document.getElementById("getNaita").innerHTML = "<table><tr><td></td><td>" + "<b>Näita: </b>" + jsonData.naita + "</td></tr></table>";
                     } else {
                         document.getElementById("getNaita").innerHTML = "<b>" + "Näita:" + "</b>" + "-";
                     }
-                    //                  document.getElementById("getNaita").innerHTML = "<table><tr><td></td><td>" + "<b>Näita: </b>" + jsonData.naita + "</td></tr></table>";
 
                     if (jsonData.oksjon != null) {
                         document.getElementById("getOksjon").innerHTML = "<table><tr><td></td><td>" + "<b>Oksjon: </b>" + jsonData.oksjon + "</td></tr></table>";
                     } else {
                         document.getElementById("getOksjon").innerHTML = "<b>" + "Oksjon:" + "</b>" + "-";
                     }
-                    //                   document.getElementById("getOksjon").innerHTML = "<table><tr><td></td><td>" + "<b>Oksjon: </b>" + jsonData.oksjon + "</td></tr></table>";
                 }
             )
             .catch(function (err) {
                 console.log(err)
-            });
+            });*/
     }
 
 </script>

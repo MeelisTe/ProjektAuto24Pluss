@@ -51,7 +51,7 @@
                              references="appuser(id)"/>
             </column>
             <column name="searchlink" type="text">
-                <constraints nullable="false" primaryKey="false" unique="true"/>
+                <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
 
         </createTable>

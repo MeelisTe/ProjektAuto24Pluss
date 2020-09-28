@@ -1,32 +1,28 @@
 package com.example.Auto24Pluss.Controller;
 
+import java.util.List;
+
 public class SearchSave {
-    private String searchlink;
+    private List<String> searchlink; //see on list, mille sisend on String.
+                                    // kui oleks List<Users> user, siis see on list listis
     private Long userId;
 
-    public static void searchLink() {
-    }
-
-    public String getSearchlink() {
-
+    public List<String> getSearchlink() {
         return searchlink;
     }
 
-    public void setSearchlink(String searchlink) {
-
+    public void setSearchlink(List<String> searchlink) {
         this.searchlink = searchlink;
     }
 
     public Long getUserId() {
-
         return userId;
     }
 
     public void setUserId(Long userId) {
-
         this.userId = userId;
     }
-    
+}
 
   /*  public String getLink(){
         String host = "https://www.auto24.ee/";
@@ -38,4 +34,4 @@ public class SearchSave {
 
         return host + path + markTähis + markId;
     }*/
-}
+

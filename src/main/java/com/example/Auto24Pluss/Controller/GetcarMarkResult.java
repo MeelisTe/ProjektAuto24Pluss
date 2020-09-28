@@ -1,17 +1,20 @@
 package com.example.Auto24Pluss.Controller;
 
+import java.util.Collections;
+import java.util.List;
+
 public class GetcarMarkResult {
     private String mark = "";
     private String mudel = "";
     private String keretyyp = "";
-    private Integer aasta_alates;
-    private Integer aasta_kuni;
-    private Integer hind_alates;
-    private Integer hind_kuni;
-    private Integer voimsus_alates;
-    private Integer voimsus_kuni;
-    private Integer labisoit_alates;
-    private Integer labisoit_kuni;
+    private Object aasta_alates;
+    private Object aasta_kuni;
+    private Object hind_alates;
+    private Object hind_kuni;
+    private Object voimsus_alates;
+    private Object voimsus_kuni;
+    private Object labisoit_alates;
+    private Object labisoit_kuni;
     private String varv = "";
     private String kutus = "";
     private String kaigukast = "";
@@ -22,6 +25,15 @@ public class GetcarMarkResult {
     private String jarjesta = "";
     private String naita = "";
     private String oksjon = "";
+    private Integer searchId;
+
+    public Integer getSearchId() {
+        return searchId;
+    }
+
+    public void setSearchId(Integer searchId) {
+        this.searchId = searchId;
+    }
 
     public String getMark() {
         return mark;
@@ -47,67 +59,67 @@ public class GetcarMarkResult {
         this.keretyyp = keretyyp;
     }
 
-    public Integer getAasta_alates() {
+    public Object getAasta_alates() {
         return aasta_alates;
     }
 
-    public void setAasta_alates(Integer aasta_alates) {
+    public void setAasta_alates(Object aasta_alates) {
         this.aasta_alates = aasta_alates;
     }
 
-    public Integer getAasta_kuni() {
+    public Object getAasta_kuni() {
         return aasta_kuni;
     }
 
-    public void setAasta_kuni(Integer aasta_kuni) {
+    public void setAasta_kuni(Object aasta_kuni) {
         this.aasta_kuni = aasta_kuni;
     }
 
-    public Integer getHind_alates() {
+    public Object getHind_alates() {
         return hind_alates;
     }
 
-    public void setHind_alates(Integer hind_alates) {
+    public void setHind_alates(Object hind_alates) {
         this.hind_alates = hind_alates;
     }
 
-    public Integer getHind_kuni() {
+    public Object getHind_kuni() {
         return hind_kuni;
     }
 
-    public void setHind_kuni(Integer hind_kuni) {
+    public void setHind_kuni(Object hind_kuni) {
         this.hind_kuni = hind_kuni;
     }
 
-    public Integer getVoimsus_alates() {
+    public Object getVoimsus_alates() {
         return voimsus_alates;
     }
 
-    public void setVoimsus_alates(Integer voimsus_alates) {
+    public void setVoimsus_alates(Object voimsus_alates) {
         this.voimsus_alates = voimsus_alates;
     }
 
-    public Integer getVoimsus_kuni() {
+    public Object getVoimsus_kuni() {
         return voimsus_kuni;
     }
 
-    public void setVoimsus_kuni(Integer voimsus_kuni) {
+    public void setVoimsus_kuni(Object voimsus_kuni) {
         this.voimsus_kuni = voimsus_kuni;
     }
 
-    public Integer getLabisoit_alates() {
+    public Object getLabisoit_alates() {
         return labisoit_alates;
     }
 
-    public void setLabisoit_alates(Integer labisoit_alates) {
+    public void setLabisoit_alates(Object labisoit_alates) {
         this.labisoit_alates = labisoit_alates;
     }
 
-    public Integer getLabisoit_kuni() {
+    public Object getLabisoit_kuni() {
         return labisoit_kuni;
     }
 
-    public void setLabisoit_kuni(Integer labisoit_kuni) {
+    public void setLabisoit_kuni(Object labisoit_kuni) {
         this.labisoit_kuni = labisoit_kuni;
     }
 

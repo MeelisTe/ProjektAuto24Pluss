@@ -1,10 +1,11 @@
 package com.example.Auto24Pluss.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -44,90 +45,83 @@ public class AccountService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
+
+
+    public void saveHtml() {
+        List<String> links = searchRepository.getSearchLink();
+        System.out.println("\n" + links.size() + "\n");
+        for (String s : links) {
+            System.out.println(s);
+
+
 // TODO
-        // 1) tee andmebaasi päring ja saa kõik urlid
-        // 2) tee tsükkel mis käib nii kaua kui palju päringuid (urle) on vaja teha
-        // 3) tõsta vastuse töötlus eraldi alamfunktsiooni, et kood loetav oleks
-        // 4) pane päringu tegemine ja vastuse töötlemine loodud tsükklisse
+            // 1) tee andmebaasi päring ja saa kõik urlid
+            // 2) tee tsükkel mis käib nii kaua kui palju päringuid (urle) on vaja teha
+
+            // 3) tõsta vastuse töötlus eraldi alamfunktsiooni, et kood loetav oleks
+            // 4) pane päringu tegemine ja vastuse töötlemine loodud tsükklisse
+
+            String htmlString = restTemplate.getForObject(s, String.class);
+            //  String htmlString1 = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
+
+            System.out.println("\n" + "Done" + "\n");
+
+            int sõidukeidStartIndex = htmlString.indexOf(sõidukeid) + sõidukeid.length();
+            int sõidukeidEndIndex = htmlString.indexOf("<", sõidukeidStartIndex);
+            String sõidukeidkokku = htmlString.substring(sõidukeidStartIndex, sõidukeidEndIndex);
+            int sõidukid = Integer.valueOf(sõidukeidkokku);
+            System.out.println("Sõidukeid kokku: " + sõidukid + "\n");
+
+            int i = 0;
+            int lastIndex1 = 0;
+            int lastIndex2 = 0;
+            int lastIndex3 = 0;
+            int searchId = 0;
+            int userId = 0;
+            int oldPrice = 0;
 
 
-        String htmlString = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
+            while (i < sõidukid) { //hind loop
 
-     //   System.out.println(htmlString);
+                int hindStartIndex = htmlString.indexOf(hind, lastIndex1) + hind.length();
+                lastIndex1 = hindStartIndex + hind.length();
+                int hindEndIndex = htmlString.indexOf("<", hindStartIndex);
+                String hindValueString = htmlString.substring(hindStartIndex, hindEndIndex);
+                hindValueString = hindValueString.replace("&nbsp;", "");
+                int price = Integer.valueOf(hindValueString.trim());
+                //    System.out.println(price);
 
-        System.out.println("");
+                int linkStartIndex = htmlString.indexOf(link, lastIndex2) + link.length();
+                lastIndex2 = linkStartIndex + link.length();
+                int linkEndIndex = htmlString.indexOf("\">", linkStartIndex);
+                String linkValueIdentifier = htmlString.substring(linkStartIndex, linkEndIndex);
+                String linkUrl = "https://www.auto24.ee/used/" + linkValueIdentifier;
+                //    System.out.println(linkUrl);
 
-        System.out.println("Done");
+                int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex3) + link.length();
+                nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
+                int nimetusEndIndex = htmlString.indexOf("</a>", nimetusStartIndex);
+                lastIndex3 = nimetusEndIndex;
+                String resultName = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
+                //    System.out.println(resultName);
 
-        System.out.println("");
+                //    System.out.println("");
 
+                searchRepository.saveHtml(searchId, userId, resultName, price, oldPrice, linkUrl);
 
-        int sõidukeidStartIndex = htmlString.indexOf(sõidukeid) + sõidukeid.length();
-        int sõidukeidEndIndex = htmlString.indexOf("<", sõidukeidStartIndex);
-        String sõidukeidkokku = htmlString.substring(sõidukeidStartIndex, sõidukeidEndIndex);
-        int sõidukid = Integer.valueOf(sõidukeidkokku);
-        System.out.println("Sõidukeid kokku: " + sõidukid + "\n");
-
-
-        int i = 0;
-        int lastIndex1 = 0;
-        int lastIndex2 = 0;
-        int lastIndex3 = 0;
-
-        while (i < sõidukid) { //hind loop
-
-            int hindStartIndex = htmlString.indexOf(hind, lastIndex1) + hind.length();
-            lastIndex1 = hindStartIndex + hind.length();
-            int hindEndIndex = htmlString.indexOf("<", hindStartIndex);
-            String hindValueString = htmlString.substring(hindStartIndex, hindEndIndex);
-            hindValueString = hindValueString.replace("&nbsp;", "");
-            price = Integer.valueOf(hindValueString.trim());
-        //    System.out.println(price);
-
-            int linkStartIndex = htmlString.indexOf(link, lastIndex2) + link.length();
-            lastIndex2 = linkStartIndex + link.length();
-            int linkEndIndex = htmlString.indexOf("\">", linkStartIndex);
-            String linkValueIdentifier = htmlString.substring(linkStartIndex, linkEndIndex);
-            linkUrl = "https://www.auto24.ee/used/" + linkValueIdentifier;
-        //    System.out.println(linkUrl);
-
-            int nimetusStartIndex = htmlString.indexOf("<td class=\"make_and_model\">", lastIndex3) + link.length();
-            nimetusStartIndex = htmlString.indexOf(">", nimetusStartIndex) + 1;
-            int nimetusEndIndex = htmlString.indexOf("</a>", nimetusStartIndex);
-            lastIndex3 = nimetusEndIndex;
-            resultName = htmlString.substring(nimetusStartIndex, nimetusEndIndex);
-        //    System.out.println(resultName);
-
-        //    System.out.println("");
-
-            //        searchRepository.saveHtml(searchId, userId, resultName, price, oldPrice, linkUrl);
-
-            i++;
+                i++;
+            }
         }
     }
 
+    /*public void searchLink() {
 
-    public void searchLink(List<String> searchLink) {
-
-        System.out.println("test");
-
-        for (int i = 0; i < searchLink.size(); i++) {
-
-            List<String> linkResultList = searchRepository.getSearchLink();
-            System.out.println(linkResultList.size());
-        } System.out.println(searchLink);
-
-   /*     searchRepository.getSearchLinkCount().size();
-
-        List <String> a = searchRepository.getSearchLinkCount();
-        System.out.println(a);*/
-    }
-
-    // 1) tee andmebaasi päring ja saa kõik urlid
-    // 2) tee tsükkel mis käib nii kaua kui palju päringuid (urle) on vaja teha
-    // 3) tõsta vastuse töötlus eraldi alamfunktsiooni, et kood loetav oleks
-    // 4) pane päringu tegemine ja vastuse töötlemine loodud tsükklisse
+        List<String> linkResultList = searchRepository.getSearchLink();
+        System.out.println(linkResultList.size() + "\n");
+        for (String s : linkResultList) {
+            System.out.println(s);
+        }
+    }*/
 
 
     public void createNewAccount(String firstname, String lastname, String username, String password, String

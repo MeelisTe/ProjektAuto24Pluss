@@ -37,11 +37,11 @@ public class AccountController {
         accountService.updateInformation(request.getPassword(), request.getEmail());
     }
 
-/*    @GetMapping("displayresults")
-    public String displayresults() {
+    @GetMapping("displayresults")
+    public List<SearchLinkSave> displayresults() {
         return accountService.displayresults();
     }
-*/
+
     @GetMapping("markResult")
     public List<GetcarMarkResult> markResult() {
         return accountService.markResult(1);

@@ -139,28 +139,28 @@ public class AccountService {
     public void updateInformation(String password, String email) {
         accountRepository.updateInformation(password, email);
     }
-/*
-    public List<SearchSave> displayresults() {
+
+    public List<SearchLinkSave> displayresults() {
         return accountRepository.displayresults();
     }
-*/
+
     public List<GetcarMarkResult> markResult(int user_id) {
         List<GetcarMarkResult> result = new ArrayList<>();
-        List<String> searchLinkList = accountRepository.getLink(user_id);
-        for (int i = 0; i < searchLinkList.size(); i++) {
-            String searchLink = searchLinkList.get(i);
+        List<SearchEntity> searchLinkList = accountRepository.getLink(user_id);
+        for (SearchEntity searchEntity : searchLinkList) {
+            String searchLink = searchEntity.getLink();
             GetcarMarkResult resultElement = new GetcarMarkResult();
             resultElement.setMark(accountRepository.getCarMake(findElementByCode(searchLink, autoMark)));
             resultElement.setMudel(accountRepository.getCarmodel(findElementByCode(searchLink, autoMudel)));
             resultElement.setKeretyyp(accountRepository.getKeretyyp(findElementByCode(searchLink, keretyyp)));
-            resultElement.setAasta_alates(findElementByCode(searchLink, aastaAlates));
-            resultElement.setAasta_kuni(findElementByCode(searchLink, aastaKuni));
-            resultElement.setHind_alates(findElementByCode(searchLink, hindAlates));
-            resultElement.setHind_kuni(findElementByCode(searchLink, hindKuni));
-            resultElement.setVoimsus_alates(findElementByCode(searchLink, voimsusAlates));
-            resultElement.setVoimsus_kuni(findElementByCode(searchLink, voimsusKuni));
-            resultElement.setLabisoit_alates(findElementByCode(searchLink, labisoitAlates));
-            resultElement.setLabisoit_kuni(findElementByCode(searchLink, labisoitKuni));
+            resultElement.setAasta_alates(accountRepository.getAasta_alates(findElementByCode(searchLink, aastaAlates)));
+            resultElement.setAasta_kuni(accountRepository.getAasta_kuni(findElementByCode(searchLink, aastaKuni)));
+            resultElement.setHind_alates(accountRepository.getHind_alates(findElementByCode(searchLink, hindAlates)));
+            resultElement.setHind_kuni(accountRepository.getHind_kuni(findElementByCode(searchLink, hindKuni)));
+            resultElement.setVoimsus_alates(accountRepository.getVoimsus_alates(findElementByCode(searchLink, voimsusAlates)));
+            resultElement.setVoimsus_kuni(accountRepository.getVoimsus_kuni(findElementByCode(searchLink, voimsusKuni)));
+            resultElement.setLabisoit_alates(accountRepository.getLabisoit_alates(findElementByCode(searchLink, labisoitAlates)));
+            resultElement.setLabisoit_kuni(accountRepository.getLabisoit_kuni(findElementByCode(searchLink, labisoitKuni)));
             resultElement.setVarv(accountRepository.getCarcolor(findElementByCode(searchLink, varv)));
             resultElement.setKutus(accountRepository.getCarfuel(findElementByCode(searchLink, kytus)));
             resultElement.setKaigukast(accountRepository.getTransmission(findElementByCode(searchLink, kaigukast)));
@@ -171,6 +171,7 @@ public class AccountService {
             resultElement.setJarjesta(accountRepository.getJarjesta(findElementByCode(searchLink, jarjesta)));
             resultElement.setNaita(accountRepository.getNaita(findElementByCode(searchLink, naita)));
             resultElement.setOksjon(accountRepository.getOksjon(findElementByCode(searchLink, oksjon)));
+            resultElement.setSearchId(searchEntity.getId());
             result.add(resultElement);
 
         }

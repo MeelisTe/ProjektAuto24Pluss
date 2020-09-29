@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
-import javax.naming.directory.SearchResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +43,6 @@ public class AccountService {
     private RestTemplate restTemplate;
 
 
-
     public void saveHtml() {
         List<SearchEntity> links = accountRepository.getLink(1);
         System.out.println("\n" + links.size() + "\n");
@@ -73,7 +70,7 @@ public class AccountService {
             int lastIndex2 = 0;
             int lastIndex3 = 0;
             int userId = 0;
-            int oldPrice = 0;
+            int oldPrice;
 
 
             while (i < sõidukid) { //hind loop
@@ -102,12 +99,32 @@ public class AccountService {
 
                 //    System.out.println("");
 
-                searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
+
+
+                List<Integer> oldPriceList = searchRepository.getOldPrice(0);
+
+                if (oldPriceList.size() == 4) {
+                    oldPrice = oldPriceList.get(0);
+                } else {
+                    oldPrice = price;
+                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
+                }
 
                 i++;
+
+
+
+                /*if (price != 0 && oldPrice == 0) {
+                    oldPrice = price;
+                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
+                } else {
+                    searchRepository.saveOldPrice(s.getId(), userId, price, oldPrice);
+
+                }*/
             }
         }
     }
+
 
     /*public void searchLink() {
 
@@ -126,11 +143,11 @@ public class AccountService {
 
     public void saveURL(List<String> searchlink, Long userId) {
 
-            for (int i = 0; i < searchlink.size(); i++) {
-  //            Selle lühem ja "parem" syntax võiks olla "for (String s : searchlink) {}, mida alustan iter-ga"
-                accountRepository.saveURL(searchlink.get(i), 1L);
-            }
-            System.out.println(searchlink);
+        for (int i = 0; i < searchlink.size(); i++) {
+            //            Selle lühem ja "parem" syntax võiks olla "for (String s : searchlink) {}, mida alustan iter-ga"
+            accountRepository.saveURL(searchlink.get(i), 1L);
+        }
+        System.out.println(searchlink);
     }
 
     public void deleteSearch(Integer user_id, Integer searchId) {

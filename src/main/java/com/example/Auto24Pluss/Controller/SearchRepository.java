@@ -50,4 +50,21 @@ public class SearchRepository {
         return jdbcTemplate.queryForList(sql, paramMap, String.class);
     }
 
+    public List<Integer> getOldPrice(int oldPrice) {
+        String sql = "SELECT oldprice from searchresult where linkurl = 'https://www.auto24.ee/used/3158937' and user_id = 1 and search_id = 1";
+        Map<String, Object> paramMap = new HashMap<>();
+        return jdbcTemplate.queryForList(sql, paramMap, Integer.class);
+
+    }
+
+    public void saveOldPrice(int searchId, int userId, int price, int oldPrice) {
+        String sql = "INSERT INTO searchresult (search_id, user_id, price, oldprice) values(:searchId, 1, :price, :oldprice)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("searchId", searchId);
+        paramMap.put("userId", userId);
+        paramMap.put("price", price);
+        paramMap.put("oldprice", oldPrice);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
 }

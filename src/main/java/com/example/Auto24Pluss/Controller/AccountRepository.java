@@ -55,11 +55,14 @@ public class AccountRepository {
         return jdbcTemplate.query(sql, new HashMap<>(), new ObjectRowMapper());
     }
 
-    public void deleteSearch(Integer user_id) {
-        String sql = "DELETE FROM search where user_id = :user_id";
+    public void deleteSearch(Integer user_id, Integer searchId) {
+        String sql = "DELETE from searchresult where user_id = :user_id and search_id = :searchId";
+        String sql1 = "DELETE FROM search where user_id = :user_id and id = :searchId";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("user_id", user_id);
+        paramMap.put("searchId", searchId);
         jdbcTemplate.update(sql, paramMap);
+        jdbcTemplate.update(sql1, paramMap);
     }
 
     public String getCarMake(Integer markIntValue) {

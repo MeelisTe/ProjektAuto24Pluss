@@ -152,8 +152,9 @@
                         '                    <div align="left" id="getNaita" aria-valuetext="Näita: "><b>Näita: </b>' + jsonData[i].naita + '</div>\n' +
                         '                    <div align="left" id="getOksjon" aria-valuetext="Oksjon: "><b>Oksjon: </b>' + jsonData[i].oksjon + '</div>\n' +
                         '                </ul>\n' +
-                        '                <button onclick="deleteRow(' + jsonData[i].searchId + ')" type="submit" class="btn btn-lg btn-block btn-outline-primary"\n' +
-                        '                        Style="color: #a71d2a; background-color: white">Kustuta otsing\n' +
+                        '                <button onclick="showResults(' + jsonData[i].searchId + ')" type="submit" class="btn btn-lg btn-block btn-primary">Kuva tulemused\n' +
+                        '                </button>\n' +
+                        '                <button onclick="deleteRow(' + jsonData[i].searchId + ')" type="submit" class="btn btn-lg btn-block btn-outline-primary">Kustuta otsing\n' +
                         '                </button>\n' +
                         '            </div>\n' +
                         '        </div>\n';

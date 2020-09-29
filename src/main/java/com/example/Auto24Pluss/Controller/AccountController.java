@@ -48,9 +48,9 @@ System.out.println("lalala");
         return accountService.markResult(1);
     }
 
-    @DeleteMapping("deleteSearch")
-    public void deleteSearch() {
-        accountService.deleteSearch(1);
+    @DeleteMapping("deleteSearch/{searchId}")
+    public void deleteSearch(@PathVariable Integer searchId) {
+        accountService.deleteSearch(1, searchId);
     }
   /*  @PostMapping("/addRows")
     public void addRows(@RequestBody )*/

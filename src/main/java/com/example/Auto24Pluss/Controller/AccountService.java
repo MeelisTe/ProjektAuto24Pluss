@@ -133,8 +133,8 @@ public class AccountService {
             System.out.println(searchlink);
     }
 
-    public void deleteSearch(Integer user_id) {
-        accountRepository.deleteSearch(1);
+    public void deleteSearch(Integer user_id, Integer searchId) {
+        accountRepository.deleteSearch(1, searchId);
     }
 
     public void updateInformation(String password, String email) {

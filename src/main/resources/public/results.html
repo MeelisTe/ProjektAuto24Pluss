@@ -66,74 +66,6 @@
 
 <div class="container">
     <div id="result-container" class="card-deck mb-3 text-center">
-        <div class="card mb-4 shadow-sm">
-  <!--          <div class="card-header text-center">
-                <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr. 1</a></h4>
-            </div>-->
-            <div class="card-body">
-                <ul class="list-unstyled mt-3 mb-4">
-                    <div align="left" id="getCarMake" aria-valuetext="Mark: "></div>
-                    <div align="left" id="getCarmodel">
-                    </div>
-                    <div align="left" id="getKeretyyp">
-                    </div>
-                    <div align="left" id="aastavahemik">
-                    </div>
-                    <div align="left" id="hinnavahemik">
-                    </div>
-                    <div align="left" id="voimsus">
-                    </div>
-                    <div align="left" id="labisoit">
-                    </div>
-                    <div align="left" id="getCarcolor">
-                    </div>
-                    <div align="left" id="getCarfuel">
-                    </div>
-                    <div align="left" id="getCartransmission">
-                    </div>
-                    <div align="left" id="getVedavsild">
-                    </div>
-                    <div align="left" id="getAsukoht">
-                    </div>
-                    <div align="left" id="getMyyja">
-                    </div>
-                    <div align="left" id="getAdage">
-                    </div>
-                    <div align="left" id="getJarjesta">
-                    </div>
-                    <div align="left" id="getNaita">
-                    </div>
-                    <div align="left" id="getOksjon">
-                    </div>
-                </ul>
-                <button id="buttonDelete" type="submit" class="btn btn-lg btn-block btn-outline-primary"
-                        Style="color: #a71d2a; background-color: white">Kustuta otsing
-                </button>
-            </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal"><a id="displayresults0">Otsing Nr.2</a></h4>
-            </div>
-            <div class="card-body">
-                <ul class="list-unstyled mt-3 mb-4">
-                    <div align="left">
-                    </div>
-
-                </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">Hakka kliendiks</button>
-            </div>
-        </div>
-        <!--<div class="card mb-4 shadow-sm">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal"><a id="displayresults1">Otsing Nr.3</a></h4>
-            </div>
-            <div class="card-body">
-                <ul class="list-unstyled mt-3 mb-4">
-                </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">Hakka kliendiks</button>
-            </div>
-        </div>-->
     </div>
 </div>
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -165,15 +97,13 @@
     elementlogout.addEventListener('click', function () {
         window.location.href = ('/logout.html')
     })
-    let elementdelete = document.getElementById("buttonDelete");
-    elementdelete.addEventListener('click', function () {
-        fetch('/deleteSearch', {
+    function deleteRow(searchId){
+        fetch('/deleteSearch/'+searchId, {
             method: 'DELETE',
             cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({})
         })
             .then(function (jsonData) {
                 window.location.href = ('/results.html')
@@ -181,10 +111,10 @@
             .catch(function (err) {
                 console.log(err);
             });
-    })
-    function deleteElement(searchId){
-        alert(searchId);
     }
+    /*    function deleteElement(searchId){
+            alert(searchId);
+        }*/
 
     window.onload = function () {
         let resultContainer = document.getElementById("result-container");
@@ -194,36 +124,37 @@
                 return response.json();
             })
             .then(function (jsonData) {
-  //              document.getElementById("displayresults").innerHTML = "<table><tr><td><a href='" + jsonData[i].searchlink + "'>" + jsonData[i].searchlink + "</a></td></tr></table>";
+                //              document.getElementById("displayresults").innerHTML = "<table><tr><td><a href='" + jsonData[i].searchlink + "'>" + jsonData[i].searchlink + "</a></td></tr></table>";
                 let html = '';
-                for(let i = 0; i < jsonData.length; i++){
+                for (let i = 0; i < jsonData.length; i++) {
                     html += '        <div class="card mb-4 shadow-sm">\n' +
-  /*                      '            <div class="card-header text-center">\n' +
-                        '                <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr.'+jsonData[i].searchlink +'</a></h4>\n' +
-                        '            </div>\n' +*/
+                        /*                      '            <div class="card-header text-center">\n' +
+                                              '                <h4 class="my-0 font-weight-normal text-center"><a id="displayresults">Otsing Nr.'+jsonData[i].searchlink +'</a></h4>\n' +
+                                              '            </div>\n' +*/
                         '            <div class="card-body">\n' +
                         '                <ul class="list-unstyled mt-3 mb-4">\n' +
-           //                                  <div align="left" id="searchId"></div>\n' +
-                        '                    <div align="left" id="getCarMake" aria-valuetext="Mark: "><b>Mark: </b>'+jsonData[i].mark+'</div>\n' +
-                        '                    <div align="left" id="getCarmodel" aria-valuetext="Mudel: "><b>Mudel: </b>'+jsonData[i].mudel+'</div>\n' +
-                        '                    <div align="left" id="getKeretyyp" aria-valuetext="Keretüüp: "><b>Keretüüp: </b>'+jsonData[i].keretyyp+'</div>\n' +
-                        '                    <div align="left" id="aastavahemik" aria-valuetext="Aasta: "><b>Aasta: </b>'+jsonData[i].aasta_alates+' kuni '+jsonData[i].aasta_kuni+'</div>\n' +
-                        '                    <div align="left" id="hinnavahemik"aria-valuetext="Aasta: "><b>Hind: </b>'+jsonData[i].hind_alates+' kuni '+jsonData[i].hind_kuni+'</div>\n' +
-                        '                    <div align="left" id="voimsus"aria-valuetext="Võimsus: "><b>Võimsus: </b>'+jsonData[i].voimsus_alates+' kuni '+jsonData[i].voimsus_kuni+'</div>\n' +
-                        '                    <div align="left" id="labisoit"aria-valuetext="Läbisõit: "><b>Läbisõit: </b>'+jsonData[i].labisoit_alates+' kuni '+jsonData[i].labisoit_kuni+'</div>\n' +
-                        '                    <div align="left" id="getCarcolor" aria-valuetext="Värv: "><b>Värv: </b>'+jsonData[i].varv+'</div>\n' +
-                        '                    <div align="left" id="getCarfuel" aria-valuetext="Kütus: "><b>Kütus: </b>'+jsonData[i].kutus+'</div>\n' +
-                        '                    <div align="left" id="getCartransmission" aria-valuetext="Käigukast: "><b>Käigukast: </b>'+jsonData[i].kaigukast+'</div>\n' +
-                        '                    <div align="left" id="getVedavsild" aria-valuetext="Vedav sild: "><b>Vedav sild: </b>'+jsonData[i].vedav_sild+'</div>\n' +
-                        '                    <div align="left" id="getAsukoht" aria-valuetext="Asukoht: "><b>Asukoht: </b>'+jsonData[i].asukoht+'</div>\n' +
-                        '                    <div align="left" id="getMyyja" aria-valuetext="Müüja: "><b>Müüja: </b>'+jsonData[i].muuja+'</div>\n' +
-                        '                    <div align="left" id="getAdage" aria-valuetext="Kuulutuse_vanus: "><b>Kuulutuse vanus: </b>'+jsonData[i].kuulutuse_vanus+'</div>\n' +
-                        '                    <div align="left" id="getJarjesta" aria-valuetext="Järjesta: "><b>Järjesta: </b>'+jsonData[i].jarjesta+'</div>\n' +
-                        '                    <div align="left" id="getNaita" aria-valuetext="Näita: "><b>Näita: </b>'+jsonData[i].naita+'</div>\n' +
-                        '                    <div align="left" id="getOksjon" aria-valuetext="Oksjon: "><b>Oksjon: </b>'+jsonData[i].oksjon+'</div>\n' +
+                        //                                  <div align="left" id="searchId"></div>\n' +
+                        '                    <div align="left" id="getCarMake" aria-valuetext="Mark: "><b>Mark: </b>' + jsonData[i].mark + '</div>\n' +
+                        '                    <div align="left" id="getCarmodel" aria-valuetext="Mudel: "><b>Mudel: </b>' + jsonData[i].mudel + '</div>\n' +
+                        '                    <div align="left" id="getKeretyyp" aria-valuetext="Keretüüp: "><b>Keretüüp: </b>' + jsonData[i].keretyyp + '</div>\n' +
+                        '                    <div align="left" id="aastavahemik" aria-valuetext="Aasta: "><b>Aasta: </b>' + jsonData[i].aasta_alates + ' kuni ' + jsonData[i].aasta_kuni + '</div>\n' +
+                        '                    <div align="left" id="hinnavahemik"aria-valuetext="Aasta: "><b>Hind: </b>' + jsonData[i].hind_alates + ' kuni ' + jsonData[i].hind_kuni + '</div>\n' +
+                        '                    <div align="left" id="voimsus"aria-valuetext="Võimsus: "><b>Võimsus: </b>' + jsonData[i].voimsus_alates + ' kuni ' + jsonData[i].voimsus_kuni + '</div>\n' +
+                        '                    <div align="left" id="labisoit"aria-valuetext="Läbisõit: "><b>Läbisõit: </b>' + jsonData[i].labisoit_alates + ' kuni ' + jsonData[i].labisoit_kuni + '</div>\n' +
+                        '                    <div align="left" id="getCarcolor" aria-valuetext="Värv: "><b>Värv: </b>' + jsonData[i].varv + '</div>\n' +
+                        '                    <div align="left" id="getCarfuel" aria-valuetext="Kütus: "><b>Kütus: </b>' + jsonData[i].kutus + '</div>\n' +
+                        '                    <div align="left" id="getCartransmission" aria-valuetext="Käigukast: "><b>Käigukast: </b>' + jsonData[i].kaigukast + '</div>\n' +
+                        '                    <div align="left" id="getVedavsild" aria-valuetext="Vedav sild: "><b>Vedav sild: </b>' + jsonData[i].vedav_sild + '</div>\n' +
+                        '                    <div align="left" id="getAsukoht" aria-valuetext="Asukoht: "><b>Asukoht: </b>' + jsonData[i].asukoht + '</div>\n' +
+                        '                    <div align="left" id="getMyyja" aria-valuetext="Müüja: "><b>Müüja: </b>' + jsonData[i].muuja + '</div>\n' +
+                        '                    <div align="left" id="getAdage" aria-valuetext="Kuulutuse_vanus: "><b>Kuulutuse vanus: </b>' + jsonData[i].kuulutuse_vanus + '</div>\n' +
+                        '                    <div align="left" id="getJarjesta" aria-valuetext="Järjesta: "><b>Järjesta: </b>' + jsonData[i].jarjesta + '</div>\n' +
+                        '                    <div align="left" id="getNaita" aria-valuetext="Näita: "><b>Näita: </b>' + jsonData[i].naita + '</div>\n' +
+                        '                    <div align="left" id="getOksjon" aria-valuetext="Oksjon: "><b>Oksjon: </b>' + jsonData[i].oksjon + '</div>\n' +
                         '                </ul>\n' +
-                        '                <button onclick="deleteElement('+jsonData[i].searchId+')" type="submit" class="btn btn-lg btn-block btn-outline-primary"\n' +
-                        '                        Style="color: #a71d2a; background-color: white">Kustuta otsing\n' +
+                        '                <button onclick="showResults(' + jsonData[i].searchId + ')" type="submit" class="btn btn-lg btn-block btn-primary">Kuva tulemused\n' +
+                        '                </button>\n' +
+                        '                <button onclick="deleteRow(' + jsonData[i].searchId + ')" type="submit" class="btn btn-lg btn-block btn-outline-primary">Kustuta otsing\n' +
                         '                </button>\n' +
                         '            </div>\n' +
                         '        </div>\n';
@@ -233,132 +164,132 @@
             .catch(function (err) {
             });
 
-  /*      Selle kõik kirjutasin back-i üle
+        /*      Selle kõik kirjutasin back-i üle
 
-        document.getElementById("getCarMake")
-        fetch('/markResult')
-            .then(function (response) {
-                console.log(response);
-                return response.json();
-            })
-            .then(function (jsonData) {
-                    console.log(jsonData);
-                    if (jsonData.mark != null) {
-                        document.getElementById("getCarMake").innerHTML = "<table><tr><td></td><td>" + "<b>Mark: </b>" + jsonData.mark + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getCarMake").innerHTML = "<b>" + "Mark:" + "</b>" + "-";
-                    }
-                    if (jsonData.mudel != null) {
-                        document.getElementById("getCarmodel").innerHTML = "<table><tr><td></td><td>" + "<b>Mudel: </b>" + jsonData.mudel + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getCarmodel").innerHTML = "<b>" + "Mudel:" + "</b>" + "-";
-                    }
-                    if (jsonData.keretyyp != null) {
-                        document.getElementById("getKeretyyp").innerHTML = "<table><tr><td></td><td>" + "<b>Keretüüp: </b>" + jsonData.keretyyp + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getKeretyyp").innerHTML = "<b>" + "Keretüüp:" + "</b>" + "-";
-                    }
-                    if (jsonData.aasta_alates != null && jsonData.aasta_kuni != null) {
-                        document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>" + jsonData.aasta_alates + " kuni " + jsonData.aasta_kuni + "</td></tr></table>";
-                    } else if (jsonData.aasta_alates == null && jsonData.aasta_kuni != null) {
-                        document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>" + " kuni " + jsonData.aasta_kuni + "</td></tr></table>";
-                    } else if (jsonData.aasta_alates == null && jsonData.aasta_kuni == null) {
-                        document.getElementById("aastavahemik").innerHTML = "<b>" + "Aasta:" + "</b>" + "-";
-                    } else {
-                        document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>alates " + jsonData.aasta_alates + "</td></tr></table>";
-                    }
-                    if (jsonData.hind_alates != null && jsonData.hind_kuni != null) {
-                        document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>" + jsonData.hind_alates + " kuni " + jsonData.hind_kuni + "</td></tr></table>";
-                    } else if (jsonData.hind_alates == null && jsonData.hind_kuni != null) {
-                        document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>" + " kuni " + jsonData.hind_kuni + "</td></tr></table>";
-                    } else if (jsonData.hind_alates == null && jsonData.hind_kuni == null) {
-                        document.getElementById("hinnavahemik").innerHTML = "<b>" + "Hind:" + "</b>" + "-";
-                    } else {
-                        document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>alates " + jsonData.hind_alates + "</td></tr></table>";
-                    }
-                    if (jsonData.voimsus_alates != null && jsonData.voimsus_kuni != null) {
-                        document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>" + jsonData.voimsus_alates + " kuni " + jsonData.voimsus_kuni + "(kw)" + "</td></tr></table>";
-                    } else if (jsonData.voimsus_alates == null && jsonData.voimsus_kuni != null) {
-                        document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>" + " kuni " + jsonData.voimsus_kuni + "(kw)" + "</td></tr></table>";
-                    } else if (jsonData.voimsus_alates == null && jsonData.voimsus_kuni == null) {
-                        document.getElementById("voimsus").innerHTML = "<b>" + "Võimsus:" + "</b>" + "-";
-                    } else {
-                        document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>alates " + jsonData.voimsus_alates + "(kw)" + "</td></tr></table>";
-                    }
-                    if (jsonData.labisoit_alates != null && jsonData.labisoit_kuni != null) {
-                        document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>" + jsonData.labisoit_alates + " kuni " + jsonData.labisoit_kuni + "(km)" + "</td></tr></table>";
-                    } else if (jsonData.labisoit_alates == null && jsonData.labisoit_kuni != null) {
-                        document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>" + " kuni " + jsonData.labisoit_kuni + "(km)" + "</td></tr></table>";
-                    } else if (jsonData.labisoit_alates == null && jsonData.labisoit_kuni == null) {
-                        document.getElementById("labisoit").innerHTML = "<b>" + "Läbisõit:" + "</b>" + "-";
-                    } else {
-                        document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>alates " + jsonData.labisoit_alates + "(km)" + "</td></tr></table>";
-                    }
+              document.getElementById("getCarMake")
+              fetch('/markResult')
+                  .then(function (response) {
+                      console.log(response);
+                      return response.json();
+                  })
+                  .then(function (jsonData) {
+                          console.log(jsonData);
+                          if (jsonData.mark != null) {
+                              document.getElementById("getCarMake").innerHTML = "<table><tr><td></td><td>" + "<b>Mark: </b>" + jsonData.mark + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getCarMake").innerHTML = "<b>" + "Mark:" + "</b>" + "-";
+                          }
+                          if (jsonData.mudel != null) {
+                              document.getElementById("getCarmodel").innerHTML = "<table><tr><td></td><td>" + "<b>Mudel: </b>" + jsonData.mudel + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getCarmodel").innerHTML = "<b>" + "Mudel:" + "</b>" + "-";
+                          }
+                          if (jsonData.keretyyp != null) {
+                              document.getElementById("getKeretyyp").innerHTML = "<table><tr><td></td><td>" + "<b>Keretüüp: </b>" + jsonData.keretyyp + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getKeretyyp").innerHTML = "<b>" + "Keretüüp:" + "</b>" + "-";
+                          }
+                          if (jsonData.aasta_alates != null && jsonData.aasta_kuni != null) {
+                              document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>" + jsonData.aasta_alates + " kuni " + jsonData.aasta_kuni + "</td></tr></table>";
+                          } else if (jsonData.aasta_alates == null && jsonData.aasta_kuni != null) {
+                              document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>" + " kuni " + jsonData.aasta_kuni + "</td></tr></table>";
+                          } else if (jsonData.aasta_alates == null && jsonData.aasta_kuni == null) {
+                              document.getElementById("aastavahemik").innerHTML = "<b>" + "Aasta:" + "</b>" + "-";
+                          } else {
+                              document.getElementById("aastavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Aasta: </b>alates " + jsonData.aasta_alates + "</td></tr></table>";
+                          }
+                          if (jsonData.hind_alates != null && jsonData.hind_kuni != null) {
+                              document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>" + jsonData.hind_alates + " kuni " + jsonData.hind_kuni + "</td></tr></table>";
+                          } else if (jsonData.hind_alates == null && jsonData.hind_kuni != null) {
+                              document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>" + " kuni " + jsonData.hind_kuni + "</td></tr></table>";
+                          } else if (jsonData.hind_alates == null && jsonData.hind_kuni == null) {
+                              document.getElementById("hinnavahemik").innerHTML = "<b>" + "Hind:" + "</b>" + "-";
+                          } else {
+                              document.getElementById("hinnavahemik").innerHTML = "<table><tr><td></td><td>" + "<b>Hind: </b>alates " + jsonData.hind_alates + "</td></tr></table>";
+                          }
+                          if (jsonData.voimsus_alates != null && jsonData.voimsus_kuni != null) {
+                              document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>" + jsonData.voimsus_alates + " kuni " + jsonData.voimsus_kuni + "(kw)" + "</td></tr></table>";
+                          } else if (jsonData.voimsus_alates == null && jsonData.voimsus_kuni != null) {
+                              document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>" + " kuni " + jsonData.voimsus_kuni + "(kw)" + "</td></tr></table>";
+                          } else if (jsonData.voimsus_alates == null && jsonData.voimsus_kuni == null) {
+                              document.getElementById("voimsus").innerHTML = "<b>" + "Võimsus:" + "</b>" + "-";
+                          } else {
+                              document.getElementById("voimsus").innerHTML = "<table><tr><td></td><td>" + "<b>Võimsus: </b>alates " + jsonData.voimsus_alates + "(kw)" + "</td></tr></table>";
+                          }
+                          if (jsonData.labisoit_alates != null && jsonData.labisoit_kuni != null) {
+                              document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>" + jsonData.labisoit_alates + " kuni " + jsonData.labisoit_kuni + "(km)" + "</td></tr></table>";
+                          } else if (jsonData.labisoit_alates == null && jsonData.labisoit_kuni != null) {
+                              document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>" + " kuni " + jsonData.labisoit_kuni + "(km)" + "</td></tr></table>";
+                          } else if (jsonData.labisoit_alates == null && jsonData.labisoit_kuni == null) {
+                              document.getElementById("labisoit").innerHTML = "<b>" + "Läbisõit:" + "</b>" + "-";
+                          } else {
+                              document.getElementById("labisoit").innerHTML = "<table><tr><td></td><td>" + "<b>Läbisoit: </b>alates " + jsonData.labisoit_alates + "(km)" + "</td></tr></table>";
+                          }
 
-                    if (jsonData.varv != null) {
-                        document.getElementById("getCarcolor").innerHTML = "<table><tr><td></td><td>" + "<b>Värv: </b>" + jsonData.varv + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getCarcolor").innerHTML = "<b>" + "Värv:" + "</b>" + "-";
-                    }
+                          if (jsonData.varv != null) {
+                              document.getElementById("getCarcolor").innerHTML = "<table><tr><td></td><td>" + "<b>Värv: </b>" + jsonData.varv + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getCarcolor").innerHTML = "<b>" + "Värv:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.kutus != null) {
-                        document.getElementById("getCarfuel").innerHTML = "<table><tr><td></td><td>" + "<b>Kütus: </b>" + jsonData.kutus + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getCarfuel").innerHTML = "<b>" + "Kütus:" + "</b>" + "-";
-                    }
+                          if (jsonData.kutus != null) {
+                              document.getElementById("getCarfuel").innerHTML = "<table><tr><td></td><td>" + "<b>Kütus: </b>" + jsonData.kutus + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getCarfuel").innerHTML = "<b>" + "Kütus:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.kaigukast != null) {
-                        document.getElementById("getCartransmission").innerHTML = "<table><tr><td></td><td>" + "<b>Käigukast: </b>" + jsonData.kaigukast + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getCartransmission").innerHTML = "<b>" + "Käigukast:" + "</b>" + "-";
-                    }
+                          if (jsonData.kaigukast != null) {
+                              document.getElementById("getCartransmission").innerHTML = "<table><tr><td></td><td>" + "<b>Käigukast: </b>" + jsonData.kaigukast + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getCartransmission").innerHTML = "<b>" + "Käigukast:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.vedav_sild != null) {
-                        document.getElementById("getVedavsild").innerHTML = "<table><tr><td></td><td>" + "<b>Vedav sild: </b>" + jsonData.vedav_sild + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getVedavsild").innerHTML = "<b>" + "Vedav sild:" + "</b>" + "-";
-                    }
+                          if (jsonData.vedav_sild != null) {
+                              document.getElementById("getVedavsild").innerHTML = "<table><tr><td></td><td>" + "<b>Vedav sild: </b>" + jsonData.vedav_sild + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getVedavsild").innerHTML = "<b>" + "Vedav sild:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.asukoht != null) {
-                        document.getElementById("getAsukoht").innerHTML = "<table><tr><td></td><td>" + "<b>Asukoht: </b>" + jsonData.asukoht + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getAsukoht").innerHTML = "<b>" + "Asukoht:" + "</b>" + "-";
-                    }
+                          if (jsonData.asukoht != null) {
+                              document.getElementById("getAsukoht").innerHTML = "<table><tr><td></td><td>" + "<b>Asukoht: </b>" + jsonData.asukoht + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getAsukoht").innerHTML = "<b>" + "Asukoht:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.muuja != null) {
-                        document.getElementById("getMyyja").innerHTML = "<table><tr><td></td><td>" + "<b>Müüja: </b>" + jsonData.muuja + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getMyyja").innerHTML = "<b>" + "Müüja:" + "</b>" + "-";
-                    }
+                          if (jsonData.muuja != null) {
+                              document.getElementById("getMyyja").innerHTML = "<table><tr><td></td><td>" + "<b>Müüja: </b>" + jsonData.muuja + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getMyyja").innerHTML = "<b>" + "Müüja:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.kuulutuse_vanus != null) {
-                        document.getElementById("getAdage").innerHTML = "<table><tr><td></td><td>" + "<b>Kuulutuse vanus: </b>" + jsonData.kuulutuse_vanus + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getAdage").innerHTML = "<b>" + "Kuulutuse vanus:" + "</b>" + "-";
-                    }
+                          if (jsonData.kuulutuse_vanus != null) {
+                              document.getElementById("getAdage").innerHTML = "<table><tr><td></td><td>" + "<b>Kuulutuse vanus: </b>" + jsonData.kuulutuse_vanus + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getAdage").innerHTML = "<b>" + "Kuulutuse vanus:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.jarjesta != null) {
-                        document.getElementById("getJarjesta").innerHTML = "<table><tr><td></td><td>" + "<b>Järjesta: </b>" + jsonData.jarjesta + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getJarjesta").innerHTML = "<b>" + "Järjesta:" + "</b>" + "-";
-                    }
+                          if (jsonData.jarjesta != null) {
+                              document.getElementById("getJarjesta").innerHTML = "<table><tr><td></td><td>" + "<b>Järjesta: </b>" + jsonData.jarjesta + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getJarjesta").innerHTML = "<b>" + "Järjesta:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.naita != null) {
-                        document.getElementById("getNaita").innerHTML = "<table><tr><td></td><td>" + "<b>Näita: </b>" + jsonData.naita + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getNaita").innerHTML = "<b>" + "Näita:" + "</b>" + "-";
-                    }
+                          if (jsonData.naita != null) {
+                              document.getElementById("getNaita").innerHTML = "<table><tr><td></td><td>" + "<b>Näita: </b>" + jsonData.naita + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getNaita").innerHTML = "<b>" + "Näita:" + "</b>" + "-";
+                          }
 
-                    if (jsonData.oksjon != null) {
-                        document.getElementById("getOksjon").innerHTML = "<table><tr><td></td><td>" + "<b>Oksjon: </b>" + jsonData.oksjon + "</td></tr></table>";
-                    } else {
-                        document.getElementById("getOksjon").innerHTML = "<b>" + "Oksjon:" + "</b>" + "-";
-                    }
-                }
-            )
-            .catch(function (err) {
-                console.log(err)
-            });*/
+                          if (jsonData.oksjon != null) {
+                              document.getElementById("getOksjon").innerHTML = "<table><tr><td></td><td>" + "<b>Oksjon: </b>" + jsonData.oksjon + "</td></tr></table>";
+                          } else {
+                              document.getElementById("getOksjon").innerHTML = "<b>" + "Oksjon:" + "</b>" + "-";
+                          }
+                      }
+                  )
+                  .catch(function (err) {
+                      console.log(err)
+                  });*/
     }
 
 </script>

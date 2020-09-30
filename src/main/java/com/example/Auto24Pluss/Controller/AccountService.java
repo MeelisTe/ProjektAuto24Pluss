@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
-import javax.naming.directory.SearchResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,10 +43,9 @@ public class AccountService {
     private RestTemplate restTemplate;
 
 
-
     public void saveHtml() {
         List<SearchEntity> links = accountRepository.getLink(1);
-        System.out.println("\n" + links.size() + "\n");
+        System.out.println("\n" + "Kasutaja salvestatud linkide arv: " + links.size() + "\n");
         for (SearchEntity s : links) {
 // TODO
             // 1) tee andmebaasi päring ja saa kõik urlid
@@ -58,7 +55,6 @@ public class AccountService {
             // 4) pane päringu tegemine ja vastuse töötlemine loodud tsükklisse
 
             String htmlString = restTemplate.getForObject(s.getLink(), String.class);
-            //  String htmlString1 = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
 
             System.out.println("\n" + "Done" + "\n");
 
@@ -66,17 +62,16 @@ public class AccountService {
             int sõidukeidEndIndex = htmlString.indexOf("<", sõidukeidStartIndex);
             String sõidukeidkokku = htmlString.substring(sõidukeidStartIndex, sõidukeidEndIndex);
             int sõidukid = Integer.valueOf(sõidukeidkokku);
-            System.out.println("Sõidukeid kokku: " + sõidukid + "\n");
+            System.out.println("Sõidukeid otsingus kokku: " + sõidukid + "\n");
 
             int i = 0;
             int lastIndex1 = 0;
             int lastIndex2 = 0;
             int lastIndex3 = 0;
             int userId = 0;
-            int oldPrice = 0;
+            int oldPrice;
 
-
-            while (i < sõidukid) { //hind loop
+            while (i < sõidukid) {
 
                 int hindStartIndex = htmlString.indexOf(hind, lastIndex1) + hind.length();
                 lastIndex1 = hindStartIndex + hind.length();
@@ -102,12 +97,42 @@ public class AccountService {
 
                 //    System.out.println("");
 
-                searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
 
-                i++;
+                List<Integer> oldPriceList = searchRepository.getOldPrice(1,s.getId() , linkUrl);
+
+                if (oldPriceList.isEmpty()) {
+                    oldPrice = price;
+                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
+                } else {
+                    oldPrice = oldPriceList.get(0);
+                    searchRepository.saveNewPrice(price, 1, s.getId(), linkUrl);
+                }i++;
+
             }
         }
     }
+
+                /*if (oldPriceList.size() == 1) {
+                    oldPrice = oldPriceList.get(0);
+                    searchRepository.saveNewPrice(price);
+                    i++;
+                } else {
+                    oldPrice = price;
+                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
+                    i++;
+                }*/
+
+
+                /*if (price != 0 && oldPrice == 0) {
+                    oldPrice = price;
+                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
+                } else {
+                    searchRepository.saveOldPrice(s.getId(), userId, price, oldPrice);
+
+                }*/
+
+
+
 
     /*public void searchLink() {
 
@@ -126,11 +151,11 @@ public class AccountService {
 
     public void saveURL(List<String> searchlink, Long userId) {
 
-            for (int i = 0; i < searchlink.size(); i++) {
-  //            Selle lühem ja "parem" syntax võiks olla "for (String s : searchlink) {}, mida alustan iter-ga"
-                accountRepository.saveURL(searchlink.get(i), 1L);
-            }
-            System.out.println(searchlink);
+        for (int i = 0; i < searchlink.size(); i++) {
+            //            Selle lühem ja "parem" syntax võiks olla "for (String s : searchlink) {}, mida alustan iter-ga"
+            accountRepository.saveURL(searchlink.get(i), 1L);
+        }
+        System.out.println(searchlink);
     }
 
     public void deleteSearch(Integer user_id, Integer searchId) {

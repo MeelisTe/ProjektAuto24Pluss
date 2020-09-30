@@ -50,4 +50,24 @@ public class SearchRepository {
         return jdbcTemplate.queryForList(sql, paramMap, String.class);
     }
 
+    public List<Integer> getOldPrice(int userId, int searchId, String linkUrl) {
+        String sql = "SELECT oldprice from searchresult where linkurl = :linkUrl and user_id = :userId and search_id = :searchId";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("searchId", searchId);
+        paramMap.put("userId", userId);
+        paramMap.put("linkUrl", linkUrl);
+        return jdbcTemplate.queryForList(sql, paramMap, Integer.class);
+
+    }
+
+    public void saveNewPrice(int price, int userId, int searchId, String linkUrl) {
+        String sql = "UPDATE searchresult SET price = :price where linkurl = :linkUrl and user_id = :userId and search_id = :searchId ";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("price", price);
+        paramMap.put("searchId", searchId);
+        paramMap.put("userId", userId);
+        paramMap.put("linkUrl", linkUrl);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
 }

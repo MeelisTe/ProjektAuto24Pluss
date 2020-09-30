@@ -45,7 +45,7 @@ public class AccountService {
 
     public void saveHtml() {
         List<SearchEntity> links = accountRepository.getLink(1);
-        System.out.println("\n" + links.size() + "\n");
+        System.out.println("\n" + "Kasutaja salvestatud linkide arv: " + links.size() + "\n");
         for (SearchEntity s : links) {
 // TODO
             // 1) tee andmebaasi päring ja saa kõik urlid
@@ -55,7 +55,6 @@ public class AccountService {
             // 4) pane päringu tegemine ja vastuse töötlemine loodud tsükklisse
 
             String htmlString = restTemplate.getForObject(s.getLink(), String.class);
-            //  String htmlString1 = restTemplate.getForObject("https://www.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&aj=&b=247&ae=2&af=50&ag=0&ag=1&otsi=otsi", String.class);
 
             System.out.println("\n" + "Done" + "\n");
 
@@ -63,7 +62,7 @@ public class AccountService {
             int sõidukeidEndIndex = htmlString.indexOf("<", sõidukeidStartIndex);
             String sõidukeidkokku = htmlString.substring(sõidukeidStartIndex, sõidukeidEndIndex);
             int sõidukid = Integer.valueOf(sõidukeidkokku);
-            System.out.println("Sõidukeid kokku: " + sõidukid + "\n");
+            System.out.println("Sõidukeid otsingus kokku: " + sõidukid + "\n");
 
             int i = 0;
             int lastIndex1 = 0;
@@ -72,8 +71,7 @@ public class AccountService {
             int userId = 0;
             int oldPrice;
 
-
-            while (i < sõidukid) { //hind loop
+            while (i < sõidukid) {
 
                 int hindStartIndex = htmlString.indexOf(hind, lastIndex1) + hind.length();
                 lastIndex1 = hindStartIndex + hind.length();
@@ -100,18 +98,29 @@ public class AccountService {
                 //    System.out.println("");
 
 
+                List<Integer> oldPriceList = searchRepository.getOldPrice(1,s.getId() , linkUrl);
 
-                List<Integer> oldPriceList = searchRepository.getOldPrice(0);
-
-                if (oldPriceList.size() == 4) {
+                if (oldPriceList.isEmpty()) {
+                    oldPrice = price;
+                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
+                } else {
                     oldPrice = oldPriceList.get(0);
+                    searchRepository.saveNewPrice(price, 1, s.getId(), linkUrl);
+                }i++;
+
+            }
+        }
+    }
+
+                /*if (oldPriceList.size() == 1) {
+                    oldPrice = oldPriceList.get(0);
+                    searchRepository.saveNewPrice(price);
+                    i++;
                 } else {
                     oldPrice = price;
                     searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
-                }
-
-                i++;
-
+                    i++;
+                }*/
 
 
                 /*if (price != 0 && oldPrice == 0) {
@@ -121,9 +130,8 @@ public class AccountService {
                     searchRepository.saveOldPrice(s.getId(), userId, price, oldPrice);
 
                 }*/
-            }
-        }
-    }
+
+
 
 
     /*public void searchLink() {

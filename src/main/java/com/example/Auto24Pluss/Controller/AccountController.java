@@ -48,18 +48,22 @@ System.out.println("lalala");
         return accountService.markResult(1);
     }
 
+    @GetMapping("showResults/{searchId}")
+    public List<SearchResultSave> showResults(@PathVariable Integer searchId) {
+        return accountService.showResults(1, searchId);
+    }
+
     @DeleteMapping("deleteSearch/{searchId}")
     public void deleteSearch(@PathVariable Integer searchId) {
         accountService.deleteSearch(1, searchId);
     }
-  /*  @PostMapping("/addRows")
+    /*  @PostMapping("/addRows")
     public void addRows(@RequestBody )*/
-/*    @GetMapping("getLink")
+    /*    @GetMapping("getLink")
     public String getLink(){
         return accountService.markResult(1);
     }*/
-
-   /* @PutMapping("saveHtml")
+    /* @PutMapping("saveHtml")
     public void saveHtml(@RequestBody SearchResult searchResult) {
         accountService.saveHtml(searchResult.getPrice(), searchResult.getLink(), searchResult.getName());
     }*/

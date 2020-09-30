@@ -13,7 +13,6 @@ public class AccountRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-
     public void createNewAccount(String firstname, String lastname, String username, String password, String dob, String email) {
         String sql = "INSERT INTO appuser (firstname, lastname, username, password, dob, email) values (:firstname, :lastname, :username, :password, :dob, :email)";
         Map<String, String> paramMap = new HashMap<>();
@@ -64,6 +63,21 @@ public class AccountRepository {
         jdbcTemplate.update(sql, paramMap);
         jdbcTemplate.update(sql1, paramMap);
     }
+    public List<SearchResultSave> showResults (Integer user_id, Integer searchId) {
+        String sql = "SELECT resultname, price, oldprice, linkurl from searchresult where user_id = :user_id and search_id = :searchId";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("user_id", user_id);
+        paramMap.put("searchId", searchId);
+        return jdbcTemplate.query(sql, paramMap, new SearchRowMapper());
+    }
+
+/*    public List<SearchEntity> getLink(int user_id) {
+
+        String sql = "Select id, searchlink from search where user_id = :user_id";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("user_id", user_id);
+        return jdbcTemplate.query(sql, paramMap, new SearchEntityRowMapper());
+    }*/
 
     public String getCarMake(Integer markIntValue) {
         if (markIntValue == null) {
@@ -74,8 +88,6 @@ public class AccountRepository {
         paramMap.put("markIntValue", markIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
-
     public String getCarmodel(Integer modelIntValue) { //null väärtus saab olla ainult Integeril (int ei tööta)
         if (modelIntValue == null) {
             return "-";
@@ -133,8 +145,6 @@ public class AccountRepository {
         }
         return labisoit_kuniIntValue;
     }
-
-
     public String getKeretyyp(Integer typeIntValue) {
         if (typeIntValue == null) {
             return "-";
@@ -150,7 +160,6 @@ public class AccountRepository {
         paramMap.put("searchlinkIntValue", searchlinkIntValue);
         return jdbcTemplate.queryForList(sql, paramMap, Object.class);
     }
-
     public String getCarcolor(Integer colorIntValue) {
         if (colorIntValue == null) {
             return "-";
@@ -160,7 +169,6 @@ public class AccountRepository {
         paramMap.put("colorIntValue", colorIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getCarfuel(Integer fuelIntValue) {
         if (fuelIntValue == null) {
             return "-";
@@ -170,7 +178,6 @@ public class AccountRepository {
         paramMap.put("fuelIntValue", fuelIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getTransmission(Integer transmissionIntValue) {
         if (transmissionIntValue == null) {
             return "-";
@@ -180,7 +187,6 @@ public class AccountRepository {
         paramMap.put("transmissionIntValue", transmissionIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getVedavsild(Integer vedavsildIntValue) {
         if (vedavsildIntValue == null) {
             return "-";
@@ -190,7 +196,6 @@ public class AccountRepository {
         paramMap.put("vedavsildIntValue", vedavsildIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getAsukoht(Integer asukohtIntValue) {
         if (asukohtIntValue == null) {
             return "-";
@@ -200,7 +205,6 @@ public class AccountRepository {
         paramMap.put("asukohtIntValue", asukohtIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getMuuja(Integer myyjaIntValue) {
         if (myyjaIntValue == null) {
             return "-";
@@ -210,7 +214,6 @@ public class AccountRepository {
         paramMap.put("myyjaIntValue", myyjaIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getJarjesta(Integer jarjestaIntValue) {
         if (jarjestaIntValue == null) {
             return "-";
@@ -220,7 +223,6 @@ public class AccountRepository {
         paramMap.put("jarjestaIntValue", jarjestaIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getNaita(Integer naitaIntValue) {
         if (naitaIntValue == null) {
             return "-";
@@ -230,7 +232,6 @@ public class AccountRepository {
         paramMap.put("naitaIntValue", naitaIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getOksjon(Integer oksjonIntValue) {
         if (oksjonIntValue == null) {
             return "-";
@@ -240,7 +241,6 @@ public class AccountRepository {
         paramMap.put("oksjonIntValue", oksjonIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public String getKuulutusevanus(Integer kuulutusevanusIntValue) {
         if (kuulutusevanusIntValue == null) {
             return "-";
@@ -250,7 +250,6 @@ public class AccountRepository {
         paramMap.put("kuulutusevanusIntValue", kuulutusevanusIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-
     public List<SearchEntity> getLink(int user_id) {
 
         String sql = "Select id, searchlink from search where user_id = :user_id";
@@ -258,6 +257,4 @@ public class AccountRepository {
         paramMap.put("user_id", user_id);
         return jdbcTemplate.query(sql, paramMap, new SearchEntityRowMapper());
     }
-
-
 }

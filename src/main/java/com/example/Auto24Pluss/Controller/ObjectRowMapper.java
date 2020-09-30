@@ -16,6 +16,7 @@ public class ObjectRowMapper implements RowMapper<SearchLinkSave> {
         // klassi BankAccount ''account_Nr'' muutujale
         savedresults.setUserId(resultSet.getLong("user_id"));
         savedresults.setSearchId(resultSet.getLong("searchId"));
+
         return savedresults;
     }
 }

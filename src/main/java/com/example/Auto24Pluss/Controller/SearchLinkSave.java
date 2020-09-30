@@ -4,6 +4,33 @@ public class SearchLinkSave {
     private String searchlink;
     private Long userId;
     private Long searchId;
+    private String linkUrl;
+    private String resultName;
+    private String price;
+
+    public String getLinkUrl() {
+        return linkUrl;
+    }
+
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
+    }
+
+    public String getResultName() {
+        return resultName;
+    }
+
+    public void setResultName(String resultName) {
+        this.resultName = resultName;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public Long getSearchId() {return searchId; }
 

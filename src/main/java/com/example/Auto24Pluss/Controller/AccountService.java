@@ -137,6 +137,10 @@ public class AccountService {
         accountRepository.deleteSearch(1, searchId);
     }
 
+    public List<SearchResultSave> showResults(Integer user_id, Integer searchId) {
+        return accountRepository.showResults(1, searchId);
+    }
+
     public void updateInformation(String password, String email) {
         accountRepository.updateInformation(password, email);
     }

@@ -73,7 +73,9 @@
     </div>
 </div>
 <div class="container" align="center">
-    <button id="backButton" type="button" style="width: 250px" class="btn btn-lg btn-primary btn-block">Eelmisele lehele</button>
+    <button id="backButton" type="button" style="width: 250px" class="btn btn-lg btn-primary btn-block">Eelmisele
+        lehele
+    </button>
 </div>
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
@@ -146,11 +148,15 @@
                     '            </thead>\n';
                 for (let i = 0; i < jsonData.length; i++) {
                     html += '<tr>' +
-                        '<td class="my-md-10 pt-md-10 border" style="width: 1500px">' + jsonData[i].resultname + '</td>' +
-                        '<td class="my-md-10 pt-md-10 border" style="width: 400px">' + jsonData[i].price + '</td>' +
-                        '<td class="my-md-10 pt-md-10 border" style="width: 400px">' + jsonData[i].oldprice + '</td>' +
-                        '<td class="my-md-10 pt-md-10 border" style="width: 1000px"><a href=' + jsonData[i].linkurl + '>' + jsonData[i].linkurl + '</a></td>' +
-                        '</tr>';
+                        '<td class="my-md-10 pt-md-10 border" style="width: 1500px">' + jsonData[i].resultname + '</td>';
+                    if (jsonData[i].price != jsonData[i].oldprice) {
+                        html += '<td class="my-md-10 pt-md-10 border" style="width: 400px"><b>' + jsonData[i].price + '</b></td>';
+                    } else {
+                        html += '<td class="my-md-10 pt-md-10 border" style="width: 400px">' + jsonData[i].price + '</td>';
+                    }
+                    html += '<td class="my-md-10 pt-md-10 border" style="width: 400px">' + jsonData[i].oldprice + '</td>' +
+                    '<td class="my-md-10 pt-md-10 border" style="width: 1000px"><a href=' + jsonData[i].linkurl + '>' + jsonData[i].linkurl + '</a></td>' +
+                    '</tr>';
                 }
                 html += '</table>';
                 resultContainer.innerHTML = html;

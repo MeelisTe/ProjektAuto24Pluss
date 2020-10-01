@@ -98,7 +98,7 @@ public class AccountService {
                 //    System.out.println("");
 
 
-                List<Integer> oldPriceList = searchRepository.getOldPrice(1,s.getId() , linkUrl);
+                List<Integer> oldPriceList = searchRepository.getOldPrice(1, s.getId(), linkUrl);
 
                 if (oldPriceList.isEmpty()) {
                     oldPrice = price;
@@ -106,35 +106,14 @@ public class AccountService {
                 } else {
                     oldPrice = oldPriceList.get(0);
                     searchRepository.saveNewPrice(price, 1, s.getId(), linkUrl);
-                }i++;
+                }
+                i++;
 
             }
         }
     }
 
-                /*if (oldPriceList.size() == 1) {
-                    oldPrice = oldPriceList.get(0);
-                    searchRepository.saveNewPrice(price);
-                    i++;
-                } else {
-                    oldPrice = price;
-                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
-                    i++;
-                }*/
-
-
-                /*if (price != 0 && oldPrice == 0) {
-                    oldPrice = price;
-                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
-                } else {
-                    searchRepository.saveOldPrice(s.getId(), userId, price, oldPrice);
-
-                }*/
-
-
-
-
-    /*public void searchLink() {
+       /*public void searchLink() {
 
         List<String> linkResultList = searchRepository.getSearchLink();
         System.out.println(linkResultList.size() + "\n");

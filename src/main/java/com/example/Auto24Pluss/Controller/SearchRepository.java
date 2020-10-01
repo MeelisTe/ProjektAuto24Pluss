@@ -70,4 +70,16 @@ public class SearchRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
+    public void saveEmailInfo(int userId, String resultName, int price, int oldPrice, String linkUrl, int sent) {
+        String sql = "INSERT INTO email (user_id, resultname, price, oldprice, linkurl) values(1, :name, :price, :oldprice, :link)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userId", userId);
+        paramMap.put("name", resultName);
+        paramMap.put("price", price);
+        paramMap.put("oldprice", oldPrice);
+        paramMap.put("link", linkUrl);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+
 }

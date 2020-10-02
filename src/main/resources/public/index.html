@@ -44,19 +44,19 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body class="text-center">
-<form class="form-signin">
+<form class="form-signin" action="/login" method="post">
     <img class="mb-4" src="Images/Logo.png" alt="" width="280" height="72">
   <!--  <h1 class="h3 mb-3 font-weight-normal">Palun logi sisse</h1>-->
     <br>
     <br>
-    <label for="kasutajanimi" class="sr-only">Kasutajanimi</label>
+    <label for="username" class="sr-only">Kasutajanimi</label>
 
-    <input type="text" id="kasutajanimi" class="form-control" placeholder="Kasutajanimi"
+    <input type="text" id="username" name="username" class="form-control" placeholder="Kasutajanimi"
            oninvalid="this.setCustomValidity('Sisesta kasutajanimi')"
            onchange="this.setCustomValidity('')" required autofocus>
 
-    <label for="parool" class="sr-only">Password</label>
-    <input type="password" id="parool" class="form-control" placeholder="Parool"
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Parool"
            oninvalid="this.setCustomValidity('Sisesta parool')"
            onchange="this.setCustomValidity('')" required>
 
@@ -65,18 +65,18 @@
             <input id="rememberme" type="checkbox" value="remember-me"> Mäleta mind
         </label>
     </div>
-    <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" id="login" name="login" value="Logi sisse"/>
     <button id="createaccount" class="btn btn-lg btn-primary btn-block" type="submit">Loo kasutaja</button>
     <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>-->
     <!-- test -->
 </form>
 
 <script>
-    let elementloggedin=document.getElementById("login");
-    elementloggedin.addEventListener('click', function () {
+//    let elementloggedin=document.getElementById("login");
+//    elementloggedin.addEventListener('click', function () {
 
-        window.location.href = ('/loggedin.html')
-    });
+ //       window.location.href = ('/loggedin.html')
+ //   });
 
     let elementcreateaccount=document.getElementById("createaccount");
     elementcreateaccount.addEventListener('click', function () {

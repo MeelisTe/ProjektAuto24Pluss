@@ -12,6 +12,7 @@ public class SearchEntityRowMapper implements RowMapper<SearchEntity> {
         SearchEntity searchEntity = new SearchEntity();
         searchEntity.setId(resultSet.getInt("id"));
         searchEntity.setLink(resultSet.getString("searchlink"));
+        searchEntity.setUserId(resultSet.getInt("user_id"));
         return searchEntity;
     }
 }

@@ -33,7 +33,7 @@ public class SearchRepository {
     }*/
 
     public void saveHtml(int searchId, int userId, String resultName, int price, int oldPrice, String linkUrl) {
-        String sql = "INSERT INTO searchresult (search_id, user_id, resultname, price, oldprice, linkurl) values(:searchId, 1, :name, :price, :oldprice, :link)";
+        String sql = "INSERT INTO searchresult (search_id, user_id, resultname, price, oldprice, linkurl) values(:searchId, :userId, :name, :price, :oldprice, :link)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("searchId", searchId);
         paramMap.put("userId", userId);

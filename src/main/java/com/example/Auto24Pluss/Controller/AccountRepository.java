@@ -2,12 +2,13 @@ package com.example.Auto24Pluss.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Controller
 @Repository
 public class AccountRepository {
     @Autowired
@@ -25,14 +26,14 @@ public class AccountRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public String getUsernameByUserId(String kasutajanimi) {
-        String sql = "SELECT id FROM appuser WHERE username = :kasutajaNimi";
+    public Integer user_id(String username) {
+        String sql = "SELECT id FROM appuser WHERE username = :username";
         Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("kasutajaNimi", kasutajanimi);
-        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+        paramMap.put("username", username);
+        return jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
 
-    public void saveURL(String searchlink, Long userId) {
+    public void saveURL(String searchlink, Integer userId) {
         String sql = "INSERT INTO search (searchlink, user_id) values (:searchlink, :userId)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("searchlink", searchlink);
@@ -250,11 +251,25 @@ public class AccountRepository {
         paramMap.put("kuulutusevanusIntValue", kuulutusevanusIntValue);
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
-    public List<SearchEntity> getLink(int user_id) {
+    public List<SearchEntity> getLink() {
 
-        String sql = "Select id, searchlink from search where user_id = :user_id";
+        String sql = "Select id, user_id, searchlink from search";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("user_id", user_id);
+//        paramMap.put("user_id", user_id);
         return jdbcTemplate.query(sql, paramMap, new SearchEntityRowMapper());
+    }
+
+    public List<SearchEntity> getLinkByUser(Integer userId) {
+        String sql = "Select id, user_id, searchlink from search where user_id = :user_id";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("user_id", userId);
+        return jdbcTemplate.query(sql, paramMap, new SearchEntityRowMapper());
+    }
+
+    public String getUser(String username) {
+        String sql = "Select password from appuser where username= :username";
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("username", username);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
 }

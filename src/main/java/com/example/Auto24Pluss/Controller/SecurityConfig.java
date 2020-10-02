@@ -19,8 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                .antMatchers( "/createaccount.html","/createaccount","/manifest.json", "/style.css", "/Images/Logo.png").permitAll() //nii saan kirjeldada, et kõigil on ligipääs esilehele
-                .anyRequest().permitAll() //kui tahan, et parooli ei küsiks, siis panen .permitAll/.authenticated
+                .antMatchers( "/createaccount.html","/createaccount","/manifest.json", "/style.css", "/Images/Logo.png", "/docs/4.5/assets/img/favicons/android-chrome-192x192.png").permitAll() //nii saan kirjeldada, et kõigil on ligipääs esilehele
+                .anyRequest().authenticated() //kui tahan, et parooli ei küsiks, siis panen .permitAll/.authenticated
                 .and()
                 .formLogin()
                 .loginPage("/")

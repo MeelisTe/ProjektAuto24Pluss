@@ -27,7 +27,7 @@ public class ScheduledTasks {
 
 
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 100000)
     public void saveHtml() {
         System.out.println("Save html started: " + LocalDateTime.now());
         accountService.saveHtml();

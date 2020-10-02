@@ -161,38 +161,24 @@ public class AccountService {
                     searchRepository.saveHtml(s.getId(), s.getUserId(), resultName, price, oldPrice, linkUrl);
                 } else {
                     oldPrice = oldPriceList.get(0);
-                    searchRepository.saveNewPrice(price, s.getUserId(), s.getId(), linkUrl);
-                }i++;
+                    Integer searchResultId = searchRepository.saveNewPrice(price, s.getUserId(), s.getId(), linkUrl);
+                    if (price != oldPrice) {
+                        searchRepository.saveEmailInfo(s.getUserId(), searchResultId);
+                    } else{
+                    }
+                }
+                i++;
 
             }
-            System.out.println("Parse html ended: " + LocalDateTime.now());
         }
     }
 
-    /*if (oldPriceList.size() == 1) {
-                    oldPrice = oldPriceList.get(0);
-                    searchRepository.saveNewPrice(price);
-                    i++;
-                } else {
-                    oldPrice = price;
-                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
-                    i++;
-                }*/
-    /*if (price != 0 && oldPrice == 0) {
-                    oldPrice = price;
-                    searchRepository.saveHtml(s.getId(), userId, resultName, price, oldPrice, linkUrl);
-                } else {
-                    searchRepository.saveOldPrice(s.getId(), userId, price, oldPrice);
+    // TODO
 
-                }*/
-    /*public void searchLink() {
+    public void sendEmail(int searchresultId, String linkUrl) {
 
-        List<String> linkResultList = searchRepository.getSearchLink();
-        System.out.println(linkResultList.size() + "\n");
-        for (String s : linkResultList) {
-            System.out.println(s);
-        }
-    }*/
+
+    }
 
 
     public void createNewAccount(String firstname, String lastname, String username, String password, String
@@ -218,30 +204,6 @@ public class AccountService {
         return accountRepository.displayresults();
     }
 
-
-/*   public int searchSettings() {
-
-            int mudelStartIndex = searchLink.indexOf(autoMudel) + autoMudel.length();
-            int mudelEndIndex = searchLink.indexOf("&", mudelStartIndex);
-            String mudelValue = searchLink.substring(mudelStartIndex, mudelEndIndex);
-            Integer mudelIntValue = Integer.valueOf(mudelValue);
-            System.out.println(mudelIntValue);
-
-            int markStartindex = searchLink.indexOf(autoMark) + autoMark.length();
-            int markEndIndex = searchLink.indexOf("&", markStartindex);
-            String markValue = searchLink.substring(markStartindex, markEndIndex);
-            Integer markIntValue = Integer.valueOf(markValue);
-            System.out.println(markIntValue);
-
-            int naitaStartindex = searchLink.indexOf(naita) + naita.length();
-            int naitaEndIndex = searchLink.indexOf("&", naitaStartindex);
-            String naitaValue = searchLink.substring(naitaStartindex, naitaEndIndex);
-            Integer naitaIntValue = Integer.valueOf(naitaValue);
-            System.out.println(naitaIntValue);
-
-        return mudelIntValue + markIntValue + naitaIntValue;
-
-        }*/
 
 
 }
